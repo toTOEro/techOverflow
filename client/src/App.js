@@ -8,7 +8,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { ChakraProvider } from '@chakra-ui/react';
-import Postings from './pages/postings';
+import Postings from './pages/Postings';
 
 import logo from './logo.svg';
 import './App.css';
@@ -38,26 +38,14 @@ function App() {
       <ChakraProvider>
         <Router>
           <Routes>
-            <Route
+            {/* <Route
               path="/"
+              element={<Home />}
+            /> */}
+            <Route
+              path="/postings"
               element={<Postings />}
             />
-            <div className="App">
-              <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                  Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                  className="App-link"
-                  href="https://reactjs.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn React
-                </a>
-              </header>
-            </div>
           </Routes>
 
         </Router>
