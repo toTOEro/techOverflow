@@ -36,7 +36,7 @@ export default function Postings() {
                 <Heading size='2xl'>Project Postings</Heading>
                 <Stack spacing="4" alignItems="center">
                     {data.map(({_id, title, description, email, owner}) => (
-                        <Card key={_id} maxW='lg'>
+                        <Card key={_id} maxW='3xl' minW='xl'>
                             <Link
                                 to={`/posting/${_id}`}
                             >
@@ -53,7 +53,7 @@ export default function Postings() {
                         </Card>
                     ))}
                     <br />
-                    <footer className='credits'><a target="_blank" href="https://icons8.com/icon/22396/user" rel="noreferrer">User icons by Icons8</a></footer>
+                    <Text className='credits' fontSize='sm'><a target="_blank" href="https://icons8.com/icon/22396/user" rel="noreferrer">User icons by Icons8</a></Text>
                 </Stack>
 
             </div>

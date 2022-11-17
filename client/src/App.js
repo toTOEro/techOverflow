@@ -11,6 +11,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import Postings from './pages/Postings';
 import PostingDetail from './pages/PostingDetail';
+import Footer from './components/Footer';
 
 import logo from './logo.svg';
 import './App.css';
@@ -55,9 +56,12 @@ function App() {
           </Routes>
 
         </Router>
+        <Footer />
+
       </ChakraProvider>
 
     </ApolloProvider>
+
   );
 }
 
