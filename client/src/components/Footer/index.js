@@ -4,7 +4,7 @@ import { Box, Heading, List, ListItem, Divider, Stack, Center } from "@chakra-ui
 const Footer = () => {
     return (
 
-        <Box position='absolute' bottom='0' width='100%' bg='black' py='1' color='white'>
+        <Box width='100%' bg='black' py='1' color='white' maxH='5vh'>
             <Stack alignItems='center'>
                 {/* <Heading size='sm'>Happy Coding</Heading> */}
                 <List textAlign='center'>

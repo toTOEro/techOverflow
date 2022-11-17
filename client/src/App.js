@@ -7,11 +7,12 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 import Postings from './pages/Postings';
 import PostingDetail from './pages/PostingDetail';
 import Footer from './components/Footer';
+import theme from './themes/index';
 
 import logo from './logo.svg';
 import './App.css';
@@ -35,10 +36,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
+
+
+
 function App() {
   return (
     <ApolloProvider client={client}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Router>
           <Routes>
             {/* <Route
@@ -49,7 +53,7 @@ function App() {
               path="/postings"
               element={<Postings />}
             />
-            <Route 
+            <Route
               path="/posting/:id"
               element={<PostingDetail />}
             />
