@@ -8,7 +8,7 @@ const MailTo = ({ email, label }) => {
             to="#"
             onClick={(e) => {
                 e.preventDefault()
-                window.location= `mailto:${email}`;
+                window.open(`mailto:${email}`,'_blank')
             }}
         >
             {label}
