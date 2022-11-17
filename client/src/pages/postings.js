@@ -73,8 +73,7 @@ export default function Postings() {
     ]
 
     return (
-        <>
-            <div className='postings'>
+            <div>
                 <Heading size='2xl' py='15'>Project Postings</Heading>
                 <Stack spacing="4" alignItems="center">
                     {data.map(({ _id, title, description, email, owner }) => (
@@ -96,12 +95,10 @@ export default function Postings() {
                             </CardFooter>
                         </Card>
                     ))}
-                    <br />
                 </Stack>
 
             </div>
 
-        </>
 
     )
 

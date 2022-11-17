@@ -12,7 +12,6 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import Postings from './pages/Postings';
 import PostingDetail from './pages/PostingDetail';
 import Footer from './components/Footer';
-import theme from './themes/index';
 
 import logo from './logo.svg';
 import './App.css';
@@ -36,35 +35,45 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
-
+// const theme = extendTheme({
+//   styles: {
+//     global: {
+//       body: {
+//         height: 'fit-content',
+//       }
+//     }
+//   }
+// })
 
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <ChakraProvider theme={theme}>
-        <Router>
-          <Routes>
-            {/* <Route
+      <ChakraProvider >
+        <div className='content-container'>
+          <Router>
+            <Routes>
+              {/* <Route
               path="/"
               element={<Home />}
             /> */}
-            <Route
-              path="/postings"
-              element={<Postings />}
-            />
-            <Route
-              path="/posting/:id"
-              element={<PostingDetail />}
-            />
-          </Routes>
-
-        </Router>
-        <Footer />
-
+              <Route
+                path="/postings"
+                element={<Postings />}
+              />
+              <Route
+                path="/posting/:id"
+                element={<PostingDetail />}
+              />
+            </Routes>
+          </Router>
+        </div>
+        <div className='footer--pin'>
+          <Footer />
+        </div>
       </ChakraProvider>
 
-    </ApolloProvider>
+    </ApolloProvider >
 
   );
 }

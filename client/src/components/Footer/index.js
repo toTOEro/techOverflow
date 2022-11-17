@@ -3,34 +3,32 @@ import { Box, Heading, List, ListItem, Divider, Stack, Center } from "@chakra-ui
 
 const Footer = () => {
     return (
-
-        <Box width='100%' bg='black' py='1' color='white' maxH='5vh'>
-            <Stack alignItems='center'>
-                {/* <Heading size='sm'>Happy Coding</Heading> */}
-                <List textAlign='center'>
-                    <Heading size='xs' fontStyle='italic' >Created By:</Heading>
-                    {/* <Divider maxWidth='6rem' /> */}
-                    <Center gap='3' height='20px'>
-                        <ListItem as='a' target='_blank' href="https://github.com/toTOEro">
-                            Anthony To
-                        </ListItem>
-                        <Divider orientation="vertical" />
-                        <ListItem as='a' target='_blank' href="https://github.com/Hdela99">
-                            Hector De La Cruz
-                        </ListItem>
-                        <Divider orientation="vertical" />
-                        <ListItem as='a' target='_blank' href="https://github.com/MargotCooper">
-                            Margot Cooper Gruen
-                        </ListItem>
-                        <Divider orientation="vertical" />
-                        <ListItem as='a' target='_blank' href="https://github.com/MarioArmstrong">
-                            Mario Armstrong
-                        </ListItem>
-                    </Center>
-                </List>
-            </Stack>
-        </Box>
-
+        <>
+            <Box as="footer" id='test' width='100%' bg='black' py='1' marginTop='10px' color='white' >
+                <Stack alignItems='center'>
+                    <List textAlign='center'>
+                        <Heading size='xs' fontStyle='italic' >Created By:</Heading>
+                        <Center gap='3' height='20px'>
+                            <ListItem as='a' target='_blank' href="https://github.com/toTOEro">
+                                Anthony To
+                            </ListItem>
+                            <Divider orientation="vertical" />
+                            <ListItem as='a' target='_blank' href="https://github.com/Hdela99">
+                                Hector De La Cruz
+                            </ListItem>
+                            <Divider orientation="vertical" />
+                            <ListItem as='a' target='_blank' href="https://github.com/MargotCooper">
+                                Margot Cooper Gruen
+                            </ListItem>
+                            <Divider orientation="vertical" />
+                            <ListItem as='a' target='_blank' href="https://github.com/MarioArmstrong">
+                                Mario Armstrong
+                            </ListItem>
+                        </Center>
+                    </List>
+                </Stack>
+            </Box>
+        </>
     )
 }
 
