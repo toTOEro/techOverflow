@@ -8,7 +8,9 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { ChakraProvider } from '@chakra-ui/react';
+
 import Postings from './pages/Postings';
+import PostingDetail from './pages/PostingDetail';
 
 import logo from './logo.svg';
 import './App.css';
@@ -45,6 +47,10 @@ function App() {
             <Route
               path="/postings"
               element={<Postings />}
+            />
+            <Route 
+              path="/posting/:id"
+              element={<PostingDetail />}
             />
           </Routes>
 
