@@ -8,7 +8,14 @@ const resolvers = {
     postings: async () => {
       return await Posting.find();
     },
-    comments: async () => {},
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user.ID });
+      }
+    },
+    singlePost: async (parent, { _id }, context) => {
+      return Posting.findOne({ _id });
+    },
   },
   Mutation: {
     login: async (parent, { email, password }) => {
