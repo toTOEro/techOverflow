@@ -29,6 +29,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    me: User
     user: User
     posting(_id: ID): Posting
     comment: [Comment]
