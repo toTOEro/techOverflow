@@ -1,26 +1,18 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import PostingList from '../components/postingsList/index';
 
-import PostingList from `../components/PostList`;
-import PostingForm from `../components/PostingForm`;
-
-import {QUERY_POSTINGS} from `../utils/queries`;
+ import {QUERY_POSTINGS} from '../utils/queries';
 
 const Home = () => {
-    const {loading, data} = useQuery(QUERY_POSTINGS);
-    const postings = data?.postings || [];
+     const {loading, data} = useQuery(QUERY_POSTINGS);
+     const postings = data?.postings || [];
 
     return (
         <main> 
             <div className="flex-row justify-center">
-                <div 
-                className="col-12 col-md-10 mb-3 p-3" 
-                style={{ border: `1px dotted #1a1a1a` }}
-                >
-                    <PostingForm />
-                </div>
-
                 <div className="col-12">
+                    <h1>Welcome to the homePage(This is for development purposes take this out of production)</h1>
                     {loading ? (
                         <div>Loading...</div>
                     ): (
