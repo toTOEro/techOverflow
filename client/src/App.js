@@ -12,6 +12,7 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import Postings from './pages/Postings';
 import PostingDetail from './pages/PostingDetail';
 import Footer from './components/Footer';
+import Home from './pages/Home';
 
 import logo from './logo.svg';
 import './App.css';
@@ -53,10 +54,10 @@ function App() {
         <div className='content-container'>
           <Router>
             <Routes>
-              {/* <Route
+               <Route
               path="/"
               element={<Home />}
-            /> */}
+            /> 
               <Route
                 path="/postings"
                 element={<Postings />}
