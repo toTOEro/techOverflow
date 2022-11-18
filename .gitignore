@@ -23,3 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 node_modules
 themes
+
+node_modules
+
+/build
