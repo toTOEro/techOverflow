@@ -35,16 +35,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
-// const theme = extendTheme({
-//   styles: {
-//     global: {
-//       body: {
-//         height: 'fit-content',
-//       }
-//     }
-//   }
-// })
-
 
 function App() {
   return (

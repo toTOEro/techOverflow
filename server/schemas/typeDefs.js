@@ -6,7 +6,7 @@ type User {
     firstName: String!
     lastName: String!
     email: String!
-    password String!
+    password: String!
     postings: [Posting]
 }
 
@@ -37,8 +37,8 @@ type Query {
 
 type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addPosting():
-    addComment():
+    addPosting(title: String!, description: String): Posting
+    addComment(content: String!): Comment
     login(email: String!, password: String!): Auth}
 `;
 

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const User = require('./User')
 
 const postingSchema = new Schema({
   title: {
@@ -19,6 +20,7 @@ const postingSchema = new Schema({
       ref: "Comment",
     },
   ],
+  registered: [User.schema]
 });
 
 const Posting = mongoose.model("Posting", postingSchema);

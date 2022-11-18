@@ -1,18 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Button } from "@chakra-ui/react";
+import { HiOutlineMail } from 'react-icons/hi';
 
 
 const MailTo = ({ email, label }) => {
     return (
-        <Link
+        <Button
+            leftIcon={<HiOutlineMail />}
+            colorScheme='teal'
             to="#"
             onClick={(e) => {
                 e.preventDefault()
-                window.open(`mailto:${email}`,'_blank')
+                window.open(`mailto:${email}`, '_blank')
             }}
         >
             {label}
-        </Link>
+        </Button>
     )
 }
 

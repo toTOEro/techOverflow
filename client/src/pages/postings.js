@@ -1,8 +1,7 @@
 // import { useQuery } from '@apollo/client';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar, extendTheme } from '@chakra-ui/react'
-import MailTo from '../components/MailTo';
+import { Heading, Stack } from '@chakra-ui/react'
+import Posting from '../components/Posting';
 // import {GET_POSTINGS} from '../utils/queries';
 
 
@@ -72,35 +71,29 @@ export default function Postings() {
         },
     ]
 
-    return (
-            <div>
-                <Heading size='2xl' py='15'>Project Postings</Heading>
-                <Stack spacing="4" alignItems="center">
-                    {data.map(({ _id, title, description, email, owner }) => (
-                        <Card key={_id} maxW='65vw' minW='50vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
-                            <Link
-                                to={`/posting/${_id}`}
-                            >
-                                <CardHeader>
-                                    <Heading size='lg'>{title}</Heading>
-                                </CardHeader>
-                                <CardBody>
-                                    <Text>{description}</Text>
-                                </CardBody>
-                            </Link>
-                            <Divider />
-                            <CardFooter py='1'>
-                                <MailTo email={email} label={`Email ${owner}`} />
-                                <Avatar name='test' src={'./icons8-user-32.png'} />
-                            </CardFooter>
-                        </Card>
-                    ))}
-                </Stack>
 
-            </div>
+    return (
+        <div>
+            <Heading size='2xl' py='15'>Project Postings</Heading>
+            <Stack spacing="4" alignItems="center">
+                {data.map(({ _id, title, description, email, owner }) => (
+                    <Posting
+                        key={_id}
+                        _id={_id}
+                        title={title}
+                        description={description}
+                        email={email}
+                        owner={owner}
+                    />
+
+                ))}
+            </Stack>
+
+        </div>
 
 
     )
 
 
 }
+
