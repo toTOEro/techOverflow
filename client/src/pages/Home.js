@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import PostingList from '../components/postingsList/index';
+import Footer from '../components/Footer/index';
 
  import {QUERY_POSTINGS} from '../utils/queries';
 
