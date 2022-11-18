@@ -10,8 +10,8 @@ const Home = () => {
 
     return (
         <main> 
-            <div className="flex-row justify-center">
-                <div className="col-12">
+            <div >
+                <div >
                     <h1>Welcome to the homePage(This is for development purposes take this out of production)</h1>
                     {loading ? (
                         <div>Loading...</div>
