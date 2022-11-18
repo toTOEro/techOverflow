@@ -18,7 +18,7 @@ import './App.css';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
-})
+});
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
@@ -28,18 +28,32 @@ const authLink = setContext((_, { headers }) => {
       authorization: token ? `Bearer ${token}` : '',
     },
   }
-})
+});
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+});
+
+const theme = extendTheme({
+  styles: {
+    global: {
+      p: {
+        fontSize: { base: '14px', md: '20px', lg: '30px' }
+      },
+      a: {
+        fontSize: { base: '8px', md: '20px', lg: '30px' }
+      },
+    }
+  }
+
 })
 
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <ChakraProvider >
+      <ChakraProvider theme={theme}>
         <div className='content-container'>
           <Router>
             <Routes>
