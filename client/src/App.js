@@ -1,24 +1,80 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+
+import Postings from './pages/Postings';
+import PostingDetail from './pages/PostingDetail';
+import Footer from './components/Footer';
+
 import logo from './logo.svg';
 import './App.css';
 
+const httpLink = createHttpLink({
+  uri: '/graphql',
+})
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  }
+})
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+})
+
+// const theme = extendTheme({
+//   styles: {
+//     global: {
+//       body: {
+//         height: 'fit-content',
+//       }
+//     }
+//   }
+// })
+
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <ChakraProvider >
+        <div className='content-container'>
+          <Router>
+            <Routes>
+              {/* <Route
+              path="/"
+              element={<Home />}
+            /> */}
+              <Route
+                path="/postings"
+                element={<Postings />}
+              />
+              <Route
+                path="/posting/:id"
+                element={<PostingDetail />}
+              />
+            </Routes>
+          </Router>
+        </div>
+        <div className='footer--pin'>
+          <Footer />
+        </div>
+      </ChakraProvider>
+
+    </ApolloProvider >
+
   );
 }
 
