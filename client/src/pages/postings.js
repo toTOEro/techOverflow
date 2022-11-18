@@ -85,7 +85,6 @@ export default function Postings() {
                         email={email}
                         owner={owner}
                     />
-
                 ))}
             </Stack>
 

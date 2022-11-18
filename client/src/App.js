@@ -39,15 +39,22 @@ const theme = extendTheme({
   styles: {
     global: {
       p: {
-        fontSize: { base: '14px', md: '20px', lg: '30px' }
+        fontSize: { base: '14px', md: '20px', lg: '25px' },
       },
       a: {
-        fontSize: { base: '8px', md: '20px', lg: '30px' }
+        fontSize: { base: '8px', md: '20px', lg: '20px' },
       },
+      comment: { base: '8px', md: '20px', lg: '20px' },
+    }
+  },
+  components: {
+    Comment: {
+      baseStyle: {
+
+      }
     }
   }
-
-})
+});
 
 
 function App() {

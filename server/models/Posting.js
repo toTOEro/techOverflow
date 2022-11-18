@@ -20,7 +20,6 @@ const postingSchema = new Schema({
       ref: "Comment",
     },
   ],
-  registered: [User.schema]
 });
 
 const Posting = mongoose.model("Posting", postingSchema);
