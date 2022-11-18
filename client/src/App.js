@@ -9,7 +9,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
-import Postings from './pages/postings';
+import Postings from './pages/Postings';
 import PostingDetail from './pages/PostingDetail';
 import Footer from './components/Footer';
 import Home from './pages/Home';
