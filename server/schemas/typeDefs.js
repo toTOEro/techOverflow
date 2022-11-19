@@ -32,7 +32,8 @@ const typeDefs = gql`
     users: [User]
     me: User
     user: User
-    posting(_id: ID): Posting
+    postings: [Posting]
+    singlePost(_id: ID): Posting
     comment: [Comment]
   }
 

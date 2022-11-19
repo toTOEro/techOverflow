@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar, extendTheme } from '@chakra-ui/react'
 // import MailTo from '../components/MailTo';
 // import {GET_POSTINGS} from '../utils/queries';
-export default function postingsList() {
+export default function PostingsList() {
 
      let postings =  [
         {
