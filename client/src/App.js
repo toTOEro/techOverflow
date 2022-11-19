@@ -14,8 +14,9 @@ import PostingDetail from './pages/PostingDetail';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import Nav from './components/Nav';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -64,6 +65,8 @@ function App() {
       <ChakraProvider theme={theme}>
         <div className='content-container'>
           <Router>
+          <Nav />
+
             <Routes>
                <Route
               path="/"

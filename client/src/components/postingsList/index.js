@@ -2,6 +2,7 @@
 import React from 'react';
 import { Heading, Stack } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
+import Posting from '../Posting';
 // import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar, extendTheme } from '@chakra-ui/react'
 // import MailTo from '../components/MailTo';
 // import {GET_POSTINGS} from '../utils/queries';
@@ -68,7 +69,7 @@ export default function PostingsList() {
     ]
 
     if(!postings.length){
-        return <h3> No postings yet, will you make the first one?</h3>;
+        return <Heading size='2xl' py='15'> No postings yet, will you make the first one?</Heading>;
     }
 
     return(
@@ -77,7 +78,7 @@ export default function PostingsList() {
             <Stack spacing="4" alignItems="center">
                 {postings.map(({_id, title, description, email, owner}) => (
                         <div >
-                            <postingsList 
+                            <Posting 
                             key={_id}
                             _id={_id}
                             title={title}
