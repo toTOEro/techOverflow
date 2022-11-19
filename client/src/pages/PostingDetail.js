@@ -3,10 +3,12 @@ import {
     Text,
     Box,
     Container,
+    Divider
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom"
 import Comment from "../components/Comment/index"
+import CommentForm from "../components/CommentForm";
 
 const PostingDetail = () => {
     const { id } = useParams();
@@ -25,12 +27,14 @@ const PostingDetail = () => {
         comments: [
             {
                 _id: 1,
-                content: 'woohoo'
+                content: 'woohoo',
+                date_created: 'November 16th, 2020'
             },
 
             {
                 _id: 13,
-                content: 'woohoo'
+                content: 'woohoo',
+                date_created: 'November 16th, 2020'
             },
 
         ]
@@ -45,13 +49,19 @@ const PostingDetail = () => {
                 <Box>
                     <Text>{description}</Text>
                 </Box>
+                <Heading size='md' mt='10'>Comments</Heading>
+                {comments ? (comments.map(({ _id, content, date_created }) => (
+                    <Comment
+                        key={_id}
+                        content={content}
+                        date_created={date_created}
+                    />
+                ))) : ''
+                }
+                <Divider my='3' />
+                <CommentForm />
             </Container>
-            
-            <Container mt='10'>
-                {comments.map(({ _id, content }) => (
-                    <Comment key={_id} content={content} />
-                ))}
-            </Container>
+
         </>
     )
 }

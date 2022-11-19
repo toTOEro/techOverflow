@@ -1,14 +1,29 @@
 
 import React from "react"
-import { Text } from "@chakra-ui/react"
+import { Card, CardBody, CardFooter, Divider } from "@chakra-ui/react"
 
-const Comment = () => {
+const Comment = (data) => {
+
+
+    let {
+        _id,
+        content,
+        date_created
+    } = data
 
     return (
         <>
-            <Text className="comment">
-                Comment here!
-            </Text>
+            <Card key={_id} variant='outline' my='4'>
+                <CardBody>
+                    {content}
+                </CardBody>
+                <Divider />
+                <CardFooter justifyContent={'end'} py='1.5' as='i'>
+                    Commented on {date_created}
+                </CardFooter>
+            </Card>
+
+
         </>
     )
 

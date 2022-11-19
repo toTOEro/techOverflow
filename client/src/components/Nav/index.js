@@ -14,6 +14,7 @@ import {
     Icon
 } from '@chakra-ui/react'
 import {FaDonate} from 'react-icons/fa'
+import {FcIdea} from 'react-icons/fc'
 
 import IdeaForm from '../IdeaForm';
 
@@ -27,7 +28,7 @@ export default function Nav() {
                     <Button as='a' href='/'><Icon src='./icons8-engineering-64.png'></Icon>LOGO HERE </Button>
 
 
-                    <Button onClick={onOpen} colorScheme='green'>Submit an Idea!</Button>
+                    <Button onClick={onOpen} colorScheme='whatsapp' rightIcon={<FcIdea />} leftIcon={<FcIdea />}>Submit an Idea!</Button>
                     <Button colorScheme='green' rightIcon={<FaDonate />}>Buy us a meal</Button>
 
                 </HStack>
