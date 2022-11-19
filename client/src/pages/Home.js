@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import PostingList from '../components/postingsList/index';
-import Footer from '../components/Footer/index';
-
+import PostingsList from '../components/PostingsList/index';
+import {Link} from 'react-router-dom';
+import { Container, Center, Text } from '@chakra-ui/react'
  import {QUERY_POSTINGS} from '../utils/queries';
 
 const Home = () => {
@@ -13,15 +13,25 @@ const Home = () => {
         <main> 
             <div >
                 <div >
-                    <h1>Welcome to the homePage(This is for development purposes take this out of production)</h1>
+                    <Center h='100px'>
+                         <Text fontSize ='2xl'>Welcome to TechOverflow!</Text>
+                         <Link to="/Signup">
+                            Signup  
+                         </Link>
+                         <Link to="/Login">
+                            Login
+                         </Link>
+                    </Center>
+                    <Container> 
                     {loading ? (
                         <div>Loading...</div>
-                    ): (
-                        <PostingList 
+                    ): (                        
+                        <PostingsList 
                         postings={postings}
                         title="Here's the current list of postings"
-                        />
+                        /> 
                     )}
+                    </Container>
                 </div>
             </div>
         </main>
