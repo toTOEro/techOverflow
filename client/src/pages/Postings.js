@@ -1,7 +1,9 @@
 // import { useQuery } from '@apollo/client';
 import React from 'react';
-import { Heading, Stack } from '@chakra-ui/react'
-import Posting from '../components/Posting';
+import { Link } from 'react-router-dom';
+import { Heading, Stack, } from '@chakra-ui/react'
+import MailTo from '../components/MailTo';
+import Posting from '../components/Posting'
 // import {GET_POSTINGS} from '../utils/queries';
 
 
@@ -95,4 +97,3 @@ export default function Postings() {
 
 
 }
-
