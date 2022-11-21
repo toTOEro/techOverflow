@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-
+import { Container, Center, Text } from '@chakra-ui/react'
 import {useMutation} from '@apollo/client';
 import {ADD_USER} from '../utils/mutations';
 
@@ -37,9 +37,19 @@ const Signup = () => {
     };
 
     return (
+        <main>
+            <div>
+                <div>
+                    <Center h='100px'>
+                        This is the signup page
+                    </Center>
+                </div>
+            </div>
+        </main>
         // need to return something
-        console.log("something");
     )
 
 
 }
+
+export default Signup;
