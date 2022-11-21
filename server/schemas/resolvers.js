@@ -10,7 +10,7 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("posting");
+        return User.findOne({ _id: context.user._id }).populate("postings");
       }
     },
     singlePost: async (parent, { _id }, context) => {
