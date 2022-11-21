@@ -31,9 +31,9 @@ const typeDefs = gql`
   type Query {
     users: [User]
     me: User
-    user(_id: ID): User
+    user(_id: ID!): User
     postings: [Posting]
-    singlePost(_id: ID): Posting
+    singlePost(_id: ID!): Posting
     comments: [Comment]
   }
 
