@@ -9,7 +9,7 @@ import MailTo from '../MailTo';
 
 // Presents all software development idea postings for users to browse through.
 export default function Postings() {
-    // const { data } = useQuery(GET_POSTINGS);
+    // const { data } = useQuery(QUERY_POSTINGS);
 
     //Temporary Data to design page
     let data = [

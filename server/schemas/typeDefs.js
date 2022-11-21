@@ -15,6 +15,8 @@ const typeDefs = gql`
     description: String
     date_created: String
     comments: [Comment]
+    owner: User
+    registered: [User]
   }
 
   type Comment {
