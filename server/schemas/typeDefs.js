@@ -34,7 +34,7 @@ const typeDefs = gql`
     user: User
     postings: [Posting]
     singlePost(_id: ID): Posting
-    comment: [Comment]
+    comments: [Comment]
   }
 
   type Mutation {
