@@ -24,7 +24,7 @@ const resolvers = {
     },
   },
   Mutation: {
-    login: async (parent, { email, password }) => {
+    login: async (parent, { email, password }, context) => {
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -52,17 +52,23 @@ const resolvers = {
       { _id, firstName, lastName, email, password },
       context
     ) => {
-      return User.findByIdAndUpdate(
-        _id,
-        { firstName, lastName, email, password },
-        {
-          new: true,
-        }
-      );
+      if (context.user._id === _id) {
+        return User.findByIdAndUpdate(
+          _id,
+          { firstName, lastName, email, password },
+          {
+            new: true,
+          }
+        );
+      }
+      throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
 
     deleteUser: async (parent, { _id }, context) => {
-      return User.findByIdAndDelete({ _id });
+      if (context.user._id === _id) {
+        return User.findByIdAndDelete({ _id });
+      }
+      throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
     addPosting: async (parent, args, context) => {
       return Posting.create(args);
@@ -89,3 +95,6 @@ const resolvers = {
   },
 };
 module.exports = resolvers;
+
+// if (context.user._id === _id) {
+//   throw new AuthenticationError("You can't do that! You aren't allowed!");
