@@ -6,8 +6,12 @@ query allPostings {
         _id
         title
         description
-        comments
-        owner
+        comments {
+            _id
+        }
+        owner {
+            email
+        }
         
     }
 }

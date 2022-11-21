@@ -20,7 +20,7 @@ export default function Posting(details) {
     } = details
 
     return (
-        <Card key={_id} maxW='65vw' minW='50vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
+        <Card key={_id} maxW='85vw' minW='85vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
             <Link
                 to={`/posting/${_id}`}
             >
