@@ -1,5 +1,4 @@
 import React from "react";
-import { loadStripe } from '@stripe/stripe-js';
 import { Button } from '@chakra-ui/react';
 import { FaDonate } from 'react-icons/fa'
 
