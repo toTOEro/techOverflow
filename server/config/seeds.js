@@ -33,6 +33,7 @@ db.once("open", async () => {
       description: "Let's create a metaverse version of club penguin!",
       date_created: "April 20, 2009",
       comments: [comment[0]._id],
+      owner: null
     },
     {
       title: "HackRF Mobile App",
@@ -40,6 +41,8 @@ db.once("open", async () => {
         "The purpose of this project is to create a mobile app version of the linux software for HackRF. This would allow capture the flag events to be more mobile during a Hack-a-thon",
       date_created: "January 21, 2022",
       comment: [comment[2]._id],
+      owner: null
+
     },
     {
       title: "Drawio Hack",
@@ -47,6 +50,8 @@ db.once("open", async () => {
         "I want to code a hack where I can use my voice to create CAD drawings.",
       date_created: "May 5, 2020",
       comment: [comment[1]._id],
+      owner: null
+
     },
   ]);
 
