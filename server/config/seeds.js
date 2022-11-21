@@ -79,31 +79,6 @@ db.once("open", async () => {
     postings: [posting[2]._id],
   });
 
-  const userSeed = User.insertMany([
-    {
-      firstName: "Hector",
-      lastName: "De La Cruz",
-      email: "hbomb@dabomb.com",
-      password: "test1234",
-     // postings: [posting[1]._id],
-    },
-    {
-      firstName: "Anthony",
-      lastName: "To",
-      email: "ToDaMoon@totoro.com",
-      password: "test1234",
-      postings: [posting[0]._id],
-    },
-
-    {
-      firstName: "Margot",
-      lastName: "Gruen Cooper",
-      email: "iamGruen@treespot.com",
-      password: "test1234",
-      postings: [posting[2]._id],
-    }
-
-  ])
 
   console.log("users seeded");
 

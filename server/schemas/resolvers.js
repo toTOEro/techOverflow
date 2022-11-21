@@ -17,7 +17,7 @@ const resolvers = {
       return Posting.findOne({ _id }).populate("comments");
     },
     users: async () => {
-      return User.find();
+      return User.find().populate("postings");
     },
     comments: async () => {
       return Comment.find();

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import {
     Box,
     HStack,
@@ -36,9 +37,15 @@ export default function Nav() {
 
                     <Button onClick={onOpen} colorScheme='whatsapp' rightIcon={<FcIdea />} leftIcon={<FcIdea />}>Submit an Idea!</Button>
                     <Button 
+                    as="a"
                     href="/Signup"
                     target="_blank"
                     colorSchema='blue'>Signup</Button>
+                    <Button 
+                    as="a"
+                    href="/Login"
+                    target="_blank"
+                    colorSchema='blue'>Login</Button>
                     <Donate />
 
                 </HStack>
