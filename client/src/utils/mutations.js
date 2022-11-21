@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const ADD_PROFILE = gql`
-mutation addProfile($name: String!){
-    addProfile(name: $name){
+export const ADD_USER = gql`
+mutation addUser($name: String!){
+    addUser(name: $name){
         _id
         name
         email
