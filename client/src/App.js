@@ -9,20 +9,24 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
+import Home from './pages/Home';
 import Postings from './pages/Postings';
 import PostingDetail from './pages/PostingDetail';
+import Error from './pages/Error';
+
 import Footer from './components/Footer';
-import Home from './pages/Home';
+
 // import Profile from './pages/Profile';
 // import Signup from './pages/Signup';
 // import Login from './pages/Login'
 
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import Nav from './components/Nav';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
-})
+});
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
@@ -32,36 +36,49 @@ const authLink = setContext((_, { headers }) => {
       authorization: token ? `Bearer ${token}` : '',
     },
   }
-})
+});
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-})
+});
 
-// const theme = extendTheme({
-//   styles: {
-//     global: {
-//       body: {
-//         height: 'fit-content',
-//       }
-//     }
-//   }
-// })
+const theme = extendTheme({
+  styles: {
+    global: {
+      p: {
+        fontSize: { base: '14px', md: '20px', lg: '25px' },
+      },
+      a: {
+        fontSize: { base: '8px', md: '20px', lg: '20px' },
+      },
+      comment: { base: '8px', md: '20px', lg: '20px' },
+    }
+  },
+  components: {
+    Comment: {
+      baseStyle: {
+
+      }
+    }
+  }
+});
 
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <ChakraProvider >
+      <ChakraProvider theme={theme}>
         <div className='content-container'>
           <Router>
+            <Nav />
+
             <Routes>
-               <Route
-              path="/"
-              element={<Home />}
-               /> 
-               {/* <Route 
+              <Route
+                path="/"
+                element={<Home />}
+              />
+              {/* <Route 
               path="/login"
               element={<Login/>}
               />
@@ -73,7 +90,7 @@ function App() {
               path="/me"
               element={<Profile/>}
               /> */}
-            <Route
+              <Route
                 path="/postings"
                 element={<Postings />}
               />
@@ -81,6 +98,12 @@ function App() {
                 path="/posting/:id"
                 element={<PostingDetail />}
               />
+              <Route
+                path="/*"
+                element={<Error />}
+              />
+
+
             </Routes>
           </Router>
         </div>
