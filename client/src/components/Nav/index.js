@@ -13,9 +13,15 @@ import {
     Button,
     Icon
 } from '@chakra-ui/react'
+<<<<<<< HEAD
 import {Link} from 'react-router-dom';
 import {FaDonate} from 'react-icons/fa'
 import {FcIdea} from 'react-icons/fc'
+=======
+import { FaDonate } from 'react-icons/fa'
+import { FcIdea } from 'react-icons/fc'
+import Donate from '../Donate'
+>>>>>>> main
 
 import IdeaForm from '../IdeaForm';
 
@@ -30,19 +36,7 @@ export default function Nav() {
 
 
                     <Button onClick={onOpen} colorScheme='whatsapp' rightIcon={<FcIdea />} leftIcon={<FcIdea />}>Submit an Idea!</Button>
-                 <Button colorScheme='blue'>
-                    <Link 
-                    to="/Signup">
-                        Signup
-                    </Link>
-                 </Button>
-                 <Button colorScheme='blue'>
-                    <Link 
-                    to="/Login">
-                        Login
-                    </Link>
-                 </Button>
-                    <Button colorScheme='green' rightIcon={<FaDonate />}>Buy us a meal</Button>
+                    <Donate />
 
                 </HStack>
             </Box>
