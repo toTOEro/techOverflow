@@ -11,17 +11,16 @@ import {
     ModalCloseButton,
     useDisclosure,
     Button,
-    Icon
+    Icon,
+    FormControl,
+    FormLabel,
+    Input,
+    Textarea
 } from '@chakra-ui/react'
-<<<<<<< HEAD
-import {Link} from 'react-router-dom';
-import {FaDonate} from 'react-icons/fa'
-import {FcIdea} from 'react-icons/fc'
-=======
+
 import { FaDonate } from 'react-icons/fa'
 import { FcIdea } from 'react-icons/fc'
 import Donate from '../Donate'
->>>>>>> main
 
 import IdeaForm from '../IdeaForm';
 
@@ -36,6 +35,10 @@ export default function Nav() {
 
 
                     <Button onClick={onOpen} colorScheme='whatsapp' rightIcon={<FcIdea />} leftIcon={<FcIdea />}>Submit an Idea!</Button>
+                    <Button 
+                    href="/Signup"
+                    target="_blank"
+                    colorSchema='blue'>Signup</Button>
                     <Donate />
 
                 </HStack>
@@ -60,6 +63,9 @@ export default function Nav() {
                 </ModalContent>
 
             </Modal>
+            <Modal isOpen={isOpen} onClose={onClose} size='4x1' isCentered='true'>
+        <ModalOverlay/>
+    </Modal>
         </>
 
     )
