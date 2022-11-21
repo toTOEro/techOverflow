@@ -1,4 +1,3 @@
-const { ModalContent } = require("@chakra-ui/react");
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Posting, Comment } = require("../models");
 const { signToken } = require("../utils/auth");
@@ -11,11 +10,17 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("posting");
+        return User.findOne({ _id: context.user._id }).populate("postings");
       }
     },
     singlePost: async (parent, { _id }, context) => {
       return Posting.findOne({ _id }).populate("comments");
+    },
+    users: async () => {
+      return User.find();
+    },
+    comments: async () => {
+      return Comment.find();
     },
   },
   Mutation: {
