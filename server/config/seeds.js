@@ -60,7 +60,7 @@ db.once("open", async () => {
     lastName: "De La Cruz",
     email: "hbomb@dabomb.com",
     password: "test1234",
-    postings: [posting[1]._id],
+   // postings: [posting[1]._id],
   });
 
   await User.create({
@@ -78,6 +78,7 @@ db.once("open", async () => {
     password: "test1234",
     postings: [posting[2]._id],
   });
+
 
   console.log("users seeded");
 
