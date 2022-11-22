@@ -1,6 +1,6 @@
 // import { useQuery } from '@apollo/client';
 import React from 'react';
-import { Heading, Stack, } from '@chakra-ui/react'
+import { Heading, Stack, Text } from '@chakra-ui/react'
 import Posting from '../components/Posting'
 import { useQuery } from '@apollo/client';
 import { QUERY_POSTINGS } from '../utils/queries';
@@ -75,7 +75,7 @@ export default function Postings() {
     //     },
     // ]
 
-
+    
     return (
         <div>
             <Heading size='2xl' py='15'>Project Postings</Heading>
@@ -83,15 +83,16 @@ export default function Postings() {
                 {loading ? (
                     <div> Loading... </div>
                 ) : (
-                    postings.map(({ _id, title, description, email, owner }) => (
+                    postings.map(({ _id, title, description, owner }) => (
                         <Posting
                             key={_id}
                             _id={_id}
                             title={title}
                             description={description}
-                            email={email}
-                            owner={owner}
+                            email={owner.email}
+                            owner={owner.firstName}
                         />
+
                     )))
                 }
             </Stack>

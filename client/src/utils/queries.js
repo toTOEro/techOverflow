@@ -6,11 +6,9 @@ query allPostings {
         _id
         title
         description
-        comments {
-            _id
-        }
         owner {
             email
+            firstName
         }
         
     }
@@ -26,8 +24,8 @@ query getSinglePosting ($postingId: ID!) {
         createdAt
         comments {
             _id
-            commentText
-            createdAt
+            content
+            date_created
         }
     }
 }

@@ -4,13 +4,20 @@ import MailTo from '../MailTo';
 import { IoIosAddCircle } from 'react-icons/io'
 
 
-import { Card, CardHeader, CardBody, CardFooter, Heading, Divider, Text, Avatar, HStack, Flex, ButtonGroup, Button } from '@chakra-ui/react'
-
-
-
+import { Card, 
+    CardHeader, 
+    CardBody, 
+    CardFooter, 
+    Heading, 
+    Divider, 
+    Text, 
+    Avatar, 
+    HStack, 
+    Flex, 
+    ButtonGroup, 
+    Button } from '@chakra-ui/react'
 
 export default function Posting(details) {
-
     const {
         _id,
         title,

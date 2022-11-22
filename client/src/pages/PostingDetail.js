@@ -15,30 +15,30 @@ const PostingDetail = () => {
 
 
     // Need function to query DB
-    // const [state, dispatch] = useBoardContext();
-    // const { loading, data } = useQuery(QUERY_POSTING);
+    const [state, dispatch] = useBoardContext();
+    const { loading, data } = useQuery(QUERY_POSTING);
 
-    let data = {
-        _id: id,
-        title: "The Magic Kekw",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu mi ante. Nulla nec nunc ut lorem vehicula hendrerit id pulvinar leo. Suspendisse potenti. Quisque semper dolor sit amet lacus posuere ullamcorper. Pellentesque finibus maximus turpis, vitae lacinia elit placerat at. Sed consectetur magna leo, aliquam blandit leo dictum at. Nulla augue quam, lacinia in tempor molestie, tincidunt ut nisi. Donec elementum condimentum tellus ac blandit. Sed justo ipsum, pretium a tincidunt sit amet, commodo vel purus.",
-        owner: "TestOwner",
-        email: "testemail@test.com",
-        comments: [
-            {
-                _id: 1,
-                content: 'woohoo',
-                date_created: 'November 16th, 2020'
-            },
+    // let data = {
+    //     _id: id,
+    //     title: "The Magic Kekw",
+    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu mi ante. Nulla nec nunc ut lorem vehicula hendrerit id pulvinar leo. Suspendisse potenti. Quisque semper dolor sit amet lacus posuere ullamcorper. Pellentesque finibus maximus turpis, vitae lacinia elit placerat at. Sed consectetur magna leo, aliquam blandit leo dictum at. Nulla augue quam, lacinia in tempor molestie, tincidunt ut nisi. Donec elementum condimentum tellus ac blandit. Sed justo ipsum, pretium a tincidunt sit amet, commodo vel purus.",
+    //     owner: "TestOwner",
+    //     email: "testemail@test.com",
+    //     comments: [
+    //         {
+    //             _id: 1,
+    //             content: 'woohoo',
+    //             date_created: 'November 16th, 2020'
+    //         },
 
-            {
-                _id: 13,
-                content: 'woohoo',
-                date_created: 'November 16th, 2020'
-            },
+    //         {
+    //             _id: 13,
+    //             content: 'woohoo',
+    //             date_created: 'November 16th, 2020'
+    //         },
 
-        ]
-    }
+    //     ]
+    // }
 
     let { _id, title, description, owner, email, comments } = data
 
