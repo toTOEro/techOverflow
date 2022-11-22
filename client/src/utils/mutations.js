@@ -21,3 +21,8 @@ mutation addPosting($profileId: ID!, $posting.title: String!, $posting.descripti
     }
 }
 `
+
+export const ADD_COMMENT = gql `
+    
+
+`

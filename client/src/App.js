@@ -9,6 +9,8 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
+import { PostingProvider } from './utils/GlobalState';
+
 import Home from './pages/Home';
 import Postings from './pages/Postings';
 import PostingDetail from './pages/PostingDetail';
@@ -71,14 +73,15 @@ function App() {
       <ChakraProvider theme={theme}>
         <div className='content-container'>
           <Router>
-            <Nav />
+            <PostingProvider>
+              <Nav />
 
-            <Routes>
-              <Route
-                path="/"
-                element={<Home />}
-              />
-              {/* <Route 
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Home />}
+                />
+                {/* <Route 
               path="/login"
               element={<Login/>}
               />
@@ -90,21 +93,22 @@ function App() {
               path="/me"
               element={<Profile/>}
               /> */}
-              <Route
-                path="/postings"
-                element={<Postings />}
-              />
-              <Route
-                path="/posting/:id"
-                element={<PostingDetail />}
-              />
-              <Route
-                path="/*"
-                element={<Error />}
-              />
+                <Route
+                  path="/postings"
+                  element={<Postings />}
+                />
+                <Route
+                  path="/posting/:id"
+                  element={<PostingDetail />}
+                />
+                <Route
+                  path="/*"
+                  element={<Error />}
+                />
 
 
-            </Routes>
+              </Routes>
+            </PostingProvider>
           </Router>
         </div>
         <div className='footer--pin'>

@@ -16,17 +16,21 @@ query allPostings {
 `;
 
 export const QUERY_SINGLE_POSTING = gql`
-query getSinglePosting ($postingId: ID!) {
-    posting(postId: $postingId) {
+query getSinglePosting ($id: ID!) {
+    singlePost(_id: $id) {
         _id
-        postingText
-        postingAuthor
-        createdAt
+        title
+        description
+        owner {
+            _id
+            firstName
+            email
+        }
         comments {
             _id
             content
             date_created
-        }
+          }
     }
 }
 `

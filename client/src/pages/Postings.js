@@ -75,7 +75,7 @@ export default function Postings() {
     //     },
     // ]
 
-    
+
     return (
         <div>
             <Heading size='2xl' py='15'>Project Postings</Heading>
@@ -92,7 +92,6 @@ export default function Postings() {
                             email={owner.email}
                             owner={owner.firstName}
                         />
-
                     )))
                 }
             </Stack>
