@@ -19,8 +19,8 @@ import Error from './pages/Error';
 import Footer from './components/Footer';
 
 // import Profile from './pages/Profile';
-// import Signup from './pages/Signup';
-// import Login from './pages/Login'
+import Signup from './pages/Signup';
+import Login from './pages/Login'
 
 // import logo from './logo.svg';
 import './App.css';
@@ -83,13 +83,14 @@ function App() {
                 />
                 {/* <Route 
               path="/login"
+
               element={<Login/>}
               />
               <Route 
-              path="/signup"
+              path="/Signup"
               element={<Signup/>}
               /> 
-              <Route 
+              {/* <Route 
               path="/me"
               element={<Profile/>}
               /> */}

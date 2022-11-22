@@ -15,12 +15,6 @@ const Home = () => {
                 <div >
                     <Center h='100px'>
                          <Text fontSize ='2xl'>Welcome to TechOverflow!</Text>
-                         <Link to="/Signup">
-                            Signup  
-                         </Link>
-                         <Link to="/Login">
-                            Login
-                         </Link>
                     </Center>
                     <Container> 
                     {loading ? (
