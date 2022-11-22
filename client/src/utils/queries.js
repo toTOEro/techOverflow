@@ -6,22 +6,31 @@ query allPostings {
         _id
         title
         description
+        owner {
+            email
+            firstName
+        }
+        
     }
 }
 `;
 
 export const QUERY_SINGLE_POSTING = gql`
-query getSinglePosting ($postingId: ID!) {
-    posting(postId: $postingId) {
+query getSinglePosting ($id: ID!) {
+    singlePost(_id: $id) {
         _id
-        postingText
-        postingAuthor
-        createdAt
+        title
+        description
+        owner {
+            _id
+            firstName
+            email
+        }
         comments {
             _id
-            commentText
-            createdAt
-        }
+            content
+            date_created
+          }
     }
 }
 `

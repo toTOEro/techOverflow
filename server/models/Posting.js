@@ -20,6 +20,16 @@ const postingSchema = new Schema({
       ref: "Comment",
     },
   ],
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  registered: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ]
 });
 
 const Posting = mongoose.model("Posting", postingSchema);

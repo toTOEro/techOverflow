@@ -21,6 +21,13 @@ mutation addPosting($userId: ID!, $posting.title: String!, $posting.description:
         postings
     }
 }
+
+`
+
+export const ADD_COMMENT = gql `
+    
+
+
 `;
 
 export const LOGIN_USER = gql`

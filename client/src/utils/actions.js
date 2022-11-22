@@ -1,0 +1,6 @@
+
+export const ADD_COMMENT = "ADD_COMMENT";
+
+export const ADD_POSTING = "ADD_POSTING";
+
+export const QUERY_SINGLE_POSTING = "QUERY_SINGLE_POSTING"
