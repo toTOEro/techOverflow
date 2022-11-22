@@ -74,14 +74,23 @@ const resolvers = {
       return Posting.create(args);
     },
     updatePosting: async (parent, { _id, title, description }, context) => {
-      return Posting.findByIdAndUpdate(
-        _id,
-        { title, description },
-        { new: true }
-      );
+      const postToBeUpdated = await Posting.findById(_id);
+      if (context.user._id === postToBeUpdated.owners_id) {
+        return Posting.findByIdAndUpdate(
+          _id,
+          { title, description },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
     deletePosting: async (parent, { _id }, context) => {
-      return Posting.findByIdAndDelete({ _id });
+      const postToBeDeleted = await Posting.findById(_id);
+
+      if (context.user._id === postToBeDeleted.owners_id) {
+        return Posting.findByIdAndDelete({ _id });
+      }
+      throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
     addComment: async (parent, args, context) => {
       return Comment.create(args);
@@ -95,6 +104,3 @@ const resolvers = {
   },
 };
 module.exports = resolvers;
-
-// if (context.user._id === _id) {
-//   throw new AuthenticationError("You can't do that! You aren't allowed!");

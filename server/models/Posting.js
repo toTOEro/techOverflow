@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const User = require('./User')
+const User = require("./User");
 
 const postingSchema = new Schema({
   title: {
@@ -13,6 +13,10 @@ const postingSchema = new Schema({
   date_created: {
     type: Date,
     default: Date.now,
+  },
+  owners_id: {
+    type: String,
+    required: true,
   },
   comments: [
     {
