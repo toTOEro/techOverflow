@@ -14,7 +14,7 @@ const typeDefs = gql`
     title: String!
     description: String
     date_created: String
-    owners_id: String
+    owners_id: User
     comments: [Comment]
     owner: User
     registered: [User]
