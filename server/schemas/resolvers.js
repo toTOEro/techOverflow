@@ -14,7 +14,7 @@ const resolvers = {
       }
     },
     singlePost: async (parent, { _id }, context) => {
-      return Posting.findOne({ _id }).populate("comments");
+      return Posting.findOne({ _id }).populate("comments").populate("owners_id");
     },
     users: async () => {
       return User.find().populate("postings");

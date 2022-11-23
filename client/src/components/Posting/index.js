@@ -48,6 +48,9 @@ export default function Posting(details) {
                             </Button>
                         </ButtonGroup>
                         <HStack>
+                            {/* Show the user avatars that signed up for this project */}
+
+                            
                             <MailTo email={email} label={`${owner}`} />
                             <Avatar name='test' src={'./icons8-user-32.png'} />
                         </HStack>
