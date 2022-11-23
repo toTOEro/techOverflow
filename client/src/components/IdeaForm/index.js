@@ -31,6 +31,7 @@ import { ADD_POSTING } from '../../utils/mutations';
 export default function IdeaForm() {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
+
     // const [state, dispatch] = usePostingContext();
     const [formState, setFormState] = useState({
         title: '',
@@ -60,6 +61,7 @@ export default function IdeaForm() {
     }
 
 
+
     return (
         <>
             <Button onClick={onOpen} colorScheme='whatsapp' rightIcon={<FcIdea />} leftIcon={<FcIdea />}>Submit an Idea!</Button>
@@ -73,6 +75,7 @@ export default function IdeaForm() {
                         <FormControl>
                             <FormLabel>Title</FormLabel>
                             <Input
+
                                 name='title'
                                 type='text'
                                 value={formState.title}
@@ -93,6 +96,7 @@ export default function IdeaForm() {
                         <Button colorScheme='blue' mr={3} onClick={onClose}>
                             Close
                         </Button>
+
                         <Button
                             colorScheme='green'
                             type='submit'
