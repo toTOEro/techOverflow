@@ -14,7 +14,8 @@ const resolvers = {
       }
     },
     singlePost: async (parent, { _id }, context) => {
-      return Posting.findOne({ _id }).populate("comments").populate("owner");
+      return Posting.findOne({ _id }).populate("comments").populate("ownersId");
+
     },
     users: async () => {
       return User.find().populate("postings");
@@ -75,7 +76,7 @@ const resolvers = {
     },
     updatePosting: async (parent, { _id, title, description }, context) => {
       const postToBeUpdated = await Posting.findById(_id);
-      if (context.user._id === postToBeUpdated.owners_id) {
+      if (context.user._id === postToBeUpdated.owners_id.toString()) {
         return Posting.findByIdAndUpdate(
           _id,
           { title, description },
@@ -86,8 +87,7 @@ const resolvers = {
     },
     deletePosting: async (parent, { _id }, context) => {
       const postToBeDeleted = await Posting.findById(_id);
-
-      if (context.user._id === postToBeDeleted.owners_id) {
+      if (context.user._id === postToBeDeleted.owners_id.toString()) {
         return Posting.findByIdAndDelete({ _id });
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");

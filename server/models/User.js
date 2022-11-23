@@ -23,12 +23,12 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  postings: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Posting",
-    },
-  ],
+  // postings: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "Posting",
+  //   },
+  // ],
 });
 
 userSchema.pre("save", async function (next) {
@@ -43,6 +43,12 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
+
+userSchema.virtual("postings", {
+  ref: "Posting",
+  localField: "_id",
+  foreignField: "owners_id",
+});
 
 const User = mongoose.model("User", userSchema);
 
