@@ -38,7 +38,7 @@ mutation login($email: String!, $password: String!){
 `
 
 export const UPDATE_USER = gql`
-updateUser($id: ID!, $firstName: String, $lastName: String, $email: String, $password: String) {
+mutation updateUser($id: ID!, $firstName: String, $lastName: String, $email: String, $password: String) {
     updateUser(_id: $id, firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       lastName
       firstName
