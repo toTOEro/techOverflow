@@ -1,10 +1,11 @@
 import { gql } from '@apollo/client';
 
-export const ADD_PROFILE = gql`
-mutation addProfile($name: String!){
-    addProfile(name: $name){
+export const ADD_USER = gql`
+mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!){
+    addUser(name: $name, email: $email, password: $password){
         _id
-        name
+        firstName
+        lastName
         email
         postings
     }
@@ -12,12 +13,31 @@ mutation addProfile($name: String!){
 `;
 
 export const ADD_POSTING = gql `
-mutation addPosting($profileId: ID!, $posting.title: String!, $posting.description: String! ){
-    addPosting(profileId: $profileId, posting.title: $posting.title, posting.description: $posting.description){
+mutation addPosting($userId: ID!, $posting.title: String!, $posting.description: String! ){
+    addPosting(userId: $userId, posting.title: $posting.title, posting.description: $posting.description){
         _id
         firstName
         lastName
         postings
+    }
+}
+
+`
+
+export const ADD_COMMENT = gql `
+    
+
+
+`;
+
+export const LOGIN_USER = gql`
+mutation login($email: String!, $password: String!){
+    login(email: $email, password: $password){
+        profile {
+            _id
+            firstName
+            lastName
+        }
     }
 }
 `

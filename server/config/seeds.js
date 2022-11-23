@@ -68,6 +68,7 @@ db.once("open", async () => {
         "The purpose of this project is to create a mobile app version of the linux software for HackRF. This would allow capture the flag events to be more mobile during a Hack-a-thon",
       date_created: "January 21, 2022",
       comment: [comment[2]._id],
+
       owners_id: user1,
     },
     {

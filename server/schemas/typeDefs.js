@@ -16,6 +16,8 @@ const typeDefs = gql`
     date_created: String
     owners_id: String!
     comments: [Comment]
+    owner: User
+    registered: [User]
   }
 
   type Comment {
