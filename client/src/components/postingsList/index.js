@@ -3,7 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar} from '@chakra-ui/react'
 import MailTo from '../MailTo';
-// import {GET_POSTINGS} from '../utils/queries';
+//import { useQuery } from '@apollo/client';
+//import {QUERY_POSTINGS} from '../../utils/queries.js';
 
 
 
