@@ -38,9 +38,6 @@ export default function Nav() {
                 </HStack>
             </Box>
 
-            {/* <Modal isOpen={isOpen} onClose={onClose} size='4x1' isCentered='true'>
-                <ModalOverlay />
-            </Modal> */}
         </>
 
     )

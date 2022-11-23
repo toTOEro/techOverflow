@@ -75,7 +75,7 @@ export default function Postings() {
     //     },
     // ]
 
-
+    console.log(postings)
     return (
         <div>
             <Heading size='2xl' py='15'>Project Postings</Heading>

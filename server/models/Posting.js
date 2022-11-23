@@ -16,7 +16,6 @@ const postingSchema = new Schema({
   },
   owners_id: {
     type: String,
-    required: true,
   },
   comments: [
     {

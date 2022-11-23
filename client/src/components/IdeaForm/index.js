@@ -18,21 +18,46 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 
+import { useMutation } from '@apollo/client';
+
 import { FcIdea } from 'react-icons/fc'
 
-import { usePostingContext } from "../../utils/GlobalState"
-
-import { ADD_POSTING } from '../../utils/actions';
+// import { usePostingContext } from "../../utils/GlobalState"
+// import { ADD_POSTING } from '../../utils/actions';
+import { ADD_POSTING } from '../../utils/mutations';
 
 
 
 export default function IdeaForm() {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const [state, dispatch] = usePostingContext();
-    const [newPostTitle, setNewPostTitle] = useState('');
-    const [newPostDescription, setNewPostDescription] = useState('');
+    // const [state, dispatch] = usePostingContext();
+    const [formState, setFormState] = useState({
+        title: '',
+        description: ''
+    })
+    // const [newPostTitle, setNewPostTitle] = useState('');
+    // const [newPostDescription, setNewPostDescription] = useState('');
+    const [addPosting, { error }] = useMutation(ADD_POSTING)
 
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const { data } = addPosting({
+                variables: { ...formState, ownersId: '637b193aa91d653427026186' },
+            });
+
+            window.location.reload();
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        name === 'title' ? setFormState({ ...formState, [name]: value }) : setFormState({ ...formState, [name]: value });
+    }
 
 
     return (
@@ -48,17 +73,18 @@ export default function IdeaForm() {
                         <FormControl>
                             <FormLabel>Title</FormLabel>
                             <Input
+                                name='title'
                                 type='text'
-                                value={newPostTitle}
-                                onChange={(e) => setNewPostTitle(e.target.value)}
-
+                                value={formState.title}
+                                onChange={handleChange}
                             />
                             <FormLabel>Description</FormLabel>
                             <Textarea
+                                name='description'
                                 placeholder='Tell us about your idea!'
                                 size='lg'
-                                value={newPostDescription}
-                                onChange={(e) => setNewPostDescription(e.target.value)}
+                                value={formState.description}
+                                onChange={handleChange}
                             />
                         </FormControl>
                     </ModalBody>
@@ -67,18 +93,21 @@ export default function IdeaForm() {
                         <Button colorScheme='blue' mr={3} onClick={onClose}>
                             Close
                         </Button>
-                        <Button colorScheme='green' onClick={() => {
-                            console.log(`Dispatched Title: ${newPostTitle} description: ${newPostDescription}`)
-                          return dispatch({
-                            type: ADD_POSTING,
-                            posting: {
-                                title: newPostTitle,
-                                description: newPostDescription
-                            }
-                          })  
-                        }
-                            
-                        }>Submit</Button>
+                        <Button
+                            colorScheme='green'
+                            type='submit'
+                            onClick={handleFormSubmit}
+                        // onClick={() => {
+                        //     console.log(`Dispatched Title: ${newPostTitle} description: ${newPostDescription}`)
+                        //     return dispatch({
+                        //         type: ADD_POSTING,
+                        //         posting: {
+                        //             title: newPostTitle,
+                        //             description: newPostDescription
+                        //         }
+                        //     })
+                        // }}
+                        >Submit</Button>
                     </ModalFooter>
 
                 </ModalContent>
