@@ -51,6 +51,17 @@ export const QUERY_USERS = gql`
       firstName
       lastName
       email
+      postings
+    }
+  }
+`;
+
+export const QUERY_COMMENTS = gql`
+  query allComments {
+    comments {
+      _id
+      content
+      date_created
     }
   }
 `;
