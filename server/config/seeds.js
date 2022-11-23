@@ -4,27 +4,6 @@ const { User, Posting, Comment } = require("../models");
 const { useRangeSlider } = require("@chakra-ui/react");
 
 db.once("open", async () => {
-  //Comment Section
-  await Comment.deleteMany();
-
-  const comment = await Comment.insertMany([
-    {
-      content: "that's such a cool idea! Count me in! What's your email?",
-      date_created: "June 5, 2009",
-    },
-    {
-      content: "wouldn't it just be easier to use your mouse? just saying.",
-      date_created: "May 23, 2020",
-    },
-    {
-      content:
-        "this sounds illegal. users would be able to use their phones to intercept rf traffic from cars fobs and break into someone's car. I'M IN!",
-      date_created: "January 21, 2022",
-    },
-  ]);
-
-  console.log("comments seeded");
-
   //User Section
   await User.deleteMany();
 
@@ -51,6 +30,28 @@ db.once("open", async () => {
 
   console.log("users seeded");
 
+  //Comment Section
+  await Comment.deleteMany();
+
+  const comment1 = await Comment.create({
+    content: "that's such a cool idea! Count me in! What's your email?",
+    date_created: "June 5, 2009",
+    creator: user1,
+  });
+  const comment2 = await Comment.create({
+    content: "wouldn't it just be easier to use your mouse? just saying.",
+    date_created: "May 23, 2020",
+    creator: user2,
+  });
+  const comment3 = await Comment.create({
+    content:
+      "this sounds illegal. users would be able to use their phones to intercept rf traffic from cars fobs and break into someone's car. I'M IN!",
+    date_created: "January 21, 2022",
+    creator: user3,
+  });
+
+  console.log("comments seeded");
+
   //Postings Section
   await Posting.deleteMany();
 
@@ -59,7 +60,7 @@ db.once("open", async () => {
       title: "Club Penguin Meta-verse",
       description: "Let's create a metaverse version of club penguin!",
       date_created: "April 20, 2009",
-      comments: [comment[0]._id],
+      comments: comment1,
       owners_id: user2,
     },
     {
@@ -67,7 +68,7 @@ db.once("open", async () => {
       description:
         "The purpose of this project is to create a mobile app version of the linux software for HackRF. This would allow capture the flag events to be more mobile during a Hack-a-thon",
       date_created: "January 21, 2022",
-      comment: [comment[2]._id],
+      comment: comment3,
 
       owners_id: user1,
     },
@@ -76,7 +77,7 @@ db.once("open", async () => {
       description:
         "I want to code a hack where I can use my voice to create CAD drawings.",
       date_created: "May 5, 2020",
-      comment: [comment[1]._id],
+      comment: comment2,
       owners_id: user3,
     },
   ]);
