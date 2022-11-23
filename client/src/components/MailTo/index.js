@@ -13,6 +13,8 @@ const MailTo = ({ email, label }) => {
                 e.preventDefault()
                 window.open(`mailto:${email}`, '_blank')
             }}
+            maxWidth={'8.5rem'}
+            minW={'8.5rem'}
         >
             {label}
         </Button>

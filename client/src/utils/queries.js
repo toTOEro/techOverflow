@@ -24,7 +24,7 @@ export const QUERY_SINGLE_POSTING = gql`
       _id
       title
       description
-      owner {
+      owners_id {
         _id
         firstName
         email
