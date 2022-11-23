@@ -1,6 +1,7 @@
 const db = require("./connection");
 
 const { User, Posting, Comment } = require("../models");
+const { useRangeSlider } = require("@chakra-ui/react");
 
 db.once("open", async () => {
   //Comment Section
@@ -24,6 +25,32 @@ db.once("open", async () => {
 
   console.log("comments seeded");
 
+  //User Section
+  await User.deleteMany();
+
+  const user1 = await User.create({
+    firstName: "Hector",
+    lastName: "De La Cruz",
+    email: "hbomb@dabomb.com",
+    password: "test1234",
+  });
+
+  const user2 = await User.create({
+    firstName: "Anthony",
+    lastName: "To",
+    email: "ToDaMoon@totoro.com",
+    password: "test1234",
+  });
+
+  const user3 = await User.create({
+    firstName: "Margot",
+    lastName: "Gruen Cooper",
+    email: "iamGruen@treespot.com",
+    password: "test1234",
+  });
+
+  console.log("users seeded");
+
   //Postings Section
   await Posting.deleteMany();
 
@@ -33,7 +60,7 @@ db.once("open", async () => {
       description: "Let's create a metaverse version of club penguin!",
       date_created: "April 20, 2009",
       comments: [comment[0]._id],
-      owner: null
+      owners_id: user2,
     },
     {
       title: "HackRF Mobile App",
@@ -41,8 +68,8 @@ db.once("open", async () => {
         "The purpose of this project is to create a mobile app version of the linux software for HackRF. This would allow capture the flag events to be more mobile during a Hack-a-thon",
       date_created: "January 21, 2022",
       comment: [comment[2]._id],
-      owner: null
 
+      owners_id: user1,
     },
     {
       title: "Drawio Hack",
@@ -50,43 +77,11 @@ db.once("open", async () => {
         "I want to code a hack where I can use my voice to create CAD drawings.",
       date_created: "May 5, 2020",
       comment: [comment[1]._id],
-      owner: null
-
+      owners_id: user3,
     },
   ]);
 
   console.log("postings seeded");
-
-  //User Section
-  await User.deleteMany();
-
-  await User.create({
-    firstName: "Hector",
-    lastName: "De La Cruz",
-    email: "hbomb@dabomb.com",
-    password: "test1234",
-    postings: [posting[1]._id],
-  });
-
-  
-  await User.create({
-    firstName: "Anthony",
-    lastName: "To",
-    email: "ToDaMoon@totoro.com",
-    password: "test1234",
-    postings: [posting[0]._id],
-  });
-
-  await User.create({
-    firstName: "Margot",
-    lastName: "Gruen Cooper",
-    email: "iamGruen@treespot.com",
-    password: "test1234",
-    postings: [posting[2]._id],
-  });
-
-
-  console.log("users seeded");
 
   process.exit();
 });
