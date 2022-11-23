@@ -1,9 +1,10 @@
 // import { useQuery } from '@apollo/client';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar} from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar } from '@chakra-ui/react'
 import MailTo from '../MailTo';
-// import {GET_POSTINGS} from '../utils/queries';
+//import { useQuery } from '@apollo/client';
+//import {QUERY_POSTINGS} from '../../utils/queries.js';
 
 
 
@@ -73,31 +74,32 @@ export default function Postings() {
     ]
 
     return (
-            <div>
-                <Heading as='Center' size='2xl' py='15'>Project Postings</Heading>
-                <Stack spacing="4" alignItems="center">
-                    {data.slice(0,4).map(({ _id, title, description, email, owner }) => (
-                        <Card key={_id} maxW='65vw' minW='50vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
-                            <Link
-                                to={`/posting/${_id}`}
-                            >
-                                <CardHeader>
-                                    <Heading size='lg'>{title}</Heading>
-                                </CardHeader>
-                                <CardBody>
-                                    <Text>{description}</Text>
-                                </CardBody>
-                            </Link>
-                            <Divider />
-                            <CardFooter py='1'>
-                                <MailTo email={email} label={`Email ${owner}`} />
-                                <Avatar name='test' src={'./icons8-user-32.png'} />
-                            </CardFooter>
-                        </Card>
-                    ))}
-                </Stack>
+        <div>
+            <Stack spacing="4" alignItems="center">
+                <Heading size='2xl' py='15'>Project Postings</Heading>
 
-            </div>
+                {data.slice(0, 4).map(({ _id, title, description, email, owner }) => (
+                    <Card key={_id} maxW='65vw' minW='50vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
+                        <Link
+                            to={`/posting/${_id}`}
+                        >
+                            <CardHeader>
+                                <Heading size='lg'>{title}</Heading>
+                            </CardHeader>
+                            <CardBody>
+                                <Text>{description}</Text>
+                            </CardBody>
+                        </Link>
+                        <Divider />
+                        <CardFooter py='1'>
+                            <MailTo email={email} label={`Email ${owner}`} />
+                            <Avatar name='test' src={'./icons8-user-32.png'} />
+                        </CardFooter>
+                    </Card>
+                ))}
+            </Stack>
+
+        </div>
 
 
     )
