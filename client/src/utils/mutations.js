@@ -12,10 +12,11 @@ mutation addUser($firstName: String!, $lastName: String!, $email: String!, $pass
 
 
 export const ADD_POSTING = gql`
-mutation addPosting($title: String!, $ownersId: String!, $description: String) {
-    addPosting(title: $title, owner: $ownersId, description: $description) {
+mutation addPosting($title: String!, $ownersId: ID!, $description: String) {
+    addPosting(title: $title, owners_id: $ownersId, description: $description) {
         _id
         title
+        description
     
     }
   }

@@ -55,7 +55,7 @@ const typeDefs = gql`
       password: String
     ): User
     deleteUser(_id: ID!): User
-    addPosting(title: String!, description: String, owner: ID!): Posting
+    addPosting(title: String!, description: String, owners_id: ID!): Posting
     updatePosting(_id: ID!, title: String, description: String): Posting
     deletePosting(_id: ID!): Posting
     addComment(content: String!): Comment
