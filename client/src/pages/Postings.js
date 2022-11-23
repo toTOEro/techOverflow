@@ -75,7 +75,7 @@ export default function Postings() {
     //     },
     // ]
 
-
+    console.log(postings)
     return (
         <div>
             <Heading size='2xl' py='15'>Project Postings</Heading>
@@ -83,14 +83,14 @@ export default function Postings() {
                 {loading ? (
                     <div> Loading... </div>
                 ) : (
-                    postings.map(({ _id, title, description, owner }) => (
+                    postings.map(({ _id, title, description, owners_id }) => (
                         <Posting
                             key={_id}
                             _id={_id}
                             title={title}
                             description={description}
-                            email={owner.email}
-                            owner={owner.firstName}
+                            email={owners_id.email}
+                            owner={owners_id.firstName}
                         />
                     )))
                 }
