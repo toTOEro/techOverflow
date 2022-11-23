@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
     Box,
     Button,
@@ -50,25 +50,25 @@ const Signup = () => {
 
     return (
         <Center>
-        <Box width='100%' bg='gray' py='4' marginBottom='20px' px='10px'>
-            <FormControl>
-                <FormLabel>
-                    New user? Signup today!
-                </FormLabel>
-                <FormLabel>Email:</FormLabel>
-                <Input type='text'></Input>
-                <FormLabel>Password:</FormLabel>
-                <Textarea 
-                placeholder='Must be 8-24 characters long'
-                size='lg'
-                />
-            </FormControl>
-            <Button 
-            as='a'
-            href='/'
-            color='Red' mr={3} >Back to Home!</Button>
-            <Button color='Green'>Let's get coding!</Button>
-        </Box>
+            <Box width='100%' bg='gray' py='4' marginBottom='20px' px='10px'>
+                <FormControl>
+                    <FormLabel>
+                        New user? Signup today!
+                    </FormLabel>
+                    <FormLabel>Email:</FormLabel>
+                    <Input type='text'></Input>
+                    <FormLabel>Password:</FormLabel>
+                    <Textarea
+                        placeholder='Must be 8-24 characters long'
+                        size='lg'
+                    />
+                </FormControl>
+                <Button
+                    as='a'
+                    href='/'
+                    color='Red' mr={3} >Back to Home!</Button>
+                <Button color='Green'>Let's get coding!</Button>
+            </Box>
         </Center>
     )
 

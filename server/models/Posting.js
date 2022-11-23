@@ -26,6 +26,12 @@ const postingSchema = new Schema(
         ref: "Comment",
       },
     ],
+    registered: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ]
   },
   {
     toJSON: { virtuals: true },
@@ -36,12 +42,7 @@ const postingSchema = new Schema(
 postingSchema.virtual("ownersId").get(function () {
   return this.owners_id.length;
 
-  registered: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User"
-    }
-  ]
+
 });
 
 const Posting = mongoose.model("Posting", postingSchema);

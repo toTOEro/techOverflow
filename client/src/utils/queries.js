@@ -1,17 +1,21 @@
 import { gql } from "@apollo/client";
 //WORKS DO NOT TOUCH 11/22
 export const QUERY_POSTINGS = gql`
-  query allPostings {
-    postings {
-      _id
-      title
-      description
-      owner {
-        email
-        firstName
-      }
+query allPostings {
+  postings {
+    _id
+    title
+    description
+  
+    owners_id {
+      email
+      firstName
+      lastName
+      password
     }
   }
+
+}
 `;
 //WORKS DO NOT TOUCH 11/22
 export const QUERY_SINGLE_POSTING = gql`
