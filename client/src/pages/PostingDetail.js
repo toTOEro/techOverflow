@@ -22,7 +22,7 @@ const PostingDetail = () => {
     const { id } = useParams();
     // const [currentPosting, setCurrentPosting] = useState({});
 
-    const { loading, error, data } = useQuery(QUERY_SINGLE_POSTING, { variables: { id: id } });
+    const { loading, error, data } = useQuery(QUERY_SINGLE_POSTING, { variables: { _id: id } });
     // const { posting, comments } = state;
 
     // let data = {
