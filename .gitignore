@@ -28,3 +28,5 @@ themes
 node_modules
 
 /build
+
+/postingsList

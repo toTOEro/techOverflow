@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 //works 11/22 this is signup
  export const ADD_USER = gql`
  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!){
+     token
      addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password ){
          _id
      }
@@ -67,12 +68,12 @@ mutation updatePosting($_id: ID!, $title: String!, $description: String!){
 
 
 
-//works 11/22
+//works 11/22... not on FE 11/23
 export const LOGIN_USER = gql`
 mutation login($email: String!, $password: String!){
     login(email: $email, password: $password){
        token
-        User {
+        user {
             _id
             email
         }
