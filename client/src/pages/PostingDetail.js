@@ -19,16 +19,16 @@ import { QUERY_SINGLE_POSTING } from "../utils/queries";
 
 const PostingDetail = () => {
 
-    
 
-    const { id } = useParams();
 
-    const { loading, error, data } = useQuery(QUERY_SINGLE_POSTING, { variables: { id: id } });
+    let { id } = useParams();
+
+    const { loading, error, data, refetch } = useQuery(QUERY_SINGLE_POSTING, { variables: { _id: id } });
 
     const singlePost = data?.singlePost || [];
 
 
-    let { title, description, owner, email, comments } = singlePost;
+    let { title, description, owners_id, comments } = singlePost;
 
     return (
         <>
@@ -52,7 +52,7 @@ const PostingDetail = () => {
                         ))) : ''
                         }
                         <Divider my='3' />
-                        <CommentForm postingId={id} />
+                        <CommentForm postingId={id} refetch={refetch} />
 
                     </>
                 )

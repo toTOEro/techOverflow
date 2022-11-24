@@ -23,8 +23,8 @@ export default function CommentForm(Posting) {
             const { data } = addComment({
                 variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: postingId },
             });
-
-            window.location.reload();
+            
+            // window.location.reload();
         } catch (err) {
             console.error(err)
         }
