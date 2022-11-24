@@ -19,7 +19,6 @@ const resolvers = {
     users: async () => {
       return User.find().populate("postings");
     },
-    // ---------This is broken somehow. The error said that a string can't be an object. Refer to screenshot
     comments: async () => {
       return Comment.find().populate("creator");
     },
