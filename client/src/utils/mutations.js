@@ -121,6 +121,6 @@ export const REGISTER = gql`
 
 
     }
-  })
+  }
 
 `
