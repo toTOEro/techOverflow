@@ -58,16 +58,12 @@ export const UPDATE_USER = gql`
 `;
 
 export const DELETE_USER = gql`
-mutation deleteUser(_id: $id) {
+mutation DeleteUser($id: ID!) {
+  deleteUser(_id: $id) {
     _id
-    postings {
-      _id
-      owners_id {
-        _id
-      }
-    }
     email
   }
+}
 `;
 
 export const UPDATE_POSTING = gql`
