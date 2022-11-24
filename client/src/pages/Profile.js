@@ -4,7 +4,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import PostingList from '../components/PostingsList/index';
+import PostingList from '../components/Postings/index';
 
 import { QUERY_SINGLE_USER} from '../utils/queries';
 
