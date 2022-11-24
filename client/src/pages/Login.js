@@ -1,4 +1,5 @@
  import React, {useState} from 'react';
+ import { Link } from 'react-router-dom';
  import { useMutation } from '@apollo/client';
  import { LOGIN_USER } from '../utils/mutations';
  import {
@@ -12,55 +13,68 @@
 
  } from '@chakra-ui/react'
    import Auth from '../utils/auth';
-
   const Login = (props) => {
-//     const [formState, setFormState] = useState({email: '', password: ''});
-//     const [login, {error, data}] = useMutation(LOGIN_USER);
+     const [formState, setFormState] = useState({
+        email: '',
+         password: ''
+        });
+     const [login, {error, data}] = useMutation(LOGIN_USER);
 
-//     const changeHandler = (event) => {
-//         const {email, value} = event.target;
+     const changeHandler = (event) => {
+         const {name, value} = event.target;
+         setFormState({
+             ...formState,
+             [name]: value,
+         });
+     };
 
-//         setFormState({
-//             ...formState,
-//             [email]: value,
-//         });
-//     };
-
-//     // const handleFormSubmit = async(event) => {
-//     //     event.preventDefault();
-//     //     console.log(formState);
-//     //     try {
-//     //         const {data} = await login({
-//     //             variables: {...formState},
-//     //         });
-
-//     //         Auth.login(data.login.token);
-//     //     } catch(err) {
-//     //         console.error(err);
-//     //     }
-
-//     //     setFormState({
-//     //         email: '',
-//     //         password: '',
-//     //     })
-
-//     // }
+      const handleFormSubmit = async(event) => {
+          event.preventDefault();
+          console.log(formState);
+          try {
+              const {data} = await login({
+                  variables: {...formState},
+              });
+              
+        Auth.login(data.login.token);
+          } catch(err) {
+              console.error(err);
+          }
+          setFormState({
+              email: '',
+              password: '',
+          })
+      }
 
      return (
          <div className='outerContainer'>
-             {/* {data ? (
-                 <p> Success! </p>
-             ) : ( */}
-                 <Center>
-                 <Box width='100%' bg='gray' py='4' marginBottom='20px' px='10px'>
-                 <FormControl>
+              {data ? (
+                 <p> Success! Let's bring you home! <Link to="/"></Link> </p>
+             ) : ( 
+                <Center>
+                <Box width='100%' bg='gray' py='4' marginBottom='20px' px='10px'>
+                <form>
+                 <FormControl isRequired onSubmit={handleFormSubmit}>
                      <FormLabel>
                          Login
                      </FormLabel>
                      <FormLabel>Email:</FormLabel>
-                     <Input type='text'></Input>
+                     <Input
+                       placeholder="Your email"
+                       type="email"
+                       name="email"
+                       value={formState.email}
+                        onChange={changeHandler}
+                       />
+                    </FormControl>
+                    <FormControl onSubmit={handleFormSubmit}>
+
                      <FormLabel>Password:</FormLabel>
-                     <Textarea 
+                     <Input 
+                     type="password"
+                     name="password"
+                     value={formState.password}
+                      onChange={changeHandler}
                      placeholder='Enter your password'
                      size='lg'
                      />
@@ -69,16 +83,17 @@
                  as='a'
                  href='/'
                  color='Red' mr={3} >Back to Home!</Button>
-                 <Button color='Green'>Let's get coding!</Button>
+                 <Button onClick={changeHandler} type="submit" color='Green'>Let's get coding!</Button>
+                 </form>
              </Box>
              </Center>
-             {/* )} */}
+              )} 
 
-             {/* {error && (
+              {error && (
                  <div className = 'add styling'>
                      {error.message}
                  </div>
-             )} */}
+             )} 
          </div>
      )
  }

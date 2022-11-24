@@ -1,39 +1,36 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 //WORKS DO NOT TOUCH 11/22
 export const QUERY_POSTINGS = gql`
 query allPostings {
-  postings {
-    _id
-    title
-    description
-  
-    owners_id {
-      email
-      firstName
-      lastName
-      password
+    postings {
+        _id
+        title
+        description
+        owner {
+            email
+            firstName
+        }
+        
     }
-  }
-
 }
 `;
-//WORKS DO NOT TOUCH 11/22
+//no longer works 11/22
 export const QUERY_SINGLE_POSTING = gql`
-  query getSinglePosting($id: ID!) {
-    singlePost(_id: $id) {
-      _id
-      title
-      description
-      owner {
+query getSinglePosting ($_id: ID!) {
+    singlePost(_id: $_id) {
         _id
-        firstName
-        email
-      }
-      comments {
-        _id
-        content
-        date_created
-      }
+        title
+        description
+        owner {
+            _id
+            firstName
+            email
+        }
+        comments {
+            _id
+            content
+            date_created
+          }
     }
 }
 `
@@ -45,11 +42,6 @@ query getUsers{
         firstName
         lastName
         email
-        postings{
-          _id
-          title
-          description
-        }
     }
 }
 `
@@ -61,7 +53,7 @@ query getUsers{
 
 // }
 // `
-
+// does not work 11/22
 export const QUERY_USER_INFO = gql`
   query currentUser {
     me {
@@ -72,6 +64,7 @@ export const QUERY_USER_INFO = gql`
     }
   }
 `;
+//works 11/22 do not touch
 export const QUERY_COMMENTS = gql`
   query allComments {
     comments {
