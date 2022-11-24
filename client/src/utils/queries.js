@@ -60,5 +60,13 @@ export const QUERY_COMMENTS = gql`
 `;
 
 export const REGISTERED = gql`
-
+query Registered($id: ID!) {
+  registered(_id: $id) {
+    _id
+    title
+    owners_id {
+      _id
+    }
+  }
+}
 `
