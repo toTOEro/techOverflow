@@ -82,7 +82,7 @@
                  as='a'
                  href='/'
                  color='Red' mr={3} >Back to Home!</Button>
-                 <Button onClick={changeHandler} type="submit" color='Green'>Let's get coding!</Button>
+                 <Button onClick={handleFormSubmit} type="submit" color='Green'>Let's get coding!</Button>
                  </form>
              </Box>
              </Center>
