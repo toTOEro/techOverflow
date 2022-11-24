@@ -41,6 +41,11 @@ const postingSchema = new Schema(
   }
 );
 
+postingSchema.virtual("ownersId").get(function () {
+  return this.owners_id.length;
+
+
+});
 const Posting = mongoose.model("Posting", postingSchema);
 
 module.exports = Posting;
