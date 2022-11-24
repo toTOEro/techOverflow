@@ -6,36 +6,27 @@ query allPostings {
         _id
         title
         description
-        owner {
+        owners_id {
+            _id
             email
             firstName
         }
-        
     }
 }
 `;
 //no longer works 11/22
 export const QUERY_SINGLE_POSTING = gql`
-  query getSinglePosting($id: ID!) {
-    singlePost(_id: $id) {
+query getSinglePosting ($_id: ID!) {
+  singlePost(_id: $_id) {
+    _id
+    title
+    description
+    comments {
       _id
-      title
-      description
-      owners_id {
-        _id
-        title
-        description
-        owner {
-            _id
-            firstName
-            email
-        }
-        comments {
-            _id
-            content
-            date_created
+      content
+      date_created
           }
-    }
+      }
 }
 `
 //WORKS DO NOT TOUCH 11/22
@@ -57,17 +48,6 @@ query getUsers{
 
 // }
 // `
-// does not work 11/22
-export const QUERY_USER_INFO = gql`
-  query currentUser {
-    me {
-      firstName
-      lastName
-      email
-      postings
-    }
-  }
-`;
 //works 11/22 do not touch
 export const QUERY_COMMENTS = gql`
   query allComments {

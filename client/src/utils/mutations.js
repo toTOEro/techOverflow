@@ -1,22 +1,13 @@
 
 import { gql } from "@apollo/client";
 
+//works 11/22 this is signup
 export const ADD_USER = gql`
-
-  mutation addUser(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $password: String!
-  ) {
-    addUser(name: $name, email: $email, password: $password) {
-      _id
-      firstName
-      lastName
-      email
-      postings
+mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!){
+    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password ){
+        _id
     }
-  }
+}
 `;
 
 export const ADD_POSTING = gql`
@@ -41,33 +32,20 @@ mutation login($email: String!, $password: String!){
 }
 `
 export const UPDATE_USER = gql`
-  mutation updateUser(
-    $id: ID!
-    $firstName: String
-    $lastName: String
-    $email: String
-    $password: String
-  ) {
-    updateUser(
-      _id: $id
-      firstName: $firstName
-      lastName: $lastName
-      email: $email
-      password: $password
-    ) {
-      lastName
+mutation updateUser($_id: ID!, $firstName: String!, $lastName: String!, $email: String!, $password: String!){
+  updateUser(_id: $_id, firstName: $firstName, lastName: $lastName, email: $email, password: $password){
+      _id
       firstName
+      lastName
       email
-    }
+      password
   }
+}
 `;
 
 export const DELETE_USER = gql`
 mutation DeleteUser($id: ID!) {
-  deleteUser(_id: $id) {
-    _id
-    email
-  }
+  deleteUser(_id: $id)
 }
 `;
 
@@ -83,15 +61,9 @@ export const UPDATE_POSTING = gql`
 `;
 
 export const DELETE_POSTING = gql`
-  mutation deletePosting($id: ID!) {
-    deletePosting(_id: $id) {
-      _id
-      owners_id {
-        _id
-      }
-      title
-    }
-  }
+mutation deletePosting($_id: ID!){
+  deletePosting(_id: $_id)
+}
 `;
 
 //for the addComment, returning info in case we want to show a screen that shows the commenter's other posts, or if we want to email them a copy of their comment.
