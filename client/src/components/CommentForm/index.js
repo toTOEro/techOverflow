@@ -49,7 +49,7 @@ export default function CommentForm(Posting) {
                 onChange={handleCommentChange}
                 value={newComment.content}
             />
-            <Button onClick={addComment} mt='2'>Submit Comment</Button>
+            <Button onClick={handleCommentSubmit} mt='2'>Submit Comment</Button>
         </FormControl>
     )
 }
