@@ -14,14 +14,21 @@ import { useQuery } from "@apollo/client";
 import { usePostingContext } from "../utils/GlobalState";
 import { ADD_COMMENT } from "../utils/mutations";
 
-import Comment from "../components/Comment/index"
-import CommentForm from "../components/CommentForm";
+import Comment from "../components/Comment/index";
+
+// Temporary disabled commentform
+// import CommentForm from "../components/CommentForm";
+
 import { QUERY_SINGLE_POSTING } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 
 
-const PostingDetail = () => {
 
+//Current status of this code is that it works, but the comments don't properly refresh with page.
+// NEed to refactor the code to separate the posting and comments queries
+// 1. Develop query only comments, 2. Implement refetch for just those comments
+
+const PostingDetail = () => {
 
 
     let { id } = useParams();
@@ -32,7 +39,6 @@ const PostingDetail = () => {
             variables: { _id: id },
             notifyOnNetworkStatusChange: true,
         }
-
     );
     const singlePost = data?.singlePost || [];
 
@@ -45,6 +51,8 @@ const PostingDetail = () => {
 
     const [addComment, { error: comError }] = useMutation(ADD_COMMENT)
 
+
+    // Need to refactor this code
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -55,10 +63,8 @@ const PostingDetail = () => {
         } catch (err) {
             console.error(err)
         }
-        refetch()
-
-        setNewComment({ content: '' })
-
+        refetch();
+        setNewComment({ content: '' });
     }
 
     const handleCommentChange = (e) => {
@@ -90,7 +96,6 @@ const PostingDetail = () => {
                         }
                         <Divider my='3' />
                         <FormControl >
-
                             <Input
                                 name='content'
                                 placeholder="Your Comment Here"
@@ -99,10 +104,6 @@ const PostingDetail = () => {
                             />
                             <Button onClick={handleCommentSubmit} mt='2'>Submit Comment</Button>
                         </FormControl>
-
-
-                        {/* <CommentForm postingId={id} refetch={refetch} /> */}
-
                     </>
                 )
                 }
