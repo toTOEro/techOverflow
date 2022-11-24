@@ -100,8 +100,5 @@ export default function Postings() {
             </Stack>
 
         </div>
-
-
     )
-
 }
