@@ -18,34 +18,12 @@ import { QUERY_SINGLE_POSTING } from "../utils/queries";
 
 
 const PostingDetail = () => {
-    // const [state, dispatch] = usePostingContext();
+
+    
+
     const { id } = useParams();
-    // const [currentPosting, setCurrentPosting] = useState({});
 
     const { loading, error, data } = useQuery(QUERY_SINGLE_POSTING, { variables: { id: id } });
-    // const { posting, comments } = state;
-
-    // let data = {
-    //     _id: id,
-    //     title: "The Magic Kekw",
-    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu mi ante. Nulla nec nunc ut lorem vehicula hendrerit id pulvinar leo. Suspendisse potenti. Quisque semper dolor sit amet lacus posuere ullamcorper. Pellentesque finibus maximus turpis, vitae lacinia elit placerat at. Sed consectetur magna leo, aliquam blandit leo dictum at. Nulla augue quam, lacinia in tempor molestie, tincidunt ut nisi. Donec elementum condimentum tellus ac blandit. Sed justo ipsum, pretium a tincidunt sit amet, commodo vel purus.",
-    //     owner: "TestOwner",
-    //     email: "testemail@test.com",
-    //     comments: [
-    //         {
-    //             _id: 1,
-    //             content: 'woohoo',
-    //             date_created: 'November 16th, 2020'
-    //         },
-
-    //         {
-    //             _id: 13,
-    //             content: 'woohoo',
-    //             date_created: 'November 16th, 2020'
-    //         },
-
-    //     ]
-    // }
 
     const singlePost = data?.singlePost || [];
 

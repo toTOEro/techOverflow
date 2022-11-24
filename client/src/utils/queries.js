@@ -60,5 +60,5 @@ export const QUERY_COMMENTS = gql`
 `;
 
 export const REGISTERED = gql`
-  
+
 `
