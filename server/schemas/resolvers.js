@@ -14,14 +14,14 @@ const resolvers = {
       }
     },
     singlePost: async (parent, { _id }, context) => {
-      return Posting.findOne({ _id }).populate("comments").populate("ownersId");
-
+      return Posting.findOne({ _id }).populate("comments").populate("owners_id");
     },
     users: async () => {
       return User.find().populate("postings");
     },
+    // ---------This is broken somehow. The error said that a string can't be an object. Refer to screenshot
     comments: async () => {
-      return Comment.find();
+      return Comment.find().populate("creator");
     },
   },
   Mutation: {
@@ -96,10 +96,25 @@ const resolvers = {
       return Comment.create(args);
     },
     updateComment: async (parent, { _id, content }, context) => {
-      return Comment.findByIdAndUpdate(_id, { content }, { new: true });
+      const commentToBeUpdated = await Comment.findById(_id);
+
+      if (
+        context.user &&
+        context.user._id === commentToBeUpdated.creator.toString()
+      ) {
+        return Comment.findByIdAndUpdate(_id, { content }, { new: true });
+      }
+      throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
     deleteComment: async (parent, { _id }, context) => {
-      return Comment.findByIdAndDelete({ _id });
+      const commentToBeDeleted = await Comment.findById(_id);
+      if (
+        context.user &&
+        context.user._id === commentToBeDeleted.creator.toString()
+      ) {
+        return Comment.findByIdAndDelete({ _id });
+      }
+      throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
   },
 };

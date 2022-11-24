@@ -20,6 +20,7 @@ const postingSchema = new Schema(
       ref: "User",
       required: true,
     },
+
     comments: [
       {
         type: Schema.Types.ObjectId,
@@ -29,10 +30,11 @@ const postingSchema = new Schema(
     registered: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User"
-      }
-    ]
+        ref: "User",
+      },
+    ],
   },
+
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
@@ -44,7 +46,6 @@ postingSchema.virtual("ownersId").get(function () {
 
 
 });
-
 const Posting = mongoose.model("Posting", postingSchema);
 
 module.exports = Posting;

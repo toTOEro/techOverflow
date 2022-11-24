@@ -45,7 +45,7 @@ export default function IdeaForm() {
         e.preventDefault();
         try {
             const { data } = addPosting({
-                variables: { ...formState, ownersId: '637b193aa91d653427026186' },
+                variables: { ...formState, ownersId: '637d9fb14f58788dae6b863c' },
             });
 
             window.location.reload();

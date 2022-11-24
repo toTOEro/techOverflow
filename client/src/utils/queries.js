@@ -16,8 +16,12 @@ query allPostings {
 `;
 //no longer works 11/22
 export const QUERY_SINGLE_POSTING = gql`
-query getSinglePosting ($_id: ID!) {
-    singlePost(_id: $_id) {
+  query getSinglePosting($id: ID!) {
+    singlePost(_id: $id) {
+      _id
+      title
+      description
+      owners_id {
         _id
         title
         description

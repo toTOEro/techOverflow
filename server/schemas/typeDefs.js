@@ -14,9 +14,9 @@ const typeDefs = gql`
     title: String!
     description: String
     date_created: String
-    owners_id: User
+    owners_id: User!
+
     comments: [Comment]
-    owner: User
     registered: [User]
   }
 
@@ -24,6 +24,7 @@ const typeDefs = gql`
     _id: ID
     content: String!
     date_created: String
+    creator: User!
   }
 
   type Auth {
@@ -55,10 +56,10 @@ const typeDefs = gql`
       password: String
     ): User
     deleteUser(_id: ID!): User
-    addPosting(title: String!, description: String, owner: ID!): Posting
+    addPosting(title: String!, description: String, owners_id: ID!): Posting
     updatePosting(_id: ID!, title: String, description: String): Posting
     deletePosting(_id: ID!): Posting
-    addComment(content: String!): Comment
+    addComment(content: String!, creator: String!): Comment
     updateComment(_id: ID!, content: String): Comment
     deleteComment(_id: ID!): Comment
     login(email: String!, password: String!): Auth
