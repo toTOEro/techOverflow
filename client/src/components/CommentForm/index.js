@@ -16,14 +16,14 @@ export default function CommentForm(Posting) {
 
     const [addComment, { error }] = useMutation(ADD_COMMENT)
 
-    const { postingId } = Posting
+    const { postingId, refetch } = Posting
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         try {
             const { data } = addComment({
                 variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: postingId },
             });
-            
+            refetch()
             // window.location.reload();
         } catch (err) {
             console.error(err)
