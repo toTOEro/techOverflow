@@ -121,6 +121,13 @@ const resolvers = {
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
+    register: async (parent, { postId, userId }, context) => {
+      return Posting.findByIdAndUpdate(
+        postId,
+        {
+          $addToSet: { registered: userId }
+        })
+    }
   },
 };
 module.exports = resolvers;

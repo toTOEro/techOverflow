@@ -63,7 +63,7 @@ const typeDefs = gql`
     updateComment(_id: ID!, content: String): Comment
     deleteComment(_id: ID!): Comment
     login(email: String!, password: String!): Auth
-    register(_id: ID!, owners_id: ID!): Posting
+    register(postId: ID!, userId: ID!): Posting
   }
 `;
 
