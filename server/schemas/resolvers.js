@@ -92,8 +92,14 @@ const resolvers = {
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
-    addComment: async (parent, args, context) => {
-      return Comment.create(args);
+    addComment: async (parent, { content, creator, postingId }, context) => {
+      // const comment = new Comment({ content, creator })
+
+      const comment = await Comment.create({ content, creator })
+
+      await Posting.findByIdAndUpdate(postingId, { $push: { comments: comment } })
+
+      return comment;
     },
     updateComment: async (parent, { _id, content }, context) => {
       const commentToBeUpdated = await Comment.findById(_id);

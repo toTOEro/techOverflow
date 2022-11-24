@@ -91,8 +91,8 @@ export const DELETE_POSTING = gql`
 
 //for the addComment, returning info in case we want to show a screen that shows the commenter's other posts, or if we want to email them a copy of their comment.
 export const ADD_COMMENT = gql`
-  mutation addComment($content: String!, $creator: String!) {
-    addComment(content: $content, creator: $creator) {
+  mutation addComment($content: String!, $creator: String!, $postingId: ID!) {
+    addComment(content: $content, creator: $creator, postingId: $postingId) {
       _id
       date_created
       creator {

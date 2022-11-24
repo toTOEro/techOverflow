@@ -17,18 +17,18 @@ export default function CommentForm(Posting) {
     const [addComment, { error }] = useMutation(ADD_COMMENT)
 
     const { postingId } = Posting
-
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         try {
             const { data } = addComment({
-                variables: { ...newComment, creator: '637d9fb14f58788dae6b8638' },
+                variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: postingId },
             });
 
             window.location.reload();
         } catch (err) {
             console.error(err)
         }
+        
     }
 
     const handleCommentChange = (e) => {
@@ -41,8 +41,8 @@ export default function CommentForm(Posting) {
     return (
 
 
-
         <FormControl >
+
             <Input
                 name='content'
                 placeholder="Your Comment Here"
