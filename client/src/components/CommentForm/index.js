@@ -1,31 +1,42 @@
 import React, { useReducer, useState } from 'react'
 import { FormControl, FormLabel, FormHelperText, FormErrorMessage, Button, Container, Input } from "@chakra-ui/react"
-import { usePostingContext } from "../../utils/GlobalState"
-import { reducer, usePostingReducer } from "../../utils/reducers";
-import { ADD_COMMENT } from '../../utils/actions';
+import { ADD_COMMENT } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 
 
 
 export default function CommentForm(Posting) {
-    const initialState = usePostingContext();
-    const [state, dispatch] = usePostingReducer(reducer, initialState);
-    const [newComment, setNewComment] = useState('');
+
+
+
+    const [newComment, setNewComment] = useState({
+        content: ''
+    });
+
+    const [addComment, { error }] = useMutation(ADD_COMMENT)
+
     const { postingId } = Posting
 
+    const handleCommentSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const { data } = addComment({
+                variables: { ...newComment, creator: '637d9fb14f58788dae6b8638' },
+            });
 
-    const { posting } = state
-
-    const addComment = () => {
-
-        console.log(postingId)
-
-        return dispatch({
-            type: ADD_COMMENT,
-            payload: { content: newComment }
-        })
-
+            window.location.reload();
+        } catch (err) {
+            console.error(err)
+        }
     }
+
+    const handleCommentChange = (e) => {
+        const { name, value } = e.target;
+
+        setNewComment({ ...newComment, [name]: value });
+    }
+
 
     return (
 
@@ -33,9 +44,10 @@ export default function CommentForm(Posting) {
 
         <FormControl >
             <Input
+                name='content'
                 placeholder="Your Comment Here"
-                onChange={(e) => setNewComment(e.target.value)}
-                value={newComment}
+                onChange={handleCommentChange}
+                value={newComment.content}
             />
             <Button onClick={addComment} mt='2'>Submit Comment</Button>
         </FormControl>
