@@ -110,3 +110,17 @@ export const DELETE_COMMENT = gql`
     }
   }
 `;
+
+export const REGISTER = gql`
+  mutation register($postId: ID!, $userId: ID!) {
+    register(postId: $postId, userId: $userId) {
+      _id
+      registered {
+        _id
+      }
+
+
+    }
+  }
+
+`

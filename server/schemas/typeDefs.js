@@ -39,6 +39,7 @@ const typeDefs = gql`
     postings: [Posting]
     singlePost(_id: ID!): Posting
     comments: [Comment]
+    registered(_id: ID!): [Posting]
   } 
 
   type Mutation {
@@ -63,6 +64,7 @@ const typeDefs = gql`
     updateComment(_id: ID!, content: String): Comment
     deleteComment(_id: ID!): Comment
     login(email: String!, password: String!): Auth
+    register(postId: ID!, userId: ID!): Posting
   }
 `;
 

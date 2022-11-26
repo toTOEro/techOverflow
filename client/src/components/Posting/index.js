@@ -4,18 +4,20 @@ import MailTo from '../MailTo';
 import { IoIosAddCircle } from 'react-icons/io'
 
 
-import { Card, 
-    CardHeader, 
-    CardBody, 
-    CardFooter, 
-    Heading, 
-    Divider, 
-    Text, 
-    Avatar, 
-    HStack, 
-    Flex, 
-    ButtonGroup, 
-    Button } from '@chakra-ui/react'
+import {
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    Heading,
+    Divider,
+    Text,
+    Avatar,
+    HStack,
+    Flex,
+    ButtonGroup,
+} from '@chakra-ui/react'
+import Register from '../RegisterButton';
 
 export default function Posting(details) {
     const {
@@ -43,14 +45,12 @@ export default function Posting(details) {
                 <Flex>
                     <HStack >
                         <ButtonGroup>
-                            <Button colorScheme='teal' leftIcon={<IoIosAddCircle />}>
-                                Register
-                            </Button>
+                            <Register postId={_id} />
                         </ButtonGroup>
                         <HStack>
                             {/* Show the user avatars that signed up for this project */}
 
-                            
+
                             <MailTo email={email} label={`${owner}`} />
                             <Avatar name='test' src={'./icons8-user-32.png'} />
                         </HStack>

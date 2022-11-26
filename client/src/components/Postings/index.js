@@ -6,6 +6,7 @@ import { IoIosAddCircle } from 'react-icons/io'
 import MailTo from '../MailTo';
 import { useQuery } from '@apollo/client';
 import { QUERY_POSTINGS } from '../../utils/queries.js';
+import Register from '../RegisterButton';
 
 
 
@@ -43,9 +44,7 @@ export default function Postings() {
                                     <Flex>
                                         <HStack >
                                             <ButtonGroup>
-                                                <Button colorScheme='teal' leftIcon={<IoIosAddCircle />}>
-                                                    Register
-                                                </Button>
+                                                <Register postId={_id} />
                                             </ButtonGroup>
                                             <HStack>
                                                 {/* Show the user avatars that signed up for this project */}
