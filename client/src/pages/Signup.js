@@ -33,7 +33,6 @@ const Signup = () => {
 
      const signUpHandler = async (event) => {
          event.preventDefault();
-         console.log(formState);
 
          try {
              const {data} = await addUser({

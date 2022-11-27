@@ -8,7 +8,6 @@ mutation addUser($firstName: String!, $lastName: String!, $email: String!, $pass
       token
       user{
         _id
-        email
       }
     }
 }
@@ -20,6 +19,9 @@ export const ADD_POSTING = gql`
       _id
       title
       description
+      owners_id{
+        _id
+      }
     }
 }
 `
@@ -36,9 +38,6 @@ mutation login($email: String!, $password: String!){
 }
 `
 
-// export const LOGOUT_USER = gql`
-
-// `
 export const UPDATE_USER = gql`
 mutation updateUser($_id: ID!, $firstName: String!, $lastName: String!, $email: String!, $password: String!){
   updateUser(_id: $_id, firstName: $firstName, lastName: $lastName, email: $email, password: $password){
@@ -82,11 +81,6 @@ export const ADD_COMMENT = gql`
       date_created
       creator {
         _id
-        firstName
-        postings {
-          title
-        }
-        email
       }
       content
     }

@@ -10,26 +10,11 @@ query allPostings {
             _id
             email
             firstName
+            avatar
         }
     }
 }
 `;
-
-export const QUERY_ME = gql`
-query me($_id: ID!){
-  me(_id: $_id){
-    _id
-    firstName
-    lastName
-    email
-    postings{
-      _id
-      title
-      description
-    }
-  }
-}
-`
 //no longer works 11/22
 export const QUERY_SINGLE_POSTING = gql`
 query getSinglePosting ($_id: ID!) {
@@ -53,22 +38,27 @@ query getUsers{
         firstName
         lastName
         email
-        postings {
-          _id
-          title
-          description
-        }
     }
 }
 `
-//How can I implement this? If uncommented breaks run develop command 
 
-// export const QUERY_USER_POSTINGS = gql`
-// query userPostings($_id: ID!){
+export const QUERY_SINGLE_USER = gql`
+query User($id: ID!) {
+  user(_id: $id) {
+    _id
+    email
+    firstName
+    lastName
+    avatar
+    postings {
+      _id
+      title
+      description
+    }
+  }
+}
+`
 
-
-// }
-// `
 //works 11/22 do not touch
 export const QUERY_COMMENTS = gql`
   query allComments {
@@ -81,12 +71,25 @@ export const QUERY_COMMENTS = gql`
 `;
 
 export const REGISTERED = gql`
-query Registered($id: ID!) {
-  registered(_id: $id) {
+query Registered($_id: ID!) {
+  registered(_id: $_id) {
     _id
     title
     owners_id {
       _id
+    }
+  }
+}
+`
+
+export const POSTINGCOMMENTS = gql`
+query postComments($_id: ID!) {
+  postComments(_id: $_id) {
+    _id
+    comments {
+      _id
+      content
+      date_created
     }
   }
 }

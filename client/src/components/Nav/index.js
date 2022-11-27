@@ -18,11 +18,16 @@ import { FaUser, FaEdit } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Donate from "../Donate";
+import Auth from "../../utils/auth";
 
 import IdeaForm from "../IdeaForm";
 
 export default function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   return (
     <>
       <IconButton

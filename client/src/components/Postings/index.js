@@ -1,8 +1,7 @@
 // import { useQuery } from '@apollo/client';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar, HStack, Flex, ButtonGroup, Button } from '@chakra-ui/react'
-import { IoIosAddCircle } from 'react-icons/io'
+import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar, HStack, Flex, ButtonGroup } from '@chakra-ui/react'
 import MailTo from '../MailTo';
 import { useQuery } from '@apollo/client';
 import { QUERY_POSTINGS } from '../../utils/queries.js';
@@ -16,7 +15,6 @@ export default function Postings() {
     const { loading, data } = useQuery(QUERY_POSTINGS);
     const postings = data?.postings || [];
 
-
     return (
         <div>
             <Stack spacing="4" alignItems="center">
@@ -25,7 +23,6 @@ export default function Postings() {
                 {
                     loading ? (
                         <div> Loading... </div>
-
                     ) : (
                         postings.slice(0, 5).map(({ _id, title, description, email, owners_id }) => (
                             <Card key={_id} maxW='85vw' minW='85vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
