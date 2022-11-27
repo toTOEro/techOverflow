@@ -95,8 +95,8 @@ const resolvers = {
       return Posting.create(args);
     },
     updatePosting: async (parent, { _id, title, description }, context) => {
-      const postToBeUpdated = await Posting.findById(_id);
-      if (context.user._id === postToBeUpdated.owners_id.toString()) {
+      console.log(`this is ${_id} ID, This is ${title} title, this is ${description} description`)
+      if (context.user._id === postToBeUpdated.owners_id._id) {
         return Posting.findByIdAndUpdate(
           _id,
           { title, description },

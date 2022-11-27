@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client";
 // import { usePostingContext } from "../utils/GlobalState";
 import { ADD_COMMENT } from "../utils/mutations";
-
+import Auth from '../utils/auth'
 import Comment from "../components/Comment/index";
 
 // Temporary disabled commentform
@@ -67,7 +67,7 @@ const PostingDetail = () => {
         try {
             setIsLoading(true);
             const test = await addComment({
-                variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: id },
+                variables: { ...newComment, creator: Auth.getProfile().data._id, postingId: id },
             });
 
             await refetch()

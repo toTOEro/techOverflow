@@ -16,7 +16,7 @@ import Postings from "./pages/Postings";
 import PostingDetail from "./pages/PostingDetail";
 import Error from "./pages/Error";
 import Profile from "./pages/Profile";
-
+import PostEditor from "./pages/PostEditor";
 import Footer from "./components/Footer";
 
 // import Profile from './pages/Profile';
@@ -100,6 +100,10 @@ function App() {
                 <Route
                   path="/posting/:id"
                   element={<PostingDetail />}
+                />
+                <Route 
+                path="/PostEditor/:id"
+                element={<PostEditor/>}
                 />
                 <Route
                   path="/*"

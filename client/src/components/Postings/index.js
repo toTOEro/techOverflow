@@ -1,17 +1,16 @@
 // import { useQuery } from '@apollo/client';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar, HStack, Flex, ButtonGroup } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar, HStack, Flex, ButtonGroup, Button } from '@chakra-ui/react'
 import MailTo from '../MailTo';
 import { useQuery } from '@apollo/client';
 import { QUERY_POSTINGS } from '../../utils/queries.js';
 import Register from '../RegisterButton';
-
+import Auth from '../../utils/auth';
 
 
 // Presents all software development idea postings for users to browse through.
 export default function Postings() {
-    // const { data } = useQuery(QUERY_POSTINGS);
     const { loading, data } = useQuery(QUERY_POSTINGS);
     const postings = data?.postings || [];
 
@@ -40,16 +39,36 @@ export default function Postings() {
                                 <CardFooter py='1' justifyContent='end' >
                                     <Flex>
                                         <HStack >
+                                            {Auth.loggedIn() && Auth.getProfile().data._id === owners_id._id ? (
+                                                <>
+                                                <Link
+                                                to={`/PostEditor/${_id}`}
+                                                >
+                                               <Button label="edit"> Edit</Button>
+                                                </Link>
+
                                             <ButtonGroup>
                                                 <Register postId={_id} />
                                             </ButtonGroup>
-                                            <HStack>
                                                 {/* Show the user avatars that signed up for this project */}
 
 
                                                 <MailTo email={owners_id.email} label={`${owners_id.firstName}`} />
                                                 <Avatar name='test' src={'./icons8-user-32.png'} />
-                                            </HStack>
+                                                </>
+                                            ) : (
+                                                <>
+                                            <ButtonGroup>
+                                                <Register postId={_id} />
+                                            </ButtonGroup>
+                                                {/* Show the user avatars that signed up for this project */}
+
+
+                                                <MailTo email={owners_id.email} label={`${owners_id.firstName}`} />
+                                                <Avatar name='test' src={'./icons8-user-32.png'} />
+                                                </>
+                                            )}
+
                                         </HStack>
                                     </Flex>
 

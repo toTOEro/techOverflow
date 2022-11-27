@@ -67,9 +67,6 @@ export default function Posting(details) {
                             <Avatar name='test' src={avatar} />
                                 </>
                             )}
-
-
-
                         </HStack>
                     </HStack>
                 </Flex>
