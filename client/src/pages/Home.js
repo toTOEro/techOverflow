@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import Posting from '../components/Posting/index';
-import { Link } from 'react-router-dom';
 import { Stack, Container, Center, Text, Heading } from '@chakra-ui/react'
 import { QUERY_POSTINGS } from '../utils/queries';
 

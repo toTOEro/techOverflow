@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Stack, Text } from '@chakra-ui/react'
+import { Heading, Stack} from '@chakra-ui/react'
 import Posting from '../components/Posting'
 import { useQuery } from '@apollo/client';
 import { QUERY_POSTINGS } from '../utils/queries';

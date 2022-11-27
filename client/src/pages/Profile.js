@@ -26,7 +26,6 @@ import {
   List
 } from '@chakra-ui/react'
 
-import Posting from '../components/Posting';
 
 import { QUERY_ME, QUERY_SINGLE_USER, REGISTERED } from '../utils/queries';
 import { UPDATE_AVATAR } from '../utils/mutations';
@@ -44,7 +43,7 @@ const Profile = () => {
   });
 
   let regiId = userId || (Auth.loggedIn() && Auth.getProfile().data._id) || [];
-  const { loading: regiLoading, data: regiData, error: regiError } = useQuery(
+  const {  data: regiData } = useQuery(
     REGISTERED,
     { variables: { _id: regiId } }
   )
@@ -54,13 +53,13 @@ const Profile = () => {
 
 
   const user = data?.me || data?.user || {};
-  let { email, firstName, lastName, postings, avatar, _id } = user
+  let { firstName, lastName, postings, avatar, _id } = user
 
   const [newAvatar, setNewAvatar] = useState({
     url: ''
   })
 
-  const [updateAvatar, { error: avatarError }] = useMutation(UPDATE_AVATAR)
+  const [updateAvatar] = useMutation(UPDATE_AVATAR)
 
   const handleAvatarChange = (e) => {
     const { name, value } = e.target;
