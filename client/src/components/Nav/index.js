@@ -13,6 +13,7 @@ import {
   DrawerCloseButton,
   Stack,
   Flex,
+  Text
 } from "@chakra-ui/react";
 import { FaUser, FaEdit, FaSignOutAlt } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
@@ -37,7 +38,33 @@ export default function Nav() {
         <DrawerContent pt="20px" bgGradient="linear(to-br, #FFFFFF, #DBD6CB)">
           <DrawerCloseButton />
           <DrawerBody>
-            <Stack>
+            {Auth.loggedIn() ? (
+              <Stack> 
+                <Text>Welcome {Auth.getProfile().data.firstName}!</Text>
+               <Box>
+                <Button as="a" href="/" bg="#B5514D" color="white">
+                  <AiTwotoneHome />
+                  Home
+                </Button>
+              </Box>
+             <IdeaForm />
+             <Box>
+             <Button
+                as="a" href="/Postings"
+                bg="#21467A" color="white"
+                >
+                  All Posts
+                </Button>
+                </Box>
+                <Box>
+                <Button onClick={logout} bg="#21467A" color="white">
+                  <FaSignOutAlt />
+                  logout
+                </Button>
+              </Box>
+             </Stack>
+            ): (
+              <Stack>
               <Box>
                 <Button as="a" href="/" bg="#B5514D" color="white">
                   <AiTwotoneHome />
@@ -60,9 +87,11 @@ export default function Nav() {
                 <Button onClick={logout} bg="#21467A" color="white">
                   <FaSignOutAlt />
                   Logout
+
                 </Button>
-              </Box>
+                </Box>
             </Stack>
+            )}
           </DrawerBody>
           <DrawerFooter></DrawerFooter>
         </DrawerContent>
