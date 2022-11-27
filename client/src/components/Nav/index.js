@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { FaUser, FaEdit } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { GiHamburgerMenu } from "react-icons/gi"
 
 import Donate from "../Donate";
 
@@ -27,11 +27,8 @@ export default function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      {/* <IconButton onClick={onOpen} icon={<HamburgerIcon />} /> */}
-      <Button onClick={onOpen}>
-        <HamburgerIcon />
-        Navigation
-      </Button>
+      <IconButton aria-label='nav' onClick={onOpen} icon={<GiHamburgerMenu />} />
+
       <Drawer isOpen={isOpen} placement="left" onClose={onClose} size="xs">
         <DrawerOverlay />
         <DrawerContent>
