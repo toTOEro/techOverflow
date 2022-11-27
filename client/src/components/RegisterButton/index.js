@@ -5,6 +5,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { useMutation } from "@apollo/client";
 import { REGISTER } from "../../utils/mutations";
 
+import Auth from '../../utils/auth';
 
 import Auth from "../../utils/auth";
 
@@ -18,7 +19,8 @@ export default function Register(postId) {
         e.preventDefault();
         try {
             const { data } = register({
-                variables: { ...postId, userId: Auth.getProfile().data._id  }
+
+                variables: { ...postId, userId: Auth.getProfile().data._id }
             })
 
             window.location.reload();
