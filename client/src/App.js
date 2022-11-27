@@ -19,7 +19,6 @@ import Profile from "./pages/Profile";
 
 import Footer from "./components/Footer";
 
-// import Profile from './pages/Profile';
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
@@ -82,12 +81,15 @@ function App() {
                 />
                 <Route
                   path="/login"
-
                   element={<Login />}
                 />
                 <Route
                   path="/Signup"
                   element={<Signup />}
+                />
+                <Route
+                  path="/profile"
+                  element={<Profile />}
                 />
                 <Route
                   path="/profile/:userId"

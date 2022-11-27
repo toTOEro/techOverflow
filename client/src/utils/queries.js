@@ -17,8 +17,8 @@ query allPostings {
 `;
 
 export const QUERY_ME = gql`
-query me($_id: ID!){
-  me(_id: $_id){
+query me{
+  me{
     _id
     firstName
     lastName
