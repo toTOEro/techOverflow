@@ -74,13 +74,19 @@ const resolvers = {
       context
     ) => {
       if (context.user._id === _id) {
-        return User.findByIdAndUpdate(
+        const user = await User.findByIdAndUpdate(
           _id,
           { firstName, lastName, email, password },
           {
             new: true,
           }
         );
+
+        const token = signToken(user);
+
+        return { token, user };
+
+
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
