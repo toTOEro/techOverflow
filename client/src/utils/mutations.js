@@ -19,6 +19,9 @@ export const ADD_POSTING = gql`
       _id
       title
       description
+      owners_id{
+        _id
+      }
     }
 }
 `

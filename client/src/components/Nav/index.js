@@ -47,7 +47,9 @@ export default function Nav() {
 
             {Auth.loggedIn() ? (
                 <>
+                <h1>Hello {Auth.getProfile().data.firstName}!</h1>
             <Box><IdeaForm /></Box>
+            
                 <Button onClick={logout} colorscheme='red'>Logout</Button>
                 </>
             ): (
