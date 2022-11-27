@@ -11,12 +11,14 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Stack,
+  Flex,
 } from "@chakra-ui/react";
 import { FaUser, FaEdit } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Donate from "../Donate";
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
 
 import IdeaForm from "../IdeaForm";
 
@@ -35,40 +37,32 @@ export default function Nav() {
       />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent pt="20px" bgGradient="linear(to-b, #FFFFFF, #E5DED4)">
           <DrawerCloseButton />
-          <DrawerBody alignItems="center" justifyContent="space-between">
-            <Box>
-              <Button as="a" href="/">
-                <AiTwotoneHome />
-                Home
-              </Button>
-            </Box>
-
-            {Auth.loggedIn() ? (
-                <>
-                <h1>Hello {Auth.getProfile().data.firstName}!</h1>
-            <Box><IdeaForm /></Box>
-            
-                <Button onClick={logout} colorscheme='red'>Logout</Button>
-                </>
-            ): (
-                <>
-            <Box>
-
-              <Button as="a" href="/Signup" colorScheme="blue">
-                <FaEdit />
-                Signup
-              </Button>
-            </Box>
-            <Box>
-              <Button as="a" href="/Login" colorScheme="blue">
-                <FaUser />
-                Login
-              </Button>
-            </Box>
-            </>
-           )}
+          <DrawerBody>
+            <Stack>
+              <Box>
+                <Button as="a" href="/" bg="#B5514D" color="white">
+                  <AiTwotoneHome />
+                  Home
+                </Button>
+              </Box>
+              <Box>
+                <IdeaForm />
+              </Box>
+              <Box>
+                <Button as="a" href="/Signup" bg="#21467A" color="white">
+                  <FaEdit />
+                  Signup
+                </Button>
+              </Box>
+              <Box>
+                <Button as="a" href="/Login" bg="#025880" color="white">
+                  <FaUser />
+                  Login
+                </Button>
+              </Box>
+            </Stack>
           </DrawerBody>
           <DrawerFooter>
             <Donate />
