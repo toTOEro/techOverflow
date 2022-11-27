@@ -17,15 +17,14 @@ import PostingDetail from "./pages/PostingDetail";
 import Error from "./pages/Error";
 import Profile from "./pages/Profile";
 import PostEditor from "./pages/PostEditor";
+import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
 
-// import Profile from './pages/Profile';
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
 // import logo from './logo.svg';
 import "./App.css";
-import Nav from "./components/Nav";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -73,7 +72,7 @@ function App() {
         <div className="content-container">
           <Router>
             <PostingProvider>
-              <Nav />
+              <HeaderNav />
 
               <Routes>
                 <Route
@@ -82,12 +81,15 @@ function App() {
                 />
                 <Route
                   path="/login"
-
                   element={<Login />}
                 />
                 <Route
                   path="/Signup"
                   element={<Signup />}
+                />
+                <Route
+                  path="/profile"
+                  element={<Profile />}
                 />
                 <Route
                   path="/profile/:userId"
@@ -109,6 +111,7 @@ function App() {
                   path="/*"
                   element={<Error />}
                 />
+
               </Routes>
             </PostingProvider>
           </Router>

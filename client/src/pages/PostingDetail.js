@@ -6,9 +6,12 @@ import {
     Divider,
     FormControl,
     Input,
-    Button
+    Button,
+    Avatar,
+    AvatarGroup,
+    Flex
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client";
 // import { usePostingContext } from "../utils/GlobalState";
@@ -21,8 +24,9 @@ import Comment from "../components/Comment/index";
 
 import { QUERY_SINGLE_POSTING, POSTINGCOMMENTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
+import RegisterButton from '../components/RegisterButton'
 
-
+import Auth from "../utils/auth";
 
 // Handles posting and comment rendering
 const PostingDetail = () => {
@@ -33,7 +37,7 @@ const PostingDetail = () => {
 
 
     // Posting handling
-    const { loading, error, data } = useQuery(
+    const { loading, data } = useQuery(
         QUERY_SINGLE_POSTING,
         {
             variables: { _id: id },
@@ -42,11 +46,11 @@ const PostingDetail = () => {
 
 
     const singlePost = data?.singlePost || [];
-    let { title, description, owners_id } = singlePost;
+    let { title, description, registered } = singlePost;
 
 
     // Comment handling
-    const { loading: comLoading, error: comError, data: comData, refetch } = useQuery(
+    const { data: comData, refetch } = useQuery(
         POSTINGCOMMENTS,
         {
             variables: { _id: id },
@@ -66,12 +70,12 @@ const PostingDetail = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const test = await addComment({
+            const data = await addComment({
                 variables: { ...newComment, creator: Auth.getProfile().data._id, postingId: id },
             });
-
-            await refetch()
-
+            if (data) {
+                await refetch()
+            }
         } catch (err) {
             console.error(err)
         }
@@ -97,6 +101,21 @@ const PostingDetail = () => {
                         <Box>
                             <Text>{description}</Text>
                         </Box>
+                        {registered.length !== 0 && <Heading as={'h6'} textAlign={'end'} fontStyle={'italic'} fontSize={'1rem'} my={'0.5rem'}>Registered Users</Heading>}
+                        <Box id="box" >
+                            <AvatarGroup justifyContent={'end'}>
+                                {registered ? (registered.map(({ _id, avatar }) => (
+                                    <Avatar
+                                        key={_id}
+                                        src={avatar}
+                                    />
+                                ))) : ''
+                                }
+                            </AvatarGroup>
+                        </Box>
+                        <Flex justify={'end'}>
+                            <RegisterButton postId={id} />
+                        </Flex>
                         <Heading size='md' mt='10'>Comments</Heading>
                         {comments ? (comments.map(({ _id, content, date_created }) => (
                             <Comment

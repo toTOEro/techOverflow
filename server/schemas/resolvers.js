@@ -18,7 +18,7 @@ const resolvers = {
       }
     },
     singlePost: async (parent, { _id }, context) => {
-      return Posting.findOne({ _id }).populate("comments").populate("owners_id");
+      return Posting.findOne({ _id }).populate("comments").populate("owners_id").populate("registered");
     },
     users: async () => {
       return User.find().populate("postings");
@@ -84,12 +84,19 @@ const resolvers = {
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
-
     deleteUser: async (parent, { _id }, context) => {
       if (context.user._id === _id) {
         return User.findByIdAndDelete({ _id });
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");
+    },
+    changeAvatar: async (parent, { url }, context) => {
+      return User.findByIdAndUpdate(context.user._id, {
+        avatar: url
+      }, {
+        new: true
+      })
+
     },
     addPosting: async (parent, args, context) => {
       return Posting.create(args);

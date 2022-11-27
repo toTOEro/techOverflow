@@ -11,17 +11,19 @@ import Auth from '../../utils/auth';
 
 export default function Register(postId) {
 
-    const [register, { error }] = useMutation(REGISTER);
+    const [register] = useMutation(REGISTER);
 
 
     const handleRegisterSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = register({
+            const { data } = await register({
+
                 variables: { ...postId, userId: Auth.getProfile().data._id }
             })
-
-            window.location.reload();
+            if (data) {
+                window.location.reload();
+            };
         } catch (err) {
             console.error(err)
         }

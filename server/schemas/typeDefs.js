@@ -61,6 +61,7 @@ const typeDefs = gql`
     deleteComment(_id: ID!): Comment
     login(email: String!, password: String!): Auth
     register(postId: ID!, userId: ID!): Posting
+    changeAvatar(url: String!): User
   }
 `;
 
