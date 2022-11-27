@@ -9,7 +9,7 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build",
-    "vercelBuild": "cd client && npm run build --output public"
+    "vercelBuild": "cd client && npm run build --output build"
   },
   "keywords": [],
   "author": "",
