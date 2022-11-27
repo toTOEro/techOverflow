@@ -62,6 +62,17 @@ export default function Nav() {
                   Login
                 </Button>
               </Box>
+              <Box>
+                <Button onClick={logout}>Logout</Button>
+              </Box>
+              <Box>
+                <Button
+                as="a" href="/Postings"
+                bg="#21467A" color="white"
+                >
+                  All Posts
+                </Button>
+              </Box>
             </Stack>
           </DrawerBody>
           <DrawerFooter>
