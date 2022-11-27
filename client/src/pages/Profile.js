@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
 // Import the `useParams()` hook
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams, Link as ReactLink } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import {
   Avatar,
   Box,
   Button,
   Center,
-  Container,
+  Grid,
+  GridItem,
   Heading,
-  HStack,
   Input,
   Link,
   Modal,
@@ -22,12 +22,13 @@ import {
   ModalFooter,
   Stack,
   Text,
-  useDisclosure
+  useDisclosure,
+  List
 } from '@chakra-ui/react'
 
 import Posting from '../components/Posting';
 
-import { QUERY_ME, QUERY_SINGLE_USER } from '../utils/queries';
+import { QUERY_ME, QUERY_SINGLE_USER, REGISTERED } from '../utils/queries';
 import { UPDATE_AVATAR } from '../utils/mutations';
 
 import Auth from '../utils/auth';
@@ -41,6 +42,16 @@ const Profile = () => {
     userId ? QUERY_SINGLE_USER : QUERY_ME, {
     variables: { id: userId },
   });
+
+  let regiId = userId || (Auth.loggedIn() && Auth.getProfile().data._id) || [];
+  const { loading: regiLoading, data: regiData, error: regiError } = useQuery(
+    REGISTERED,
+    { variables: { _id: regiId } }
+  )
+
+  const registered = regiData?.registered || [];
+
+
 
   const user = data?.me || data?.user || {};
   let { email, firstName, lastName, postings, avatar, _id } = user
@@ -75,6 +86,10 @@ const Profile = () => {
     isUser = true;
   };
 
+  if (!Auth.loggedIn()) {
+    return <Heading>You must be logged in!</Heading>
+  }
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -95,19 +110,24 @@ const Profile = () => {
               <Heading px={'1.25rem'}>{`${firstName} ${lastName}`}</Heading>
             </Center>
           </Box>
-
-          <Heading>Postings:</Heading>
-          {postings.length > 0 ? postings.map(({ _id, title, description }) => (
-            <Posting
-              key={_id}
-              _id={_id}
-              title={title}
-              description={description}
-              email={email}
-              owner={firstName}
-              avatar={avatar}
-            />
-          )) : <Text>No postings yet.. make one?</Text>}
+          <Grid templateColumns={"repeat(2, 1fr)"}>
+            <GridItem>
+              <Heading>Registered:</Heading>
+              <List>
+                {registered.length > 0 ? registered.map(({ _id, title }) => (
+                  <ul><ReactLink key={_id} to={`../posting/${_id}`} target={'_blank'}>{title}</ReactLink></ul>
+                )) :
+                  <Text>Not Registered Yet</Text>
+                }
+              </List>
+            </GridItem>
+            <GridItem>
+              <Heading>Postings:</Heading>
+              {postings.length > 0 ? postings.map(({ _id, title, description }) => (
+                <ul><ReactLink key={_id} to={`../posting/${_id}`} target={'_blank'}>{title}</ReactLink></ul>
+              )) : <Text>No postings yet.. make one?</Text>}
+            </GridItem>
+          </Grid>
         </Stack>
       </Center>
 
