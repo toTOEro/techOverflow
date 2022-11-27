@@ -23,6 +23,9 @@ const resolvers = {
     users: async () => {
       return User.find().populate("postings");
     },
+    user: async (parent, { _id }, context) => {
+      return User.findById(_id).populate("postings")
+    },
     comments: async () => {
       return Comment.find().populate("creator");
     },

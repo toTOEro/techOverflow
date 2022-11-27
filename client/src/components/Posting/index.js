@@ -25,8 +25,10 @@ export default function Posting(details) {
         title,
         description,
         email,
-        owner
+        owner,
+        avatar
     } = details
+
 
     return (
         <Card key={_id} maxW='85vw' minW='85vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
@@ -51,8 +53,8 @@ export default function Posting(details) {
                             {/* Show the user avatars that signed up for this project */}
 
 
-                            <MailTo email={email} label={`${owner}`} />
-                            <Avatar name='test' src={'./icons8-user-32.png'} />
+                            <MailTo email={email} label={owner} />
+                            <Avatar name='test' src={avatar} />
                         </HStack>
                     </HStack>
                 </Flex>
