@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
 
+const generateAvatar = () => {
+  let rng = Math.floor(Math.random() * 100000)
+  return `https://avatars.dicebear.com/api/bottts/${rng}.svg`
+}
+
 const userSchema = new Schema({
   firstName: {
     type: String,
@@ -25,7 +30,7 @@ const userSchema = new Schema({
   },
   avatar: {
     type: String,
-    default: "../icons8-user-32.png"
+    default: generateAvatar(),
   }
 });
 
