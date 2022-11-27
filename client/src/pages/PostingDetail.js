@@ -11,7 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client";
-import { usePostingContext } from "../utils/GlobalState";
+// import { usePostingContext } from "../utils/GlobalState";
 import { ADD_COMMENT } from "../utils/mutations";
 
 import Comment from "../components/Comment/index";
@@ -59,11 +59,12 @@ const PostingDetail = () => {
             const { data } = addComment({
                 variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: id },
             });
+            await refetch();
+
             // window.location.reload();
         } catch (err) {
             console.error(err)
         }
-        refetch();
         setNewComment({ content: '' });
     }
 
@@ -102,13 +103,12 @@ const PostingDetail = () => {
                                 onChange={handleCommentChange}
                                 value={newComment.content}
                             />
-                            <Button onClick={handleCommentSubmit} mt='2'>Submit Comment</Button>
+                            <Button type='submit' onClick={handleCommentSubmit} mt='2'>Submit Comment</Button>
                         </FormControl>
                     </>
                 )
                 }
             </Container>
-
         </>
     )
 }
