@@ -32,7 +32,7 @@ export default function Nav() {
       />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent pt="20px" bgGradient="linear(to-br, #F3F2EA, #CCCCC4)">
+        <DrawerContent pt="20px" bgGradient="linear(to-b, #FFFFFF, #E5DED4)">
           <DrawerCloseButton />
           <DrawerBody>
             <Stack>
