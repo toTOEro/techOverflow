@@ -9,7 +9,7 @@ import {
     Button
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useParams, Navigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useQuery } from "@apollo/client";
 import { UPDATE_POSTING } from "../utils/mutations";
 import { QUERY_SINGLE_POSTING } from "../utils/queries";
@@ -25,13 +25,13 @@ const PostingEditor = () => {
     // Pulls posting ID from url params
     let { id } = useParams();
     const [isLoading, setIsLoading] = useState(false);
-
+    const navigate = useNavigate();
 
     // Loads post
     const { loading, error, data } = useQuery(
         QUERY_SINGLE_POSTING,
         {
-            variables: { _id: id},
+            variables: { _id: id },
         }
     );
 
@@ -51,16 +51,14 @@ const PostingEditor = () => {
         try {
             setIsLoading(true);
             await updatePosting({
-                variables: { ...postEdits, id: _id, owners_id},
+                variables: { ...postEdits, id: _id, owners_id },
             });
         } catch (err) {
             console.error(err)
         }
-        console.log(`Author ID with the Auth function in console.log: ${Auth.getProfile().data._id}`)
-        console.log(`postId: ${id} and owners_id: ${owners_id}`)
-        console.log(postEdits)
+
         setIsLoading(false);
-        if (test){ <Navigate to={`/posting/${_id}`}/> };
+        navigate( `/posting/${_id}`)
 
     }
 
@@ -82,7 +80,7 @@ const PostingEditor = () => {
                         <Divider my='3' />
                         <form onSubmit={handlePostEdit} >
                             <FormControl>
-                            <Input
+                                <Input
                                     name='title'
                                     placeholder={title}
                                     onChange={handlePostChange}
