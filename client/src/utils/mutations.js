@@ -125,5 +125,15 @@ export const REGISTER = gql`
 
     }
   }
+`
+
+
+export const UPDATE_AVATAR = gql`
+mutation changeAvatar($url: String!) {
+  changeAvatar(url: $url) {
+    _id
+    avatar
+  }
+}
 
 `

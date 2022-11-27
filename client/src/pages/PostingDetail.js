@@ -66,7 +66,7 @@ const PostingDetail = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const test = await addComment({
+            const data = await addComment({
                 variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: id },
             });
 
