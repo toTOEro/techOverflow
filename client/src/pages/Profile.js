@@ -115,7 +115,7 @@ const Profile = () => {
               <Heading>Registered:</Heading>
               <List>
                 {registered.length > 0 ? registered.map(({ _id, title }) => (
-                  <ul><ReactLink key={_id} to={`../posting/${_id}`} target={'_blank'}>{title}</ReactLink></ul>
+                  <ul key={_id} ><ReactLink to={`../posting/${_id}`} target={'_blank'}>{title}</ReactLink></ul>
                 )) :
                   <Text>Not Registered Yet</Text>
                 }
@@ -124,7 +124,7 @@ const Profile = () => {
             <GridItem>
               <Heading>Postings:</Heading>
               {postings.length > 0 ? postings.map(({ _id, title, description }) => (
-                <ul><ReactLink key={_id} to={`../posting/${_id}`} target={'_blank'}>{title}</ReactLink></ul>
+                <ul key={_id}><ReactLink to={`../posting/${_id}`} target={'_blank'}>{title}</ReactLink></ul>
               )) : <Text>No postings yet.. make one?</Text>}
             </GridItem>
           </Grid>
