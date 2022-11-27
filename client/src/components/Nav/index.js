@@ -18,10 +18,7 @@ import {
 import { FaUser, FaEdit, FaSignOutAlt } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Donate from "../Donate";
 import Auth from "../../utils/auth";
-
-import IdeaForm from "../IdeaForm";
 
 export default function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -37,8 +34,8 @@ export default function Nav() {
         icon={<GiHamburgerMenu />}
       />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-        <DrawerOverlay bg="#F0F0F0" />
-        <DrawerContent pt="20px" bgGradient="linear(to-b, #FFFFFF, #E5DED4)">
+        <DrawerOverlay />
+        <DrawerContent pt="20px" bgGradient="linear(to-br, #FFFFFF, #DBD6CB)">
           <DrawerCloseButton />
           <DrawerBody>
             {Auth.loggedIn() ? (
@@ -75,8 +72,6 @@ export default function Nav() {
                 </Button>
               </Box>
               <Box>
-              </Box>
-              <Box>
                 <Button as="a" href="/Signup" bg="#21467A" color="white">
                   <FaEdit />
                   Signup
@@ -89,20 +84,16 @@ export default function Nav() {
                 </Button>
               </Box>
               <Box>
-              <Button
-                as="a" href="/Postings"
-                bg="#21467A" color="white"
-                >
-                  All Posts
+                <Button onClick={logout} bg="#21467A" color="white">
+                  <FaSignOutAlt />
+                  Logout
+
                 </Button>
                 </Box>
             </Stack>
             )}
-
           </DrawerBody>
-          <DrawerFooter>
-            <Donate />
-          </DrawerFooter>
+          <DrawerFooter></DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
