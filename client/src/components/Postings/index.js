@@ -12,7 +12,6 @@ import Register from '../RegisterButton';
 
 // Presents all software development idea postings for users to browse through.
 export default function Postings() {
-    // const { data } = useQuery(QUERY_POSTINGS);
     const { loading, data } = useQuery(QUERY_POSTINGS);
     const postings = data?.postings || [];
 
