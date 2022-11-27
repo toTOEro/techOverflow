@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/client";
 import { REGISTER } from "../../utils/mutations";
 
 
+import Auth from "../../utils/auth";
 
 
 export default function Register(postId) {
@@ -17,7 +18,7 @@ export default function Register(postId) {
         e.preventDefault();
         try {
             const { data } = register({
-                variables: { ...postId, userId: '637d9fb14f58788dae6b8638' }
+                variables: { ...postId, userId: Auth.getProfile().data._id  }
             })
 
             window.location.reload();

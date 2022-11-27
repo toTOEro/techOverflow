@@ -26,7 +26,8 @@ export default function Posting(details) {
         description,
         email,
         owner,
-        avatar
+        avatar,
+        registered
     } = details
 
 
@@ -46,11 +47,14 @@ export default function Posting(details) {
             <CardFooter py='1' justifyContent='end' >
                 <Flex>
                     <HStack >
+                        {registered.map(({ _id, avatar }) => (
+                            <Avatar key={_id} src={avatar} size={'sm'}/>
+                        ))}
                         <ButtonGroup>
                             <Register postId={_id} />
                         </ButtonGroup>
                         <HStack>
-                            {/* Show the user avatars that signed up for this project */}
+
 
 
                             <MailTo email={email} label={owner} />

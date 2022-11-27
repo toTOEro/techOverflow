@@ -6,6 +6,10 @@ query allPostings {
         _id
         title
         description
+        registered{
+          _id
+          avatar
+        }
         owners_id {
             _id
             email
@@ -43,8 +47,8 @@ query getSinglePosting ($_id: ID!) {
       _id
       content
       date_created
-          }
-      }
+    }
+  }
 }
 `
 //WORKS DO NOT TOUCH 11/22
