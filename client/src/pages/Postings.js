@@ -27,6 +27,7 @@ export default function Postings() {
                             description={description}
                             email={owners_id.email}
                             owner={owners_id.firstName}
+                            avatar={owners_id.avatar}
                         />
                     )))
                 }

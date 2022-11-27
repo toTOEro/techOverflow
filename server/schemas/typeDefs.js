@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String!
     password: String!
     postings: [Posting]
+    avatar: String
   }
 
   type Posting {
@@ -14,7 +15,7 @@ const typeDefs = gql`
     title: String!
     description: String
     date_created: String
-    owners_id: ID!
+    owners_id: User!
     comments: [Comment]
     registered: [User]
   }

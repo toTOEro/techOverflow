@@ -80,22 +80,31 @@ function App() {
                   path="/"
                   element={<Home />}
                 />
-                 <Route 
-              path="/login"
+                <Route
+                  path="/login"
 
-              element={<Login/>}
-              />
-              <Route 
-              path="/Signup"
-              element={<Signup/>}
-              /> 
-              <Route 
-              path="/me"
-              element={<Profile/>}
-              />
-                <Route path="/postings" element={<Postings />} />
-                <Route path="/posting/:id" element={<PostingDetail />} />
-                <Route path="/*" element={<Error />} />
+                  element={<Login />}
+                />
+                <Route
+                  path="/Signup"
+                  element={<Signup />}
+                />
+                <Route
+                  path="/profile/:userId"
+                  element={<Profile />}
+                />
+                <Route
+                  path="/postings"
+                  element={<Postings />}
+                />
+                <Route
+                  path="/posting/:id"
+                  element={<PostingDetail />}
+                />
+                <Route
+                  path="/*"
+                  element={<Error />}
+                />
               </Routes>
             </PostingProvider>
           </Router>

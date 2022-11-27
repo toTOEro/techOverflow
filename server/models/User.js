@@ -23,12 +23,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  // postings: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "Posting",
-  //   },
-  // ],
+  avatar: {
+    type: String,
+    default: "../icons8-user-32.png"
+  }
 });
 
 userSchema.pre("save", async function (next) {
