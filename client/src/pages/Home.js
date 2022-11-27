@@ -3,11 +3,11 @@ import { useQuery } from '@apollo/client';
 import PostingsList from '../components/Postings/index';
 import { Link } from 'react-router-dom';
 import { Container, Center, Text } from '@chakra-ui/react'
-import { QUERY_USERS } from '../utils/queries';
+import { QUERY_POSTINGS } from '../utils/queries';
 
 const Home = () => {
-    const { loading, data } = useQuery(QUERY_USERS);
-    const postings = data?.users.postings || [];
+    const { loading, data } = useQuery(QUERY_POSTINGS);
+    const postings = data?.postings || [];
 
     return (
         <main>

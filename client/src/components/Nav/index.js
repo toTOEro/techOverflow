@@ -16,11 +16,16 @@ import { FaUser, FaEdit } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Donate from "../Donate";
+import Auth from '../../utils/auth';
 
 import IdeaForm from "../IdeaForm";
 
 export default function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
   return (
     <>
       <IconButton
@@ -39,10 +44,18 @@ export default function Nav() {
                 Home
               </Button>
             </Box>
+
+            {Auth.loggedIn() ? (
+                <>
+                <h1>Hello {Auth.getProfile().data.firstName}!</h1>
+            <Box><IdeaForm /></Box>
+            
+                <Button onClick={logout} colorscheme='red'>Logout</Button>
+                </>
+            ): (
+                <>
             <Box>
-              <IdeaForm />
-            </Box>
-            <Box>
+
               <Button as="a" href="/Signup" colorScheme="blue">
                 <FaEdit />
                 Signup
@@ -54,6 +67,8 @@ export default function Nav() {
                 Login
               </Button>
             </Box>
+            </>
+           )}
           </DrawerBody>
           <DrawerFooter>
             <Donate />

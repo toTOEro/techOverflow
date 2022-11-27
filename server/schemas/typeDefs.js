@@ -9,7 +9,6 @@ const typeDefs = gql`
     postings: [Posting]
     avatar: String
   }
-
   type Posting {
     _id: ID
     title: String!
@@ -19,19 +18,16 @@ const typeDefs = gql`
     comments: [Comment]
     registered: [User]
   }
-
   type Comment {
     _id: ID
     content: String!
     date_created: String
     creator: User!
   }
-
   type Auth {
     token: ID
     user: User
   }
-
   type Query {
     users: [User]
     me: User
@@ -42,7 +38,6 @@ const typeDefs = gql`
     registered(_id: ID!): [Posting]
     postComments(_id: ID!): Posting
   } 
-
   type Mutation {
     addUser(
       firstName: String!
@@ -56,8 +51,8 @@ const typeDefs = gql`
       lastName: String
       email: String
       password: String
-    ): User
-    deleteUser(_id: ID!): User
+    ): Auth
+    deleteUser(_id: ID!): Auth
     addPosting(title: String!, description: String, owners_id: ID!): Posting
     updatePosting(_id: ID!, title: String, description: String): Posting
     deletePosting(_id: ID!): Posting

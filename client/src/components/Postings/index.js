@@ -15,7 +15,6 @@ export default function Postings() {
     const { loading, data } = useQuery(QUERY_POSTINGS);
     const postings = data?.postings || [];
 
-
     return (
         <div>
             <Stack spacing="4" alignItems="center">
