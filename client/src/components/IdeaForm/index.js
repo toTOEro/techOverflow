@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import {
     Button,
@@ -31,7 +32,7 @@ import { ADD_POSTING } from '../../utils/mutations';
 
 export default function IdeaForm() {
     const { isOpen, onOpen, onClose } = useDisclosure();
-
+    const navigate = useNavigate();
 
     // const [state, dispatch] = usePostingContext();
     const [formState, setFormState] = useState({
@@ -42,17 +43,27 @@ export default function IdeaForm() {
     // const [newPostDescription, setNewPostDescription] = useState('');
     const [addPosting, { error }] = useMutation(ADD_POSTING)
 
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = addPosting({
+            const { data } = await addPosting({
                 variables: { ...formState, ownersId: Auth.getProfile().data._id },
             });
-
-            window.location.reload();
+            // return <Navigate to={`/posting/${data.addPosting._id}`} replace={true}/>
+            if (data) {
+                onClose();
+                navigate(`/posting/${data.addPosting._id}`)
+            }
+            setFormState({
+                title: '',
+                description: ''
+            })
         } catch (err) {
             console.error(err)
         }
+
+
     }
 
     const handleChange = (e) => {
@@ -78,6 +89,7 @@ export default function IdeaForm() {
                             <Input
 
                                 name='title'
+                                placeholder='A wonderful idea must have a title!'
                                 type='text'
                                 value={formState.title}
                                 onChange={handleChange}
@@ -102,16 +114,6 @@ export default function IdeaForm() {
                             colorScheme='green'
                             type='submit'
                             onClick={handleFormSubmit}
-                        // onClick={() => {
-                        //     console.log(`Dispatched Title: ${newPostTitle} description: ${newPostDescription}`)
-                        //     return dispatch({
-                        //         type: ADD_POSTING,
-                        //         posting: {
-                        //             title: newPostTitle,
-                        //             description: newPostDescription
-                        //         }
-                        //     })
-                        // }}
                         >Submit</Button>
                     </ModalFooter>
 

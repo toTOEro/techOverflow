@@ -6,7 +6,10 @@ import {
     Divider,
     FormControl,
     Input,
-    Button
+    HStack,
+    Button,
+    Avatar,
+    AvatarGroup
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
@@ -42,7 +45,7 @@ const PostingDetail = () => {
 
 
     const singlePost = data?.singlePost || [];
-    let { title, description, owners_id } = singlePost;
+    let { title, description, owners_id, registered } = singlePost;
 
 
     // Comment handling
@@ -96,6 +99,18 @@ const PostingDetail = () => {
                         <Heading size='4xl' paddingBottom='10'> {title} </Heading>
                         <Box>
                             <Text>{description}</Text>
+                        </Box>
+                        <Heading as={'h6'} textAlign={'end'} fontStyle={'italic'} fontSize={'1rem'} my={'0.5rem'}>Registered Users</Heading>
+                        <Box >
+                            <AvatarGroup justifyContent={'end'}>
+                                {registered ? (registered.map(({ _id, avatar }) => (
+                                    <Avatar
+                                        key={_id}
+                                        src={avatar}
+                                    />
+                                ))) : ''
+                                }
+                            </AvatarGroup>
                         </Box>
                         <Heading size='md' mt='10'>Comments</Heading>
                         {comments ? (comments.map(({ _id, content, date_created }) => (
