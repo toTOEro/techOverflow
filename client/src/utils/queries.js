@@ -23,6 +23,7 @@ query me{
     firstName
     lastName
     email
+    avatar
     postings{
       _id
       title

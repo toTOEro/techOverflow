@@ -45,7 +45,6 @@ const Profile = () => {
   const user = data?.me || data?.user || {};
   let { email, firstName, lastName, postings, avatar, _id } = user
 
-
   const [newAvatar, setNewAvatar] = useState({
     url: ''
   })
@@ -71,7 +70,6 @@ const Profile = () => {
     }
   }
 
-  // let change = <Text as={'a'} fontsize='0.5rem' fontWeight={'bold'} textAlign='center' onClick={avatarOnOpen}> Change</Text>
 
   if (Auth.loggedIn() && Auth.getProfile().data._id === _id) {
     isUser = true;
