@@ -54,11 +54,6 @@ query getUsers{
         firstName
         lastName
         email
-        postings {
-          _id
-          title
-          description
-        }
     }
 }
 `

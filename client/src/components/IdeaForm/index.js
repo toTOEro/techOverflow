@@ -17,6 +17,7 @@ import {
     Textarea,
     useDisclosure
 } from '@chakra-ui/react'
+import Auth from '../../utils/auth';
 
 import { useMutation } from '@apollo/client';
 
@@ -45,7 +46,7 @@ export default function IdeaForm() {
         e.preventDefault();
         try {
             const { data } = addPosting({
-                variables: { ...formState, ownersId: '637d9fb14f58788dae6b863c' },
+                variables: { ...formState, ownersId: Auth.getProfile().data._id },
             });
 
             window.location.reload();

@@ -27,23 +27,23 @@ const Login = (props) => {
         });
     };
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        console.log(formState);
-        try {
-            const { data } = await login({
-                variables: { ...formState },
-            });
+      const handleFormSubmit = async(event) => {
+          event.preventDefault();
+          try {
+              const {data} = await login({
+                  variables: {...formState},
+              });
+              
+        Auth.login(data.login.token);
+          } catch(err) {
+              console.error(err);
+          }
+          setFormState({
+              email: '',
+              password: '',
+          })
+      }
 
-            Auth.login(data.login.token);
-        } catch (err) {
-            console.error(err);
-        }
-        setFormState({
-            email: '',
-            password: '',
-        })
-    }
 
     return (
         <div className='outerContainer'>
