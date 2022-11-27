@@ -8,7 +8,8 @@ import {
     Input,
     Button,
     Avatar,
-    AvatarGroup
+    AvatarGroup,
+    Flex
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom"
@@ -23,6 +24,7 @@ import Comment from "../components/Comment/index";
 
 import { QUERY_SINGLE_POSTING, POSTINGCOMMENTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
+import RegisterButton from '../components/RegisterButton'
 
 import Auth from "../utils/auth";
 
@@ -99,8 +101,8 @@ const PostingDetail = () => {
                         <Box>
                             <Text>{description}</Text>
                         </Box>
-                        <Heading as={'h6'} textAlign={'end'} fontStyle={'italic'} fontSize={'1rem'} my={'0.5rem'}>Registered Users</Heading>
-                        <Box >
+                        {registered.length !== 0 && <Heading as={'h6'} textAlign={'end'} fontStyle={'italic'} fontSize={'1rem'} my={'0.5rem'}>Registered Users</Heading>}
+                        <Box id="box" >
                             <AvatarGroup justifyContent={'end'}>
                                 {registered ? (registered.map(({ _id, avatar }) => (
                                     <Avatar
@@ -111,6 +113,9 @@ const PostingDetail = () => {
                                 }
                             </AvatarGroup>
                         </Box>
+                        <Flex justify={'end'}>
+                            <RegisterButton postId={id} />
+                        </Flex>
                         <Heading size='md' mt='10'>Comments</Heading>
                         {comments ? (comments.map(({ _id, content, date_created }) => (
                             <Comment
