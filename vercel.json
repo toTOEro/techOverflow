@@ -9,5 +9,6 @@
         "src": "./client/build",   
         "use": "@vercel/static"
       }
-    ]
+    ],
+    "buildCommand": "npm run vercelBuild"
 }
