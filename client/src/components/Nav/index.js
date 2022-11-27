@@ -11,6 +11,8 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Stack,
+  Flex,
 } from "@chakra-ui/react";
 import { FaUser, FaEdit } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
@@ -30,30 +32,32 @@ export default function Nav() {
       />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent pt="20px" bgGradient="linear(to-br, #F3F2EA, #CCCCC4)">
           <DrawerCloseButton />
-          <DrawerBody alignItems="center" justifyContent="space-between">
-            <Box>
-              <Button as="a" href="/">
-                <AiTwotoneHome />
-                Home
-              </Button>
-            </Box>
-            <Box>
-              <IdeaForm />
-            </Box>
-            <Box>
-              <Button as="a" href="/Signup" colorScheme="blue">
-                <FaEdit />
-                Signup
-              </Button>
-            </Box>
-            <Box>
-              <Button as="a" href="/Login" colorScheme="blue">
-                <FaUser />
-                Login
-              </Button>
-            </Box>
+          <DrawerBody>
+            <Stack>
+              <Box>
+                <Button as="a" href="/" bg="#B5514D" color="white">
+                  <AiTwotoneHome />
+                  Home
+                </Button>
+              </Box>
+              <Box>
+                <IdeaForm />
+              </Box>
+              <Box>
+                <Button as="a" href="/Signup" bg="#21467A" color="white">
+                  <FaEdit />
+                  Signup
+                </Button>
+              </Box>
+              <Box>
+                <Button as="a" href="/Login" bg="#025880" color="white">
+                  <FaUser />
+                  Login
+                </Button>
+              </Box>
+            </Stack>
           </DrawerBody>
           <DrawerFooter>
             <Donate />
