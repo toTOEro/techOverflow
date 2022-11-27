@@ -53,8 +53,8 @@ const Signup = () => {
             ) : (
                 <Center>
                 <Box width='100%' bg='gray' py='4' marginBottom='20px' px='10px'>
-                    <form>
-                    <FormControl isRequired onSubmit={signUpHandler}>
+                    <form onSubmit={signUpHandler}>
+                    <FormControl isRequired >
                         <FormLabel>
                             New user? Signup today!
                         </FormLabel>
