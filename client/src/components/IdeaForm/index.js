@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 import {
     Button,
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText,
     Input,
     Modal,
     ModalBody,
@@ -41,7 +39,7 @@ export default function IdeaForm() {
     })
     // const [newPostTitle, setNewPostTitle] = useState('');
     // const [newPostDescription, setNewPostDescription] = useState('');
-    const [addPosting, { error }] = useMutation(ADD_POSTING)
+    const [addPosting, ] = useMutation(ADD_POSTING)
 
 
     const handleFormSubmit = async (e) => {
