@@ -1,3 +1,4 @@
+// import { useQuery } from '@apollo/client';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar, HStack, Flex, ButtonGroup } from '@chakra-ui/react'
@@ -13,7 +14,7 @@ export default function Postings() {
     // const { data } = useQuery(QUERY_POSTINGS);
     const { loading, data } = useQuery(QUERY_POSTINGS);
     const postings = data?.postings || [];
-
+    console.log(postings);
 
     return (
         <div>
