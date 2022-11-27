@@ -43,7 +43,6 @@ export default function IdeaForm() {
     const [addPosting, { error }] = useMutation(ADD_POSTING)
 
     const handleFormSubmit = async (e) => {
-        console.log(Auth.getProfile().data);
         e.preventDefault();
         try {
             const { data } = addPosting({

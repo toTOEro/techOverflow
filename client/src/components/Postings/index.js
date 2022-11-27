@@ -14,7 +14,6 @@ export default function Postings() {
     // const { data } = useQuery(QUERY_POSTINGS);
     const { loading, data } = useQuery(QUERY_POSTINGS);
     const postings = data?.postings || [];
-    console.log(postings);
 
     return (
         <div>
