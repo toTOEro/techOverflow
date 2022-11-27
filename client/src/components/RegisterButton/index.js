@@ -18,6 +18,7 @@ export default function Register(postId) {
         e.preventDefault();
         try {
             const { data } = register({
+
                 variables: { ...postId, userId: Auth.getProfile().data._id }
             })
 

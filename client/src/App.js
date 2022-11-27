@@ -19,7 +19,6 @@ import Profile from "./pages/Profile";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
 
-// import Profile from './pages/Profile';
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
@@ -75,13 +74,39 @@ function App() {
               <HeaderNav />
 
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/Signup" element={<Signup />} />
-                <Route path="/profile/:userId" element={<Profile />} />
-                <Route path="/postings" element={<Postings />} />
-                <Route path="/posting/:id" element={<PostingDetail />} />
-                <Route path="/*" element={<Error />} />
+                <Route
+                  path="/"
+                  element={<Home />}
+                />
+                <Route
+                  path="/login"
+                  element={<Login />}
+                />
+                <Route
+                  path="/Signup"
+                  element={<Signup />}
+                />
+                <Route
+                  path="/profile"
+                  element={<Profile />}
+                />
+                <Route
+                  path="/profile/:userId"
+                  element={<Profile />}
+                />
+                <Route
+                  path="/postings"
+                  element={<Postings />}
+                />
+                <Route
+                  path="/posting/:id"
+                  element={<PostingDetail />}
+                />
+                <Route
+                  path="/*"
+                  element={<Error />}
+                />
+
               </Routes>
             </PostingProvider>
           </Router>

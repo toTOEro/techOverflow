@@ -22,7 +22,7 @@ import Comment from "../components/Comment/index";
 import { QUERY_SINGLE_POSTING, POSTINGCOMMENTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 
-
+import Auth from "../utils/auth";
 
 // Handles posting and comment rendering
 const PostingDetail = () => {
@@ -66,8 +66,8 @@ const PostingDetail = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const test = await addComment({
-                variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: id },
+            const data = await addComment({
+                variables: { ...newComment, creator: Auth.getProfile().data._id, postingId: id },
             });
 
             await refetch()

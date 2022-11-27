@@ -12,6 +12,7 @@ export default function Postings() {
     const { loading, data } = useQuery(QUERY_POSTINGS);
     const postings = data?.postings || [];
 
+
     return (
         <div>
             <Heading size='2xl' py='15'>Project Postings</Heading>
@@ -19,7 +20,7 @@ export default function Postings() {
                 {loading ? (
                     <div> Loading... </div>
                 ) : (
-                    postings.map(({ _id, title, description, owners_id }) => (
+                    postings.map(({ _id, title, description, owners_id, registered }) => (
                         <Posting
                             key={_id}
                             _id={_id}
@@ -28,6 +29,7 @@ export default function Postings() {
                             email={owners_id.email}
                             owner={owners_id.firstName}
                             avatar={owners_id.avatar}
+                            registered={registered}
                         />
                     )))
                 }
