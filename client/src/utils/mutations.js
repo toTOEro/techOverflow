@@ -78,11 +78,6 @@ export const ADD_COMMENT = gql`
       date_created
       creator {
         _id
-        firstName
-        postings {
-          title
-        }
-        email
       }
       content
     }

@@ -10,6 +10,7 @@ query allPostings {
             _id
             email
             firstName
+            avatar
         }
     }
 }
@@ -40,14 +41,24 @@ query getUsers{
     }
 }
 `
-//How can I implement this? If uncommented breaks run develop command 
 
-// export const QUERY_USER_POSTINGS = gql`
-// query userPostings($_id: ID!){
+export const QUERY_SINGLE_USER = gql`
+query User($id: ID!) {
+  user(_id: $id) {
+    _id
+    email
+    firstName
+    lastName
+    avatar
+    postings {
+      _id
+      title
+      description
+    }
+  }
+}
+`
 
-
-// }
-// `
 //works 11/22 do not touch
 export const QUERY_COMMENTS = gql`
   query allComments {

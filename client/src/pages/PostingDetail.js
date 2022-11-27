@@ -3,54 +3,87 @@ import {
     Text,
     Box,
     Container,
-    Divider
+    Divider,
+    FormControl,
+    Input,
+    Button
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client";
-import { usePostingContext } from "../utils/GlobalState";
-import { ADD_COMMENT } from "../utils/actions";
+// import { usePostingContext } from "../utils/GlobalState";
+import { ADD_COMMENT } from "../utils/mutations";
 
-import Comment from "../components/Comment/index"
-import CommentForm from "../components/CommentForm";
-import { QUERY_SINGLE_POSTING } from "../utils/queries";
+import Comment from "../components/Comment/index";
+
+// Temporary disabled commentform
+// import CommentForm from "../components/CommentForm";
+
+import { QUERY_SINGLE_POSTING, POSTINGCOMMENTS } from "../utils/queries";
+import { useMutation } from "@apollo/client";
 
 
 
+// Handles posting and comment rendering
 const PostingDetail = () => {
-    // const [state, dispatch] = usePostingContext();
-    const { id } = useParams();
-    // const [currentPosting, setCurrentPosting] = useState({});
 
-    const { loading, error, data } = useQuery(QUERY_SINGLE_POSTING, { variables: { _id: id } });
-    // const { posting, comments } = state;
+    // Pulls posting ID from url params
+    let { id } = useParams();
+    const [isLoading, setIsLoading] = useState(false);
 
-    // let data = {
-    //     _id: id,
-    //     title: "The Magic Kekw",
-    //     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu mi ante. Nulla nec nunc ut lorem vehicula hendrerit id pulvinar leo. Suspendisse potenti. Quisque semper dolor sit amet lacus posuere ullamcorper. Pellentesque finibus maximus turpis, vitae lacinia elit placerat at. Sed consectetur magna leo, aliquam blandit leo dictum at. Nulla augue quam, lacinia in tempor molestie, tincidunt ut nisi. Donec elementum condimentum tellus ac blandit. Sed justo ipsum, pretium a tincidunt sit amet, commodo vel purus.",
-    //     owner: "TestOwner",
-    //     email: "testemail@test.com",
-    //     comments: [
-    //         {
-    //             _id: 1,
-    //             content: 'woohoo',
-    //             date_created: 'November 16th, 2020'
-    //         },
 
-    //         {
-    //             _id: 13,
-    //             content: 'woohoo',
-    //             date_created: 'November 16th, 2020'
-    //         },
+    // Posting handling
+    const { loading, error, data } = useQuery(
+        QUERY_SINGLE_POSTING,
+        {
+            variables: { _id: id },
+        }
+    );
 
-    //     ]
-    // }
 
     const singlePost = data?.singlePost || [];
+    let { title, description, owners_id } = singlePost;
 
 
-    let { title, description, owner, email, comments } = singlePost;
+    // Comment handling
+    const { loading: comLoading, error: comError, data: comData, refetch } = useQuery(
+        POSTINGCOMMENTS,
+        {
+            variables: { _id: id },
+            notifyOnNetworkStatusChange: true
+        }
+    );
+
+    const { comments } = comData?.postComments || [];
+
+    const [newComment, setNewComment] = useState({
+        content: ''
+    });
+
+    const [addComment] = useMutation(ADD_COMMENT)
+
+    const handleCommentSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            setIsLoading(true);
+            const test = await addComment({
+                variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: id },
+            });
+
+            await refetch()
+
+        } catch (err) {
+            console.error(err)
+        }
+        setIsLoading(false);
+        setNewComment({ content: '' });
+    }
+
+    const handleCommentChange = (e) => {
+        const { name, value } = e.target;
+
+        setNewComment({ ...newComment, [name]: value });
+    }
 
     return (
         <>
@@ -74,29 +107,28 @@ const PostingDetail = () => {
                         ))) : ''
                         }
                         <Divider my='3' />
-                        <CommentForm postingId={id} />
-
+                        <form onSubmit={handleCommentSubmit}>
+                            <FormControl>
+                                <Input
+                                    name='content'
+                                    placeholder="Your Comment Here"
+                                    onChange={handleCommentChange}
+                                    value={newComment.content}
+                                />
+                                <Button
+                                    isLoading={isLoading}
+                                    type='submit'
+                                    mt='2'
+                                    loadingText="Submitting Comment..."
+                                >
+                                    Submit Comment
+                                </Button>
+                            </FormControl>
+                        </form>
                     </>
                 )
                 }
-
-                {/* <Heading size='4xl' paddingBottom='10'> {title} </Heading>
-                <Box>
-                    <Text>{description}</Text>
-                </Box>
-                <Heading size='md' mt='10'>Comments</Heading>
-                {comments ? (comments.map(({ _id, content, date_created }) => (
-                    <Comment
-                        key={_id}
-                        content={content}
-                        date_created={date_created}
-                    />
-                ))) : ''
-                }
-                <Divider my='3' />
-                <CommentForm postingId={id} /> */}
             </Container>
-
         </>
     )
 }
