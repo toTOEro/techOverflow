@@ -15,12 +15,10 @@ import {
     Avatar,
     HStack,
     Flex,
-    ButtonGroup, 
-    Button,
-    Box
+    ButtonGroup,
 } from '@chakra-ui/react'
 import Register from '../RegisterButton';
-import Auth from '../../utils/auth';
+
 export default function Posting(details) {
     const {
         _id,
@@ -57,13 +55,10 @@ export default function Posting(details) {
                         </ButtonGroup>
                         <HStack>
 
+
+
                             <MailTo email={email} label={owner} />
                             <Avatar name='test' src={avatar} />
-                                </>
-                            )}
-
-
-
                         </HStack>
                     </HStack>
                 </Flex>

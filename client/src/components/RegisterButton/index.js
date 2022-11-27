@@ -7,7 +7,6 @@ import { REGISTER } from "../../utils/mutations";
 
 import Auth from '../../utils/auth';
 
-import Auth from "../../utils/auth";
 
 
 export default function Register(postId) {
