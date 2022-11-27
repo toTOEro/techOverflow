@@ -1,50 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React from "react";
+// import { Link } from "react-router-dom";
 import {
-    Box,
-    HStack,
+  Box,
+  Button,
+  IconButton,
+  useDisclosure,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+} from "@chakra-ui/react";
+import { FaUser, FaEdit } from "react-icons/fa";
+import { AiTwotoneHome } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
+import Donate from "../Donate";
 
-    Button,
-    Icon,
-   
-} from '@chakra-ui/react'
-
-import Donate from '../Donate'
-
-import IdeaForm from '../IdeaForm';
+import IdeaForm from "../IdeaForm";
 
 export default function Nav() {
-
-    return (
-        <>
-            <Box width='100%' bg='black' py='4' marginBottom='20px' px='10px'>
-                <HStack justifyContent='space-between'>
-                    <Button as='a' href='/'><Icon src='./icons8-engineering-64.png'></Icon>LOGO HERE </Button>
-
-                    <IdeaForm />
-
-                    <Button
-                        as="a"
-                        href="/Signup"
-                        target="_blank"
-                        colorScheme='blue'>Signup</Button>
-                    <Button
-                        as="a"
-                        href="/Login"
-                        target="_blank"
-                        colorScheme='blue'>Login</Button>
-                    <Donate />
-
-                </HStack>
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  return (
+    <>
+      <IconButton
+        aria-label="nav"
+        onClick={onOpen}
+        icon={<GiHamburgerMenu />}
+      />
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerBody alignItems="center" justifyContent="space-between">
+            <Box>
+              <Button as="a" href="/">
+                <AiTwotoneHome />
+                Home
+              </Button>
             </Box>
-
-
-        </>
-
-    )
-
+            <Box>
+              <IdeaForm />
+            </Box>
+            <Box>
+              <Button as="a" href="/Signup" colorScheme="blue">
+                <FaEdit />
+                Signup
+              </Button>
+            </Box>
+            <Box>
+              <Button as="a" href="/Login" colorScheme="blue">
+                <FaUser />
+                Login
+              </Button>
+            </Box>
+          </DrawerBody>
+          <DrawerFooter>
+            <Donate />
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
+  );
 }
-
-
-
-

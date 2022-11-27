@@ -14,8 +14,7 @@ const typeDefs = gql`
     title: String!
     description: String
     date_created: String
-    owners_id: User!
-
+    owners_id: ID!
     comments: [Comment]
     registered: [User]
   }
@@ -49,7 +48,7 @@ const typeDefs = gql`
       lastName: String!
       email: String!
       password: String!
-    ): User
+    ): Auth
     updateUser(
       _id: ID!
       firstName: String

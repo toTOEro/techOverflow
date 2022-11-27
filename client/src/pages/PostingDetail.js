@@ -40,6 +40,7 @@ const PostingDetail = () => {
         }
     );
 
+
     const singlePost = data?.singlePost || [];
     let { title, description, owners_id } = singlePost;
 
