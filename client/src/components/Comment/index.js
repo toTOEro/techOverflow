@@ -1,6 +1,7 @@
 
 import React from "react"
 import { Card, CardBody, CardFooter, Divider } from "@chakra-ui/react"
+import date from '../../utils/helpers'
 
 const Comment = (data) => {
 
@@ -10,6 +11,9 @@ const Comment = (data) => {
         content,
         date_created
     } = data
+
+
+    date_created = date(date_created)
 
     return (
         <>

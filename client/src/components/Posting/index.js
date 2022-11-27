@@ -57,7 +57,7 @@ export default function Posting(details) {
 
 
                             <MailTo email={email} label={owner} />
-                            <Avatar name='test' src={avatar} />
+                            <Avatar src={avatar} />
                         </HStack>
                     </HStack>
                 </Flex>

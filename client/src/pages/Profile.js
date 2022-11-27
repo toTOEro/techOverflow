@@ -74,7 +74,10 @@ const Profile = () => {
         variables: { ...newAvatar }
       })
 
-      console.log(data)
+      if (data) {
+        window.location.reload()
+      }
+      
     } catch (err) {
       console.error(err)
     }
