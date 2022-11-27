@@ -3,14 +3,11 @@ import React from "react";
 import {
   Box,
   Button,
-  Flex,
-  Icon,
   IconButton,
   useDisclosure,
   Drawer,
   DrawerBody,
   DrawerFooter,
-  DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
@@ -31,11 +28,11 @@ export default function Nav() {
         onClick={onOpen}
         icon={<GiHamburgerMenu />}
       />
-      <Drawer isOpen={isOpen} placement="left" onClose={onClose} size="xs">
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerBody>
+          <DrawerBody alignItems="center" justifyContent="space-between">
             <Box>
               <Button as="a" href="/">
                 <AiTwotoneHome />

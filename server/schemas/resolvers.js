@@ -6,7 +6,11 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     postings: async () => {
-      return await Posting.find().populate("owners_id").populate("registered");
+      const postings = await Posting.find().populate("owners_id").populate("registered");
+
+      postings.sort((a,b) => b.date_created - a.date_created)
+
+      return postings
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -22,6 +26,9 @@ const resolvers = {
     comments: async () => {
       return Comment.find().populate("creator");
     },
+    registered: async (parent, { _id }, context) => {
+      return await Posting.find({registered: { _id}})
+    }
   },
   Mutation: {
     login: async (parent, { email, password }, context) => {
@@ -91,8 +98,14 @@ const resolvers = {
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
-    addComment: async (parent, args, context) => {
-      return Comment.create(args);
+    addComment: async (parent, { content, creator, postingId }, context) => {
+      // const comment = new Comment({ content, creator })
+
+      const comment = await Comment.create({ content, creator })
+
+      await Posting.findByIdAndUpdate(postingId, { $push: { comments: comment } })
+
+      return comment;
     },
     updateComment: async (parent, { _id, content }, context) => {
       const commentToBeUpdated = await Comment.findById(_id);
@@ -115,6 +128,13 @@ const resolvers = {
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
+    register: async (parent, { postId, userId }, context) => {
+      return Posting.findByIdAndUpdate(
+        postId,
+        {
+          $addToSet: { registered: userId }
+        })
+    }
   },
 };
 module.exports = resolvers;

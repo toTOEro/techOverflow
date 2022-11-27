@@ -39,7 +39,8 @@ const typeDefs = gql`
     postings: [Posting]
     singlePost(_id: ID!): Posting
     comments: [Comment]
-  }
+    registered(_id: ID!): [Posting]
+  } 
 
   type Mutation {
     addUser(
@@ -59,10 +60,11 @@ const typeDefs = gql`
     addPosting(title: String!, description: String, owners_id: ID!): Posting
     updatePosting(_id: ID!, title: String, description: String): Posting
     deletePosting(_id: ID!): Posting
-    addComment(content: String!, creator: String!): Comment
+    addComment(content: String!, creator: String!, postingId: ID!): Comment
     updateComment(_id: ID!, content: String): Comment
     deleteComment(_id: ID!): Comment
     login(email: String!, password: String!): Auth
+    register(postId: ID!, userId: ID!): Posting
   }
 `;
 
