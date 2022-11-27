@@ -27,8 +27,12 @@ import { useMutation } from "@apollo/client";
 // Handles posting and comment rendering
 const PostingDetail = () => {
 
-
+    // Pulls posting ID from url params
     let { id } = useParams();
+    const [isLoading, setIsLoading] = useState(false);
+
+
+    // Posting handling
     const { loading, error, data } = useQuery(
         QUERY_SINGLE_POSTING,
         {
@@ -39,6 +43,8 @@ const PostingDetail = () => {
     const singlePost = data?.singlePost || [];
     let { title, description, owners_id } = singlePost;
 
+
+    // Comment handling
     const { loading: comLoading, error: comError, data: comData, refetch } = useQuery(
         POSTINGCOMMENTS,
         {
@@ -47,10 +53,7 @@ const PostingDetail = () => {
         }
     );
 
-
-    // const { postComments } = comData?.postComments || [];
-
-    const {comments } = comData?.postComments || [];
+    const { comments } = comData?.postComments || [];
 
     const [newComment, setNewComment] = useState({
         content: ''
@@ -58,11 +61,10 @@ const PostingDetail = () => {
 
     const [addComment] = useMutation(ADD_COMMENT)
 
-
-    // Need to refactor this code
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         try {
+            setIsLoading(true);
             const test = await addComment({
                 variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: id },
             });
@@ -72,6 +74,7 @@ const PostingDetail = () => {
         } catch (err) {
             console.error(err)
         }
+        setIsLoading(false);
         setNewComment({ content: '' });
     }
 
@@ -103,15 +106,24 @@ const PostingDetail = () => {
                         ))) : ''
                         }
                         <Divider my='3' />
-                        <FormControl >
-                            <Input
-                                name='content'
-                                placeholder="Your Comment Here"
-                                onChange={handleCommentChange}
-                                value={newComment.content}
-                            />
-                            <Button type='submit' onClick={handleCommentSubmit} mt='2'>Submit Comment</Button>
-                        </FormControl>
+                        <form onSubmit={handleCommentSubmit}>
+                            <FormControl>
+                                <Input
+                                    name='content'
+                                    placeholder="Your Comment Here"
+                                    onChange={handleCommentChange}
+                                    value={newComment.content}
+                                />
+                                <Button
+                                    isLoading={isLoading}
+                                    type='submit'
+                                    mt='2'
+                                    loadingText="Submitting Comment..."
+                                >
+                                    Submit Comment
+                                </Button>
+                            </FormControl>
+                        </form>
                     </>
                 )
                 }
