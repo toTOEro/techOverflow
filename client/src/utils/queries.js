@@ -14,6 +14,22 @@ query allPostings {
     }
 }
 `;
+
+export const QUERY_ME = gql`
+query me($_id: ID!){
+  me(_id: $_id){
+    _id
+    firstName
+    lastName
+    email
+    postings{
+      _id
+      title
+      description
+    }
+  }
+}
+`
 //no longer works 11/22
 export const QUERY_SINGLE_POSTING = gql`
 query getSinglePosting ($_id: ID!) {
@@ -37,6 +53,11 @@ query getUsers{
         firstName
         lastName
         email
+        postings {
+          _id
+          title
+          description
+        }
     }
 }
 `
