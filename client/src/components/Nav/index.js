@@ -14,7 +14,7 @@ import {
   Stack,
   Flex,
 } from "@chakra-ui/react";
-import { FaUser, FaEdit } from "react-icons/fa";
+import { FaUser, FaEdit, FaSignOutAlt } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Donate from "../Donate";
@@ -36,7 +36,7 @@ export default function Nav() {
         icon={<GiHamburgerMenu />}
       />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-        <DrawerOverlay />
+        <DrawerOverlay bg="#F0F0F0" />
         <DrawerContent pt="20px" bgGradient="linear(to-b, #FFFFFF, #E5DED4)">
           <DrawerCloseButton />
           <DrawerBody>
@@ -57,9 +57,15 @@ export default function Nav() {
                 </Button>
               </Box>
               <Box>
-                <Button as="a" href="/Login" bg="#025880" color="white">
+                <Button as="a" href="/Login" bg="#21467A" color="white">
                   <FaUser />
                   Login
+                </Button>
+              </Box>
+              <Box>
+                <Button onClick={logout} bg="#21467A" color="white">
+                  <FaSignOutAlt />
+                  logout
                 </Button>
               </Box>
             </Stack>
