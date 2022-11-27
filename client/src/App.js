@@ -15,6 +15,7 @@ import Home from "./pages/Home";
 import Postings from "./pages/Postings";
 import PostingDetail from "./pages/PostingDetail";
 import Error from "./pages/Error";
+import Profile from "./pages/Profile";
 
 import Footer from "./components/Footer";
 
@@ -88,10 +89,10 @@ function App() {
               path="/Signup"
               element={<Signup/>}
               /> 
-              {/* <Route 
+              <Route 
               path="/me"
               element={<Profile/>}
-              /> */}
+              />
                 <Route path="/postings" element={<Postings />} />
                 <Route path="/posting/:id" element={<PostingDetail />} />
                 <Route path="/*" element={<Error />} />

@@ -82,6 +82,4 @@ query postComments($_id: ID!) {
     }
   }
 }
-
-
 `

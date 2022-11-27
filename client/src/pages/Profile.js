@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client';
 
 import PostingList from '../components/Postings/index';
 
-import { QUERY_SINGLE_USER} from '../utils/queries';
+import { QUERY_SINGLE_USER } from '../utils/queries';
 
 const User = () => {
   const { userId } = useParams();
