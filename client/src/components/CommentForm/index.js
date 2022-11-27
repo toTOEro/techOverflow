@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 
 
 
+import Auth from '../../utils/auth';
 
 export default function CommentForm(Posting) {
 
@@ -21,7 +22,7 @@ export default function CommentForm(Posting) {
         e.preventDefault();
         try {
             const { data } = addComment({
-                variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: postingId },
+                variables: { ...newComment, creator: Auth.getProfile().data._id, postingId: postingId },
             });
             refetch()
             // window.location.reload();
