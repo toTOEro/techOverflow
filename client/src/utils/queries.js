@@ -60,8 +60,8 @@ export const QUERY_COMMENTS = gql`
 `;
 
 export const REGISTERED = gql`
-query Registered($id: ID!) {
-  registered(_id: $id) {
+query Registered($_id: ID!) {
+  registered(_id: $_id) {
     _id
     title
     owners_id {
@@ -72,15 +72,14 @@ query Registered($id: ID!) {
 `
 
 export const POSTINGCOMMENTS = gql`
-query postComments($id: ID!) {
-  postComments(_id: $id) {
+query postComments($_id: ID!) {
+  postComments(_id: $_id) {
     _id
-    comment {
+    comments {
+      _id
       content
       date_created
-      creator
     }
-
   }
 }
 

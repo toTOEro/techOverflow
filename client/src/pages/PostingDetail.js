@@ -24,10 +24,7 @@ import { useMutation } from "@apollo/client";
 
 
 
-//Current status of this code is that it works, but the comments don't properly refresh with page.
-// NEed to refactor the code to separate the posting and comments queries
-// 1. Develop query only comments, 2. Implement refetch for just those comments
-
+// Handles posting and comment rendering
 const PostingDetail = () => {
 
 
@@ -38,9 +35,9 @@ const PostingDetail = () => {
             variables: { _id: id },
         }
     );
-    const singlePost = data?.singlePost || [];
-    let { title, description, owners_id, comments } = singlePost;
 
+    const singlePost = data?.singlePost || [];
+    let { title, description, owners_id } = singlePost;
 
     const { loading: comLoading, error: comError, data: comData, refetch } = useQuery(
         POSTINGCOMMENTS,
@@ -50,8 +47,10 @@ const PostingDetail = () => {
         }
     );
 
-    const postComments = comData?.postComments || [];
-    
+
+    // const { postComments } = comData?.postComments || [];
+
+    const {comments } = comData?.postComments || [];
 
     const [newComment, setNewComment] = useState({
         content: ''
@@ -64,12 +63,12 @@ const PostingDetail = () => {
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         try {
-            const { data } = addComment({
+            const test = await addComment({
                 variables: { ...newComment, creator: '637d9fb14f58788dae6b8638', postingId: id },
             });
-            await refetch();
 
-            // window.location.reload();
+            await refetch()
+
         } catch (err) {
             console.error(err)
         }

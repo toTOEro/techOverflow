@@ -30,7 +30,14 @@ const resolvers = {
       return await Posting.find({ registered: { _id } })
     },
     postComments: async (parent, { _id }) => {
-      return Posting.findOne({ _id }).populate("comments")
+      return Posting.findOne({ _id })
+        .populate({
+          path: 'comments',
+          populate: {
+            path: 'creator',
+            model: 'User'
+          }
+        })
     }
   },
   Mutation: {
