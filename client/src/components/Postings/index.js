@@ -1,51 +1,68 @@
 // import { useQuery } from '@apollo/client';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter, Text, Heading, Divider, Stack, Avatar, HStack, Flex, ButtonGroup, Button } from '@chakra-ui/react'
+import { IoIosAddCircle } from 'react-icons/io'
 import MailTo from '../MailTo';
-// import { useQuery } from '@apollo/client';
-// import {QUERY_POSTINGS} from '../../utils/queries.js';
+import { useQuery } from '@apollo/client';
+import { QUERY_POSTINGS } from '../../utils/queries.js';
+import Register from '../RegisterButton';
 
 
 
 // Presents all software development idea postings for users to browse through.
-export default function Postings(postings) {
-    const {_id, title, description, email, ...owner} = postings
-    let data = postings.postings;
-    console.log(`data is ${data.length} long and is of type ${typeof(data)}`)
-    console.log(`postings is ${postings.length} long and is of tpye ${typeof(postings)}`)
-    const postingsArray = Object.entries(data);
-    console.log(postingsArray);
-    let mappedpostings = postingsArray.map()
-if(!postings.length) {
-    return <h3>No postings yet</h3>
-}
-  //  return (
-        // <div>
-        //     <Stack spacing="4" alignItems="center">
-        //         <Heading size='2xl' py='15'>Project Postings</Heading>
+export default function Postings() {
+    // const { data } = useQuery(QUERY_POSTINGS);
+    const { loading, data } = useQuery(QUERY_POSTINGS);
+    const postings = data?.postings || [];
 
-        //         {postings.map(() => (
-        //             <Card key={_id} maxW='65vw' minW='50vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
-        //                 <Link
-        //                     to={`/posting/${_id}`}
-        //                 >
-        //                     <CardHeader>
-        //                         <Heading size='lg'>{title}</Heading>
-        //                     </CardHeader>
-        //                     <CardBody>
-        //                         <Text>{description}</Text>
-        //                     </CardBody>
-        //                 </Link>
-        //                 <Divider />
-        //                 <CardFooter py='1'>
-        //                     <MailTo email={email} label={`Email`} />
-        //                     <Avatar name='test' src={'./icons8-user-32.png'} />
-        //                 </CardFooter>
-        //             </Card>
-        //         ))}
-        //     </Stack>
 
-        // </div>
-   // )
+    return (
+        <div>
+            <Stack spacing="4" alignItems="center">
+                <Heading size='3xl' py='15'>Recent postings:</Heading>
+
+                {
+                    loading ? (
+                        <div> Loading... </div>
+
+                    ) : (
+                        postings.slice(0, 5).map(({ _id, title, description, email, owners_id }) => (
+                            <Card key={_id} maxW='85vw' minW='85vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
+                                <Link
+                                    to={`/posting/${_id}`}
+                                >
+                                    <CardHeader>
+                                        <Heading size='lg'>{title}</Heading>
+                                    </CardHeader>
+                                    <CardBody>
+                                        <Text>{description}</Text>
+                                    </CardBody>
+                                </Link>
+                                <Divider />
+                                <CardFooter py='1' justifyContent='end' >
+                                    <Flex>
+                                        <HStack >
+                                            <ButtonGroup>
+                                                <Register postId={_id} />
+                                            </ButtonGroup>
+                                            <HStack>
+                                                {/* Show the user avatars that signed up for this project */}
+
+
+                                                <MailTo email={owners_id.email} label={`${owners_id.firstName}`} />
+                                                <Avatar name='test' src={'./icons8-user-32.png'} />
+                                            </HStack>
+                                        </HStack>
+                                    </Flex>
+
+                                </CardFooter>
+                            </Card>
+                        ))
+                    )
+                }
+            </Stack>
+
+        </div>
+    )
 }
