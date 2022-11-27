@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import MailTo from '../MailTo';
-import { IoIosAddCircle } from 'react-icons/io'
 
 
 import {

@@ -6,12 +6,11 @@ import {
     Divider,
     FormControl,
     Input,
-    HStack,
     Button,
     Avatar,
     AvatarGroup
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client";
 // import { usePostingContext } from "../utils/GlobalState";
@@ -36,7 +35,7 @@ const PostingDetail = () => {
 
 
     // Posting handling
-    const { loading, error, data } = useQuery(
+    const { loading, data } = useQuery(
         QUERY_SINGLE_POSTING,
         {
             variables: { _id: id },
@@ -45,11 +44,11 @@ const PostingDetail = () => {
 
 
     const singlePost = data?.singlePost || [];
-    let { title, description, owners_id, registered } = singlePost;
+    let { title, description, registered } = singlePost;
 
 
     // Comment handling
-    const { loading: comLoading, error: comError, data: comData, refetch } = useQuery(
+    const { data: comData, refetch } = useQuery(
         POSTINGCOMMENTS,
         {
             variables: { _id: id },
@@ -72,9 +71,9 @@ const PostingDetail = () => {
             const data = await addComment({
                 variables: { ...newComment, creator: Auth.getProfile().data._id, postingId: id },
             });
-
-            await refetch()
-
+            if (data) {
+                await refetch()
+            }
         } catch (err) {
             console.error(err)
         }
