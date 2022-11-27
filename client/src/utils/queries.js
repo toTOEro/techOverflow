@@ -43,6 +43,10 @@ query getSinglePosting ($_id: ID!) {
     _id
     title
     description
+    registered {
+      _id
+      avatar
+    }
     comments {
       _id
       content
