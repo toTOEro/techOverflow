@@ -70,3 +70,16 @@ query Registered($id: ID!) {
   }
 }
 `
+
+export const POSTINGCOMMENTS = gql`
+query postComments(_id: $id) {
+  postComments(_id: $id) {
+    _id
+    content
+    date_created
+    creator
+  }
+}
+
+
+`

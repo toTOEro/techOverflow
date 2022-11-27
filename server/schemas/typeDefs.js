@@ -40,6 +40,7 @@ const typeDefs = gql`
     singlePost(_id: ID!): Posting
     comments: [Comment]
     registered(_id: ID!): [Posting]
+    postComments(_id: ID!): Posting
   } 
 
   type Mutation {

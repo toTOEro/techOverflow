@@ -28,6 +28,9 @@ const resolvers = {
     },
     registered: async (parent, { _id }, context) => {
       return await Posting.find({registered: { _id}})
+    },
+    postComments: async () => {
+      return Posting.findOne({_id}).populate("comments")
     }
   },
   Mutation: {
