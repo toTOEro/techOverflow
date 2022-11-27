@@ -19,7 +19,7 @@ import Comment from "../components/Comment/index";
 // Temporary disabled commentform
 // import CommentForm from "../components/CommentForm";
 
-import { QUERY_SINGLE_POSTING } from "../utils/queries";
+import { QUERY_SINGLE_POSTING, POSTINGCOMMENTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 
 
@@ -32,24 +32,32 @@ const PostingDetail = () => {
 
 
     let { id } = useParams();
-
-    const { loading, error, data, refetch } = useQuery(
+    const { loading, error, data } = useQuery(
         QUERY_SINGLE_POSTING,
         {
             variables: { _id: id },
-            notifyOnNetworkStatusChange: true,
         }
     );
     const singlePost = data?.singlePost || [];
-
-
     let { title, description, owners_id, comments } = singlePost;
+
+
+    const { loading: comLoading, error: comError, data: comData, refetch } = useQuery(
+        POSTINGCOMMENTS,
+        {
+            variables: { _id: id },
+            notifyOnNetworkStatusChange: true
+        }
+    );
+
+    const postComments = comData?.postComments || [];
+    
 
     const [newComment, setNewComment] = useState({
         content: ''
     });
 
-    const [addComment, { error: comError }] = useMutation(ADD_COMMENT)
+    const [addComment] = useMutation(ADD_COMMENT)
 
 
     // Need to refactor this code

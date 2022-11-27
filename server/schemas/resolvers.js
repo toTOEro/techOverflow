@@ -8,7 +8,7 @@ const resolvers = {
     postings: async () => {
       const postings = await Posting.find().populate("owners_id").populate("registered");
 
-      postings.sort((a,b) => b.date_created - a.date_created)
+      postings.sort((a, b) => b.date_created - a.date_created)
 
       return postings
     },
@@ -27,10 +27,10 @@ const resolvers = {
       return Comment.find().populate("creator");
     },
     registered: async (parent, { _id }, context) => {
-      return await Posting.find({registered: { _id}})
+      return await Posting.find({ registered: { _id } })
     },
-    postComments: async () => {
-      return Posting.findOne({_id}).populate("comments")
+    postComments: async (parent, { _id }) => {
+      return Posting.findOne({ _id }).populate("comments")
     }
   },
   Mutation: {

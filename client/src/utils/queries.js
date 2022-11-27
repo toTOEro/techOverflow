@@ -72,7 +72,7 @@ query Registered($id: ID!) {
 `
 
 export const POSTINGCOMMENTS = gql`
-query postComments(_id: $id) {
+query postComments($id: ID!) {
   postComments(_id: $id) {
     _id
     comment {
