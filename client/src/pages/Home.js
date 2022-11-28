@@ -38,6 +38,7 @@ const Home = () => {
                                                 email={owners_id.email}
                                                 owner={owners_id.firstName}
                                                 avatar={owners_id.avatar}
+                                                creator={owners_id._id.toString()}
                                                 registered={registered}
 
                                             />

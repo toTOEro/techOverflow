@@ -15,8 +15,10 @@ import {
     HStack,
     Flex,
     ButtonGroup,
+    Button
 } from '@chakra-ui/react'
 import Register from '../RegisterButton';
+import Auth from '../../utils/auth';
 
 export default function Posting(details) {
     const {
@@ -26,7 +28,8 @@ export default function Posting(details) {
         email,
         owner,
         avatar,
-        registered
+        registered,
+        creator
     } = details
 
 
@@ -46,6 +49,13 @@ export default function Posting(details) {
             <CardFooter py='1' justifyContent='end' >
                 <Flex>
                     <HStack >
+                    {Auth.loggedIn() && Auth.getProfile().data._id === creator ? (
+                                <Link 
+                                to={`/PostEditor/${_id}`} 
+                                >
+                                    <Button label="edit">Edit Post</Button>
+                                </Link>
+                            ): ('')}
                         {registered.map(({ _id, avatar }) => (
                             <Avatar key={_id} src={avatar} size={'sm'}/>
                         ))}
@@ -53,8 +63,6 @@ export default function Posting(details) {
                             <Register postId={_id} />
                         </ButtonGroup>
                         <HStack>
-
-
 
                             <MailTo email={email} label={owner} />
                             <Avatar src={avatar} />
