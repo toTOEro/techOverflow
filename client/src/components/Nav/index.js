@@ -12,7 +12,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Stack,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import { FaUser, FaEdit, FaSignOutAlt } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
@@ -35,62 +35,57 @@ export default function Nav() {
       />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent pt="20px" bgGradient="linear(to-br, #FFFFFF, #DBD6CB)">
+        <DrawerContent pt="20px" bgGradient="linear(to-br, #FFFFFF, #F6F2E6)">
           <DrawerCloseButton />
           <DrawerBody>
             {Auth.loggedIn() ? (
-              <Stack> 
+              <Stack>
                 <Text>Welcome {Auth.getProfile().data.firstName}!</Text>
-               <Box>
-                <Button as="a" href="/" bg="#B5514D" color="white">
-                  <AiTwotoneHome />
-                  Home
-                </Button>
-              </Box>
-             <IdeaForm />
-             <Box>
-             <Button
-                as="a" href="/Postings"
-                bg="#21467A" color="white"
-                >
-                  All Posts
-                </Button>
+                <Box>
+                  <Button as="a" href="/" bg="#B5514D" color="white">
+                    <AiTwotoneHome />
+                    Home
+                  </Button>
                 </Box>
                 <Box>
-                <Button onClick={logout} bg="#21467A" color="white">
-                  <FaSignOutAlt />
-                  logout
-                </Button>
-              </Box>
-             </Stack>
-            ): (
-              <Stack>
-              <Box>
-                <Button as="a" href="/" bg="#B5514D" color="white">
-                  <AiTwotoneHome />
-                  Home
-                </Button>
-              </Box>
-              <Box>
-                <Button as="a" href="/Signup" bg="#21467A" color="white">
-                  <FaEdit />
-                  Signup
-                </Button>
-              </Box>
-              <Box>
-                <Button as="a" href="/Login" bg="#21467A" color="white">
-                  <FaUser />
-                  Login
-                </Button>
-              </Box>
-              <Box>
-                <Button onClick={logout} bg="#21467A" color="white">
-                  <FaSignOutAlt />
-                  Logout
-
-                </Button>
+                  <Button as="a" href="/Postings" bg="#21467A" color="white">
+                    All Posts
+                  </Button>
                 </Box>
-            </Stack>
+                <Box>
+                  <Button onClick={logout} bg="#21467A" color="white">
+                    <FaSignOutAlt />
+                    logout
+                  </Button>
+                </Box>
+              </Stack>
+            ) : (
+              <Stack>
+                <Box>
+                  <Button as="a" href="/" bg="#B5514D" color="white">
+                    <AiTwotoneHome />
+                    Home
+                  </Button>
+                </Box>
+                <Box>
+                  <Button as="a" href="/Signup" bg="#21467A" color="white">
+                    <FaEdit />
+                    Signup
+                  </Button>
+                </Box>
+                <Box>
+                  <Button as="a" href="/Login" bg="#21467A" color="white">
+                    <FaUser />
+                    Login
+                  </Button>
+                </Box>
+                <Box>
+                  <Button onClick={logout} bg="#21467A" color="white">
+                    <FaSignOutAlt />
+                    Logout
+                  </Button>
+                </Box>
+              </Stack>
             )}
           </DrawerBody>
           <DrawerFooter></DrawerFooter>
