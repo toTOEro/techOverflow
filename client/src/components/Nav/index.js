@@ -17,6 +17,7 @@ import {
 import { FaUser, FaEdit, FaSignOutAlt } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
+import IdeaForm from '../IdeaForm'
 import Auth from "../../utils/auth";
 
 export default function Nav() {

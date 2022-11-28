@@ -31,7 +31,7 @@ const postingSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "User",
-        unique: true
+        default: []
       },
     ],
   },

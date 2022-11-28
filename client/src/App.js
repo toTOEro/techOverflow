@@ -9,7 +9,6 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
-import { PostingProvider } from "./utils/GlobalState";
 
 import Home from "./pages/Home";
 import Postings from "./pages/Postings";
@@ -19,7 +18,6 @@ import Profile from "./pages/Profile";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
 
-// import Profile from './pages/Profile';
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
@@ -71,19 +69,45 @@ function App() {
       <ChakraProvider theme={theme}>
         <div className="content-container">
           <Router>
-            <PostingProvider>
-              <HeaderNav />
 
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/Signup" element={<Signup />} />
-                <Route path="/profile/:userId" element={<Profile />} />
-                <Route path="/postings" element={<Postings />} />
-                <Route path="/posting/:id" element={<PostingDetail />} />
-                <Route path="/*" element={<Error />} />
-              </Routes>
-            </PostingProvider>
+            <HeaderNav />
+
+            <Routes>
+              <Route
+                path="/"
+                element={<Home />}
+              />
+              <Route
+                path="/login"
+                element={<Login />}
+              />
+              <Route
+                path="/Signup"
+                element={<Signup />}
+              />
+              <Route
+                path="/profile"
+                element={<Profile />}
+              />
+              <Route
+                path="/profile/:userId"
+                element={<Profile />}
+              />
+              <Route
+                path="/postings"
+                element={<Postings />}
+              />
+              <Route
+                path="/posting/:id"
+                element={<PostingDetail />}
+              />
+              <Route
+                path="/*"
+                element={<Error />}
+              />
+
+            </Routes>
+
           </Router>
         </div>
         <div className="footer--pin">

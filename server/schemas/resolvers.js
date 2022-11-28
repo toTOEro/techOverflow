@@ -1,6 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Posting, Comment } = require("../models");
 const { signToken } = require("../utils/auth");
+const bcrypt = require('bcrypt')
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
@@ -20,9 +21,7 @@ const resolvers = {
       }
     },
     singlePost: async (parent, { _id }, context) => {
-      return Posting.findOne({ _id })
-        .populate("comments")
-        .populate("owners_id");
+      return Posting.findOne({ _id }).populate("comments").populate("owners_id").populate("registered");
     },
     users: async () => {
       return User.find().populate("postings");
@@ -65,7 +64,6 @@ const resolvers = {
       return { token, user };
     },
     addUser: async (parent, args, context) => {
-      console.log(args);
       const user = await User.create(args);
       const token = signToken(user);
 
@@ -77,22 +75,38 @@ const resolvers = {
       context
     ) => {
       if (context.user._id === _id) {
-        return User.findByIdAndUpdate(
+
+        const updatedPw = await bcrypt.hash(password, 10)
+
+        const user = await User.findByIdAndUpdate(
           _id,
-          { firstName, lastName, email, password },
+          { firstName, lastName, email, password: updatedPw },
           {
             new: true,
           }
         );
+
+        const token = signToken(user);
+
+        return { token, user };
+
+
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
-
     deleteUser: async (parent, { _id }, context) => {
       if (context.user._id === _id) {
         return User.findByIdAndDelete({ _id });
       }
       throw new AuthenticationError("You can't do that! You aren't allowed!");
+    },
+    changeAvatar: async (parent, { url }, context) => {
+      return User.findByIdAndUpdate(context.user._id, {
+        avatar: url
+      }, {
+        new: true
+      })
+
     },
     addPosting: async (parent, args, context) => {
       return Posting.create(args);

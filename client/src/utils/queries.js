@@ -6,6 +6,10 @@ query allPostings {
         _id
         title
         description
+        registered{
+          _id
+          avatar
+        }
         owners_id {
             _id
             email
@@ -15,6 +19,23 @@ query allPostings {
     }
 }
 `;
+
+export const QUERY_ME = gql`
+query me{
+  me{
+    _id
+    firstName
+    lastName
+    email
+    avatar
+    postings{
+      _id
+      title
+      description
+    }
+  }
+}
+`
 //no longer works 11/22
 export const QUERY_SINGLE_POSTING = gql`
 query getSinglePosting ($_id: ID!) {
@@ -22,12 +43,16 @@ query getSinglePosting ($_id: ID!) {
     _id
     title
     description
+    registered {
+      _id
+      avatar
+    }
     comments {
       _id
       content
       date_created
-          }
-      }
+    }
+  }
 }
 `
 //WORKS DO NOT TOUCH 11/22
