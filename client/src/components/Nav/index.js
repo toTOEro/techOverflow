@@ -83,13 +83,6 @@ export default function Nav() {
                   Login
                 </Button>
               </Box>
-              <Box>
-                <Button onClick={logout} bg="#21467A" color="white">
-                  <FaSignOutAlt />
-                  Logout
-
-                </Button>
-                </Box>
             </Stack>
             )}
           </DrawerBody>
