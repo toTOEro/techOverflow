@@ -1,6 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Posting, Comment } = require("../models");
 const { signToken } = require("../utils/auth");
+const bcrypt = require('bcrypt')
 // const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
@@ -73,9 +74,12 @@ const resolvers = {
       context
     ) => {
       if (context.user._id === _id) {
+
+        const updatedPw = await bcrypt.hash(password, 10)
+
         const user = await User.findByIdAndUpdate(
           _id,
-          { firstName, lastName, email, password },
+          { firstName, lastName, email, password: updatedPw },
           {
             new: true,
           }
