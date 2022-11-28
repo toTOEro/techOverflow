@@ -16,7 +16,7 @@ import { useParams } from "react-router-dom"
 import { useQuery } from "@apollo/client";
 // import { usePostingContext } from "../utils/GlobalState";
 import { ADD_COMMENT } from "../utils/mutations";
-
+import Auth from '../utils/auth'
 import Comment from "../components/Comment/index";
 
 // Temporary disabled commentform
@@ -26,7 +26,6 @@ import { QUERY_SINGLE_POSTING, POSTINGCOMMENTS } from "../utils/queries";
 import { useMutation } from "@apollo/client";
 import RegisterButton from '../components/RegisterButton'
 
-import Auth from "../utils/auth";
 
 // Handles posting and comment rendering
 const PostingDetail = () => {

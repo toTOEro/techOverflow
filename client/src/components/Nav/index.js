@@ -61,31 +61,30 @@ export default function Nav() {
               </Stack>
             ) : (
               <Stack>
-                <Box>
-                  <Button as="a" href="/" bg="#B5514D" color="white">
-                    <AiTwotoneHome />
-                    Home
+              <Box>
+                <Button as="a" href="/" bg="#B5514D" color="white">
+                  <AiTwotoneHome />
+                  Home
+                </Button>
+              </Box>
+              <Box>
+                <Button as="a" href="/Signup" bg="#21467A" color="white">
+                  <FaEdit />
+                  Signup
+                </Button>
+              </Box>
+              <Box>
+                <Button as="a" href="/Login" bg="#21467A" color="white">
+                  <FaUser />
+                  Login
+                </Button>
+              </Box>
+              <Box>
+              <Button as="a" href="/Postings" bg="#21467A" color="white">
+                    All Posts
                   </Button>
                 </Box>
-                <Box>
-                  <Button as="a" href="/Signup" bg="#21467A" color="white">
-                    <FaEdit />
-                    Signup
-                  </Button>
-                </Box>
-                <Box>
-                  <Button as="a" href="/Login" bg="#21467A" color="white">
-                    <FaUser />
-                    Login
-                  </Button>
-                </Box>
-                <Box>
-                  <Button onClick={logout} bg="#21467A" color="white">
-                    <FaSignOutAlt />
-                    Logout
-                  </Button>
-                </Box>
-              </Stack>
+            </Stack>
             )}
           </DrawerBody>
           <DrawerFooter></DrawerFooter>

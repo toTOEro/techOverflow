@@ -15,6 +15,7 @@ import Postings from "./pages/Postings";
 import PostingDetail from "./pages/PostingDetail";
 import Error from "./pages/Error";
 import Profile from "./pages/Profile";
+import PostEditor from "./pages/PostEditor";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
 
@@ -101,10 +102,15 @@ function App() {
                 path="/posting/:id"
                 element={<PostingDetail />}
               />
+              <Route 
+                path="/PostEditor/:id"
+                element={<PostEditor/>}
+                />
               <Route
                 path="/*"
                 element={<Error />}
               />
+
 
             </Routes>
 
