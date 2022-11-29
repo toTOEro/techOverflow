@@ -73,7 +73,7 @@ export default function Posting(details) {
                                 </>
                             ): ('')}
                         {registered.map(({ _id, avatar }) => (
-                            <Avatar key={_id} src={avatar} size={'sm'}/>
+                            <Avatar key={_id} src={avatar} size={'sm'} />
                         ))}
                         <ButtonGroup>
                             <Register postId={_id} />
@@ -81,7 +81,7 @@ export default function Posting(details) {
                         <HStack>
 
                             <MailTo email={email} label={owner} />
-                            <Avatar src={avatar} />
+                            <Link to={`/profile/${creator}`}><Avatar src={avatar} /></Link>
                         </HStack>
                     </HStack>
                 </Flex>
