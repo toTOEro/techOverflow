@@ -8,7 +8,8 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Center
+    Center,
+    Heading
 
 } from '@chakra-ui/react'
 import Auth from '../utils/auth';
@@ -27,22 +28,22 @@ const Login = (props) => {
         });
     };
 
-      const handleFormSubmit = async(event) => {
-          event.preventDefault();
-          try {
-              const {data} = await login({
-                  variables: {...formState},
-              });
-              
-        Auth.login(data.login.token);
-          } catch(err) {
-              console.error(err);
-          }
-          setFormState({
-              email: '',
-              password: '',
-          })
-      }
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+
+            Auth.login(data.login.token);
+        } catch (err) {
+            console.error(err);
+        }
+        setFormState({
+            email: '',
+            password: '',
+        })
+    }
 
 
     return (
@@ -89,9 +90,9 @@ const Login = (props) => {
             )}
 
             {error && (
-                <div className='add styling'>
+                <Heading textAlign='center' color='#8A101E'>
                     {error.message}
-                </div>
+                </Heading>
             )}
         </div>
     )
