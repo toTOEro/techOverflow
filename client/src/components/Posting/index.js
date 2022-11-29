@@ -49,15 +49,15 @@ export default function Posting(details) {
             <CardFooter py='1' justifyContent='end' >
                 <Flex>
                     <HStack >
-                    {Auth.loggedIn() && Auth.getProfile().data._id === creator ? (
-                                <Link 
-                                to={`/PostEditor/${_id}`} 
-                                >
-                                    <Button label="edit">Edit Post</Button>
-                                </Link>
-                            ): ('')}
+                        {Auth.loggedIn() && Auth.getProfile().data._id === creator ? (
+                            <Link
+                                to={`/PostEditor/${_id}`}
+                            >
+                                <Button label="edit">Edit Post</Button>
+                            </Link>
+                        ) : ('')}
                         {registered.map(({ _id, avatar }) => (
-                            <Avatar key={_id} src={avatar} size={'sm'}/>
+                            <Avatar key={_id} src={avatar} size={'sm'} />
                         ))}
                         <ButtonGroup>
                             <Register postId={_id} />
@@ -65,7 +65,7 @@ export default function Posting(details) {
                         <HStack>
 
                             <MailTo email={email} label={owner} />
-                            <Avatar src={avatar} />
+                            <Link to={`/profile/${creator}`}><Avatar src={avatar} /></Link>
                         </HStack>
                     </HStack>
                 </Flex>
