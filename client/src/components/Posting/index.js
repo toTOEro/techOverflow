@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import MailTo from '../MailTo';
 import {
+    Box,
     Card,
     CardHeader,
     CardBody,
@@ -13,7 +14,8 @@ import {
     HStack,
     Flex,
     ButtonGroup,
-    Button
+    Button,
+    AvatarGroup
 } from '@chakra-ui/react'
 import Register from '../RegisterButton';
 import Auth from '../../utils/auth';
@@ -30,17 +32,21 @@ export default function Posting(details) {
         creator
     } = details
     return (
-        <Card key={_id} maxW='85vw' minW='85vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
-            <Link
-                to={`/posting/${_id}`}
-            >
-                <CardHeader as='button'>
-                    <Heading size='lg'>{title}</Heading>
-                </CardHeader>
-                <CardBody>
-                    <Text>{description}</Text>
-                </CardBody>
-            </Link>
+        <Card key={_id} maxW='85vw' minW='85vw' minH='15vh' size='lg' border='thick' borderColor='black' borderStyle='solid' >
+            <HStack>
+                <Link to={`/profile/${creator}`}><Avatar src={avatar} size={'xl'}/></Link>
+
+                <Link
+                    to={`/posting/${_id}`}
+                >
+                    <CardHeader as='button'>
+                        <Heading size='lg'>{title}</Heading>
+                    </CardHeader>
+                    <CardBody>
+                        <Text>{description}</Text>
+                    </CardBody>
+                </Link>
+            </HStack>
             <Divider />
             <CardFooter py='1' justifyContent='end' >
                 <Flex>
@@ -66,7 +72,7 @@ export default function Posting(details) {
                         <HStack>
 
                             <MailTo email={email} label={owner} />
-                            <Link to={`/profile/${creator}`}><Avatar src={avatar} /></Link>
+                            
                         </HStack>
                     </HStack>
                 </Flex>
