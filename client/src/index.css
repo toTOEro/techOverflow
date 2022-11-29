@@ -12,6 +12,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.content-container {
-  background-color: #D8E3E7
+
+#root {
+  background-color: #D8E3E7;
+
+}
+
+.Nav {
+  
 }
