@@ -1,30 +1,45 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import Posting from '../components/Posting/index';
-import { Stack, Container, Center, Text, Heading } from '@chakra-ui/react'
-import { QUERY_POSTINGS } from '../utils/queries';
+import React from "react";
+import { useQuery } from "@apollo/client";
+import Posting from "../components/Posting/index";
+import { Stack, Container, Center, Heading, HStack } from "@chakra-ui/react";
+import { QUERY_POSTINGS } from "../utils/queries";
+import { IoMdClock } from "react-icons/io";
 
 const Home = () => {
-    const { loading, data } = useQuery(QUERY_POSTINGS);
-    const postings = data?.postings || [];
+  const { loading, data } = useQuery(QUERY_POSTINGS);
+  const postings = data?.postings || [];
 
-    return (
-        <main>
-            <div >
-                <div >
-                    <Center h='100px'>
-                        <Stack>
-                            <Text fontSize='2xl'>Welcome to TechOverflow!</Text>
-                            <Text fontSize='1x1'>All positions should be considered remote unless otherwise stated.</Text>
-                        </Stack>
-                    </Center>
-                    <Container>
-                        {loading ? (
-                            <div>Loading...</div>
-                        ) : (
-                            <Stack spacing="4" alignItems="center">
-                                <Heading size='3xl' py='15'>Recent postings:</Heading>
-
+  return (
+    <main>
+      <div>
+        <div>
+          <Center pt="5vh">
+            <Stack textAlign="center">
+              <Heading
+                bgGradient="linear(to-r, #006361, #00899B)"
+                bgClip="text"
+                fontSize="6xl"
+                fontWeight="extrabold"
+              >
+                Welcome to TechOverflow!
+              </Heading>
+              <Heading as="i" size="xl">
+                All positions should be considered remote unless otherwise
+                stated.
+              </Heading>
+            </Stack>
+          </Center>
+          <Container pt="5vh">
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              <Stack spacing="4" alignItems="center">
+                <HStack>
+                  <IoMdClock size={42} />
+                  <Heading size="xl" py="15">
+                    Recent postings:
+                  </Heading>
+                </HStack>
                                 {
                                     loading ? (
                                         <div> Loading... </div>
