@@ -95,8 +95,10 @@ const PostingDetail = () => {
             <Box
               padding="10"
               border="1px"
-              borderColor="teal.100"
+              borderColor="teal"
               borderRadius="10"
+              borderWidth='2px'
+              marginBottom='1rem'
             >
               <Heading size="3xl" paddingBottom="5vh">
                 {" "}
