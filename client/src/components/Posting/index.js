@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import MailTo from '../MailTo';
-
-
 import {
     Card,
     CardHeader,
@@ -19,6 +17,8 @@ import {
 } from '@chakra-ui/react'
 import Register from '../RegisterButton';
 import Auth from '../../utils/auth';
+import { DELETE_POSTING } from '../../utils/mutations';
+import { useMutation } from "@apollo/client";
 
 export default function Posting(details) {
     const {
@@ -31,6 +31,19 @@ export default function Posting(details) {
         registered,
         creator
     } = details
+    const [deletePosting] = useMutation(DELETE_POSTING);
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        const owners_id = Auth.getProfile().data._id;
+        try {
+            await deletePosting({
+                variables: {id: _id, owners_id},
+            })
+        }catch(err){
+            console.error(err);
+        }
+        Navigate('/');
+    }
 
 
     return (
@@ -50,11 +63,14 @@ export default function Posting(details) {
                 <Flex>
                     <HStack >
                     {Auth.loggedIn() && Auth.getProfile().data._id === creator ? (
+                                <>
                                 <Link 
                                 to={`/PostEditor/${_id}`} 
                                 >
                                     <Button label="edit">Edit Post</Button>
                                 </Link>
+                                <Button type="delete" onClick={ handleDelete }>Delete Post</Button>
+                                </>
                             ): ('')}
                         {registered.map(({ _id, avatar }) => (
                             <Avatar key={_id} src={avatar} size={'sm'}/>
