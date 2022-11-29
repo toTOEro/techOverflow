@@ -8,11 +8,12 @@ import {
     AlertDialogOverlay,
     Button,
     useDisclosure,
-    Card
+    Container
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { Navigate } from 'react-router-dom';
+import { RiDeleteBin5Line } from 'react-icons/ri'
 
 import { DELETE_POSTING } from "../../utils/mutations";
 import { QUERY_SINGLE_POSTING } from "../../utils/queries";
@@ -24,7 +25,7 @@ import Auth from '../../utils/auth'
 export default function PostDeleteConfirmation(postId) {
 
     const { id } = postId
-  
+
 
 
     const { loading, error, data } = useQuery(
@@ -34,7 +35,7 @@ export default function PostDeleteConfirmation(postId) {
         }
     );
     const singlePost = data?.singlePost || [];
-    
+
     let { title, description, owners_id, _id } = singlePost;
     owners_id = Auth.getProfile().data._id;
 
@@ -58,7 +59,13 @@ export default function PostDeleteConfirmation(postId) {
 
     return (
         <>
-            <Button onClick={onOpen}>Delete</Button>
+            <Button onClick={onOpen}>
+
+                <RiDeleteBin5Line /> 
+                <Container display={{ base: 'none', md: 'block' }} px='0'>
+                    Delete
+                </Container>
+            </Button>
             <AlertDialog
                 motionPreset='slideInBottom'
                 // leastDestructiveRef={cancelRef}
