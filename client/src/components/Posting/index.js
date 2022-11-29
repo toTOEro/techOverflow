@@ -7,6 +7,7 @@ import {
     CardHeader,
     CardBody,
     CardFooter,
+    Container,
     Heading,
     Divider,
     Text,
@@ -20,6 +21,8 @@ import {
 import Register from '../RegisterButton';
 import Auth from '../../utils/auth';
 import PostDeleteConfirmation from '../PostDeletionConfirmation/index'
+import { FiEdit } from 'react-icons/fi'
+
 export default function Posting(details) {
     const {
         _id,
@@ -34,7 +37,7 @@ export default function Posting(details) {
     return (
         <Card key={_id} maxW='85vw' minW='85vw' minH='15vh' size='lg' border='thick' borderColor='black' borderStyle='solid' >
             <HStack>
-                <Link to={`/profile/${creator}`}><Avatar src={avatar} size={'xl'}/></Link>
+                <Link to={`/profile/${creator}`}><Avatar src={avatar} size={'xl'} /></Link>
 
                 <Link
                     to={`/posting/${_id}`}
@@ -48,7 +51,7 @@ export default function Posting(details) {
                 </Link>
             </HStack>
             <Divider />
-            <CardFooter py='1' justifyContent='end' >
+            <CardFooter py='1' justifyContent={{base: 'center', lg: 'end'}} >
                 <Flex>
                     <HStack >
                         {Auth.loggedIn() && Auth.getProfile().data._id === creator ? (
@@ -56,27 +59,32 @@ export default function Posting(details) {
                                 <Link
                                     to={`/PostEditor/${_id}`}
                                 >
-                                    <Button label="edit">Edit Post</Button>
+                                    <Button label="edit" px='0'>
+                                        <Container><FiEdit /></Container>
+                                        <Container display={{ base: 'none', md: 'block' }} px='0'>Edit Post</Container>
+                                    </Button>
                                 </Link>
                                 <PostDeleteConfirmation
                                     id={_id}
                                 />
                             </>
                         ) : ('')}
-                        {registered.map(({ _id, avatar }) => (
-                            <Avatar key={_id} src={avatar} size={'sm'} />
-                        ))}
+                        <AvatarGroup display={{ base: 'none', md: 'flex' }} marginRight={'5px'} id='avatargroup'>
+                            {registered.map(({ _id, avatar }) => (
+                                <Avatar key={_id} src={avatar} size={'sm'} />
+                            ))}
+                        </AvatarGroup>
                         <ButtonGroup>
                             <Register postId={_id} />
                         </ButtonGroup>
                         <HStack>
 
                             <MailTo email={email} label={owner} />
-                            
+
                         </HStack>
                     </HStack>
                 </Flex>
             </CardFooter>
-        </Card>
+        </Card >
     )
 }
