@@ -7,7 +7,7 @@ import Auth from "../../utils/auth";
 export default function HeaderNav() {
   return (
     <>
-      <Stack direction={["row"]} justify="space-between" padding={'0.5rem'}>
+      <Stack direction={["row"]} justify="space-between" padding={'0.5rem'} background='#132C33'>
         <Nav />
         {Auth.loggedIn() ? (
           <>
