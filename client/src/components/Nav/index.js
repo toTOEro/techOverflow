@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Box,
   Button,
@@ -17,7 +17,6 @@ import {
 import { FaUser, FaEdit, FaSignOutAlt } from "react-icons/fa";
 import { AiTwotoneHome } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
-import IdeaForm from '../IdeaForm'
 import Auth from "../../utils/auth";
 
 export default function Nav() {
@@ -40,7 +39,7 @@ export default function Nav() {
           <DrawerBody>
             {Auth.loggedIn() ? (
               <Stack>
-                <Text>Welcome {Auth.getProfile().data.firstName}!</Text>
+                <Link to={'/profile'}><Text>Welcome {Auth.getProfile().data.firstName}!</Text></Link>
                 <Box>
                   <Button as="a" href="/" bg="#B5514D" color="white">
                     <AiTwotoneHome />
@@ -61,30 +60,30 @@ export default function Nav() {
               </Stack>
             ) : (
               <Stack>
-              <Box>
-                <Button as="a" href="/" bg="#B5514D" color="white">
-                  <AiTwotoneHome />
-                  Home
-                </Button>
-              </Box>
-              <Box>
-                <Button as="a" href="/Signup" bg="#21467A" color="white">
-                  <FaEdit />
-                  Signup
-                </Button>
-              </Box>
-              <Box>
-                <Button as="a" href="/Login" bg="#21467A" color="white">
-                  <FaUser />
-                  Login
-                </Button>
-              </Box>
-              <Box>
-              <Button as="a" href="/Postings" bg="#21467A" color="white">
+                <Box>
+                  <Button as="a" href="/" bg="#B5514D" color="white">
+                    <AiTwotoneHome />
+                    Home
+                  </Button>
+                </Box>
+                <Box>
+                  <Button as="a" href="/Signup" bg="#21467A" color="white">
+                    <FaEdit />
+                    Signup
+                  </Button>
+                </Box>
+                <Box>
+                  <Button as="a" href="/Login" bg="#21467A" color="white">
+                    <FaUser />
+                    Login
+                  </Button>
+                </Box>
+                <Box>
+                  <Button as="a" href="/Postings" bg="#21467A" color="white">
                     All Posts
                   </Button>
                 </Box>
-            </Stack>
+              </Stack>
             )}
           </DrawerBody>
           <DrawerFooter></DrawerFooter>
