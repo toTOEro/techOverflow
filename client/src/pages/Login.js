@@ -8,8 +8,13 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Center
-
+    Flex,
+    Stack,
+    Heading,
+    ButtonGroup,
+    FormHelperText,
+    HStack,
+} from "@chakra-ui/react";
 import Auth from "../utils/auth";
 const Login = (props) => {
     const [formState, setFormState] = useState({
