@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { useNavigate } from "react-router-dom"
+import {  Navigate } from 'react-router-dom';
 
 import { DELETE_POSTING } from "../../utils/mutations";
 import { QUERY_SINGLE_POSTING } from "../../utils/queries";
@@ -21,47 +21,55 @@ import Auth from '../../utils/auth'
 
 
 
-export default function  NukePosting(postId)  {
-const { isOpen, onOpen, onClose } = useDisclosure();
-const [isLoading, setIsLoading] = useState(false);
-const navigate = useNavigate();
-const cancelRef = React.useRef();
+export default function  PostDeleteConfirmation(postId)  {
 
+    const {id} = postId
+    console.log(id);
+    let posted = JSON.stringify(postId);
+    console.log(Object.values(postId));
+    console.log(Object.keys(postId));
+    console.log(postId.toString())
+    console.log(posted);
+    console.log(postId);
+    console.log(postId.Key);
 
-const { loading, error, data } = useQuery(
-    QUERY_SINGLE_POSTING,
-    {
-        variables: { _id: postId },
-    }
-);
-const singlePost = data?.singlePost || [];
-
-    let { owners_id, _id } = singlePost;
+    
+    const { loading, error, data } = useQuery(
+        QUERY_SINGLE_POSTING,
+        {
+            variables: { _id: postId },
+        }
+    );
+    const singlePost = data?.singlePost || [];
+    console.log(singlePost);
+    let {title, description, owners_id, _id} = singlePost;
+    console.log(singlePost);
     owners_id = Auth.getProfile().data._id;
+
+const { isOpen, onOpen, onClose } = useDisclosure();
+const cancelRef = React.useRef();
 
 const [deletePosting] = useMutation(DELETE_POSTING);
 
-const handePostDelete = async (e) => {
+const handleDelete = async (e) => {
     e.preventDefault();
-    try{
-        setIsLoading(true);
-       await deletePosting({
+    try {
+        await deletePosting({
             variables: {id: _id, owners_id},
         })
-    } catch(err){
+    }catch(err){
         console.error(err);
     }
-    setIsLoading(false);
-    navigate( `/`)
-
+    Navigate('/');
 }
+
 
 return (
     <>
-        <Button onClick={onOpen}>Discard</Button>
+        <Button onClick={onOpen}>Delete</Button>
         <AlertDialog
         motionPreset='slideInBottom'
-        leastDestructiveRef={cancelRef}
+        // leastDestructiveRef={cancelRef}
         onClose={onClose}
         isOpen={isOpen}
         isCentered
@@ -78,7 +86,7 @@ return (
                 <Button ref={cancelRef} onClick={onClose}>
                     No
                 </Button>
-                <Button colorScheme='red' ml={3} onClick={handePostDelete}>
+                <Button colorScheme='red' ml={3} onClick={ handleDelete }>
                     Yes
                 </Button>
             </AlertDialogFooter>
