@@ -29,7 +29,7 @@ const Home = () => {
                                     loading ? (
                                         <div> Loading... </div>
                                     ) : (
-                                        postings.slice(0, 5).map(({ _id, title, description, email, owners_id, registered }) => (
+                                        postings.slice(0, 5).map(({ _id, title, description, owners_id, registered }) => (
                                             <Posting
                                                 key={_id}
                                                 _id={_id}
