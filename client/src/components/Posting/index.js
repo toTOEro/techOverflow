@@ -66,7 +66,7 @@ export default function Posting(details) {
                         <HStack>
 
                             <MailTo email={email} label={owner} />
-                            <Avatar src={avatar} />
+                            <Link to={`/profile/${creator}`}><Avatar src={avatar} /></Link>
                         </HStack>
                     </HStack>
                 </Flex>

@@ -76,11 +76,17 @@ const resolvers = {
     ) => {
       if (context.user._id === _id) {
 
-        const updatedPw = await bcrypt.hash(password, 10)
+        let updateInfo = {}
+
+
+        firstName ? updateInfo.firstName = firstName : ''
+        lastName ? updateInfo.lastName = lastName : ''
+        email ? updateInfo.email = email : ''
+        password ? updateInfo.password = await bcrypt.hash(password, 10) : ''
 
         const user = await User.findByIdAndUpdate(
           _id,
-          { firstName, lastName, email, password: updatedPw },
+          updateInfo,
           {
             new: true,
           }
@@ -114,6 +120,9 @@ const resolvers = {
     updatePosting: async (parent, { _id, title, description }, context) => {
 
       let postToBeUpdated = await Posting.findById({_id})
+
+      title ? '' : title = postToBeUpdated.title
+      description ? '' : description = postToBeUpdated.description 
 
       if (context.user._id === postToBeUpdated.owners_id.toString()) {
         return Posting.findByIdAndUpdate(
