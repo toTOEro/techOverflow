@@ -17,7 +17,7 @@ const Comment = (data) => {
 
     return (
         <>
-            <Card key={_id} variant='outline' my='4'>
+            <Card key={_id} variant='outline' my='4' borderColor='teal' borderWidth='2px'>
                 <CardBody>
                     {content}
                 </CardBody>
