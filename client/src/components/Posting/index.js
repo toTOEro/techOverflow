@@ -49,12 +49,10 @@ export default function Posting(details) {
 
 
     return (
-        <Card key={_id} maxW='85vw' minW='85vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
+        <Card key={_id} maxW='85vw' minW='85vw' minH='15vh' size='lg' border='thick' borderColor='black' borderStyle='solid' >
             <HStack>
-                <Box minW={'8.5vw'} maxW={'8.5vw'}  bg={'cyan.400'} height={'max-content'}>
-                    Test
+                <Link to={`/profile/${creator}`}><Avatar src={avatar} size={'xl'}/></Link>
 
-                </Box>
                 <Link
                     to={`/posting/${_id}`}
                 >
@@ -92,7 +90,7 @@ export default function Posting(details) {
                         <HStack>
 
                             <MailTo email={email} label={owner} />
-                            <Link to={`/profile/${creator}`}><Avatar src={avatar} /></Link>
+                            
                         </HStack>
                     </HStack>
                 </Flex>
