@@ -37,7 +37,7 @@ export default function Posting(details) {
     return (
         <Card key={_id} maxW='85vw' minW='85vw' minH='15vh' size='lg' border='thick' borderColor='black' borderStyle='solid' >
             <HStack>
-                <Link to={`/profile/${creator}`}><Avatar src={avatar} size={'xl'} /></Link>
+                <Link to={`/profile/${creator}`} ><Avatar src={avatar} size={'xl'} paddingLeft='10px'/></Link>
 
                 <Link
                     to={`/posting/${_id}`}
