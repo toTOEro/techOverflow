@@ -2,7 +2,6 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Posting, Comment } = require("../models");
 const { signToken } = require("../utils/auth");
 const bcrypt = require('bcrypt')
-// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
@@ -141,8 +140,6 @@ const resolvers = {
       throw new AuthenticationError("You can't do that! You aren't allowed!");
     },
     addComment: async (parent, { content, creator, postingId }, context) => {
-      // const comment = new Comment({ content, creator })
-
       const comment = await Comment.create({ content, creator });
 
       await Posting.findByIdAndUpdate(postingId, {
