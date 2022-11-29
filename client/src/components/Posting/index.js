@@ -37,7 +37,7 @@ export default function Posting(details) {
     return (
         <Card key={_id} maxW='85vw' minW='85vw' minH='15vh' size='lg' border='thick' borderColor='black' borderStyle='solid' >
             <HStack>
-                <Link to={`/profile/${creator}`} ><Avatar src={avatar} size={'xl'} paddingLeft='10px'/></Link>
+                <Link to={`/profile/${creator}`} ><Avatar src={avatar} size={'xl'} paddingLeft='10px' /></Link>
 
                 <Link
                     to={`/posting/${_id}`}
@@ -51,7 +51,7 @@ export default function Posting(details) {
                 </Link>
             </HStack>
             <Divider />
-            <CardFooter py='1' justifyContent={{base: 'center', lg: 'end'}} >
+            <CardFooter py='1' justifyContent={{ base: 'center', lg: 'end' }} >
                 <Flex>
                     <HStack >
                         {Auth.loggedIn() && Auth.getProfile().data._id === creator ? (
@@ -67,6 +67,15 @@ export default function Posting(details) {
                                 <PostDeleteConfirmation
                                     id={_id}
                                 />
+                                <AvatarGroup display={{ base: 'none', md: 'flex' }} marginRight={'5px'} id='avatargroup'>
+                                    {registered.map(({ _id, avatar }) => (
+                                        <Avatar key={_id} src={avatar} size={'sm'} />
+                                    ))}
+                                </AvatarGroup>
+                                <ButtonGroup>
+                                    <Register postId={_id} />
+                                </ButtonGroup>
+
                             </>
                         ) : ('')}
                         <AvatarGroup display={{ base: 'none', md: 'flex' }} marginRight={'5px'} id='avatargroup'>
@@ -74,9 +83,6 @@ export default function Posting(details) {
                                 <Avatar key={_id} src={avatar} size={'sm'} />
                             ))}
                         </AvatarGroup>
-                        <ButtonGroup>
-                            <Register postId={_id} />
-                        </ButtonGroup>
                         <HStack>
 
                             <MailTo email={email} label={owner} />
