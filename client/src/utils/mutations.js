@@ -68,9 +68,11 @@ export const UPDATE_POSTING = gql`
 `;
 
 export const DELETE_POSTING = gql`
-mutation deletePosting($_id: ID!){
-  deletePosting(_id: $_id)
-}
+mutation deletePosting($id: ID!){
+  deletePosting(_id: $id){
+    _id
+    }
+  }
 `;
 
 //for the addComment, returning info in case we want to show a screen that shows the commenter's other posts, or if we want to email them a copy of their comment.
