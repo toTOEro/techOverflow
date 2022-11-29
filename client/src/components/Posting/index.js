@@ -19,9 +19,7 @@ import {
 } from '@chakra-ui/react'
 import Register from '../RegisterButton';
 import Auth from '../../utils/auth';
-import { DELETE_POSTING } from '../../utils/mutations';
-import { useMutation } from "@apollo/client";
-
+import PostDeleteConfirmation from '../PostDeletionConfirmation/index'
 export default function Posting(details) {
     const {
         _id,
@@ -33,21 +31,6 @@ export default function Posting(details) {
         registered,
         creator
     } = details
-    const [deletePosting] = useMutation(DELETE_POSTING);
-    const handleDelete = async (e) => {
-        e.preventDefault();
-        const owners_id = Auth.getProfile().data._id;
-        try {
-            await deletePosting({
-                variables: { id: _id, owners_id },
-            })
-        } catch (err) {
-            console.error(err);
-        }
-        Navigate('/');
-    }
-
-
     return (
         <Card key={_id} maxW='85vw' minW='85vw' minH='15vh' size='lg' border='thick' borderColor='black' borderStyle='solid' >
             <HStack>
@@ -75,15 +58,14 @@ export default function Posting(details) {
                                 >
                                     <Button label="edit">Edit Post</Button>
                                 </Link>
-                                <Button type="delete" onClick={handleDelete}>Delete Post</Button>
+                                <PostDeleteConfirmation
+                                    id={_id}
+                                />
                             </>
                         ) : ('')}
-                        <AvatarGroup>
-                            {registered.map(({ _id, avatar }) => (
-                                <Avatar key={_id} src={avatar} size={'sm'} />
-                            ))}
-                        </AvatarGroup>
-
+                        {registered.map(({ _id, avatar }) => (
+                            <Avatar key={_id} src={avatar} size={'sm'} />
+                        ))}
                         <ButtonGroup>
                             <Register postId={_id} />
                         </ButtonGroup>
