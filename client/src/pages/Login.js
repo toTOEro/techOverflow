@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
 import {
     Box,
     Button,
@@ -10,12 +10,11 @@ import {
     Input,
     Center
 
-} from '@chakra-ui/react'
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 const Login = (props) => {
     const [formState, setFormState] = useState({
-        email: '',
-        password: ''
+        email: "",
+        password: "",
     });
     const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -27,71 +26,112 @@ const Login = (props) => {
         });
     };
 
-      const handleFormSubmit = async(event) => {
-          event.preventDefault();
-          try {
-              const {data} = await login({
-                  variables: {...formState},
-              });
-              
-        Auth.login(data.login.token);
-          } catch(err) {
-              console.error(err);
-          }
-          setFormState({
-              email: '',
-              password: '',
-          })
-      }
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const { data } = await login({
+                variables: { ...formState },
+            });
+
+            Auth.login(data.login.token);
+        } catch (err) {
+            console.error(err);
+        }
+        setFormState({
+            email: '',
+            password: '',
+        })
+    }
 
 
     return (
-        <div className='outerContainer'>
+        <div className="outerContainer">
             {data ? (
-                <p> Success! Let's bring you home! <Link to="/"></Link> </p>
+                <p>
+                    {" "}
+                    Success! Let's bring you home! <Link to="/"></Link>{" "}
+                </p>
             ) : (
-                <Center>
-                    <Box width='80%' bg='gray' py='4' marginBottom='20px' px='10px'>
-                        <form>
-                            <FormControl isRequired onSubmit={handleFormSubmit}>
-                                <FormLabel>
-                                    Login
-                                </FormLabel>
-                                <FormLabel>Email:</FormLabel>
-                                <Input
-                                    placeholder="Your email"
-                                    type="email"
-                                    name="email"
-                                    value={formState.email}
-                                    onChange={changeHandler}
-                                />
-                            </FormControl>
-                            <FormControl onSubmit={handleFormSubmit}>
-
-                                <FormLabel>Password:</FormLabel>
-                                <Input
-                                    type="password"
-                                    name="password"
-                                    value={formState.password}
-                                    onChange={changeHandler}
-                                    placeholder='Enter your password'
-                                    size='lg'
-                                />
-                            </FormControl>
-                            <Button
-                                as='a'
-                                href='/'
-                                color='Red' mr={3} >Back to Home!</Button>
-                            <Button onClick={handleFormSubmit} type="submit" color='Green'>Let's get coding!</Button>
+                <Flex
+                    flexDirection="column"
+                    width="100wh"
+                    height="100vh"
+                    backgroundColor="gray.200"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <Box borderWidth="2px" minW={{ base: "90%", md: "468px" }}>
+                        <form onSubmit={handleFormSubmit}>
+                            <Stack
+                                spacing={5}
+                                p="1rem"
+                                backgroundColor="whiteAlpha.900"
+                                boxShadow="xl"
+                            >
+                                <FormControl isRequired>
+                                    <Heading size="xl" textAlign="center" pb="1vh">
+                                        Login
+                                    </Heading>
+                                    <FormHelperText>
+                                        <HStack justifyContent="center">
+                                            <Link as="a" to="/Signup">
+                                                New user? Signup today!
+                                            </Link>
+                                        </HStack>
+                                    </FormHelperText>
+                                    <FormLabel>Email:</FormLabel>
+                                    <Input
+                                        placeholder="Your email"
+                                        type="email"
+                                        name="email"
+                                        value={formState.email}
+                                        onChange={changeHandler}
+                                    />
+                                </FormControl>
+                                <FormControl isRequired onSubmit={handleFormSubmit}>
+                                    <FormLabel>Password:</FormLabel>
+                                    <Input
+                                        type="password"
+                                        name="password"
+                                        value={formState.password}
+                                        onChange={changeHandler}
+                                        placeholder="Enter your password"
+                                        size="lg"
+                                    />
+                                </FormControl>
+                                <Flex justify="center">
+                                    <ButtonGroup>
+                                        <Button
+                                            as="a"
+                                            href="/"
+                                            color="white"
+                                            bg="red"
+                                            type="submit"
+                                            size="lg"
+                                        >
+                                            Back to Home!
+                                        </Button>
+                                        <Button
+                                            onClick={handleFormSubmit}
+                                            bg="green"
+                                            color="white"
+                                            type="submit"
+                                            size="lg"
+                                        >
+                                            Let's get coding!
+                                        </Button>
+                                    </ButtonGroup>
+                                </Flex>
+                            </Stack>
                         </form>
                     </Box>
-                </Center>
+                </Flex>
             )}
 
             {error && (
-                <div className='add styling'>
+                <Heading textAlign='center' color='#8A101E'>
                     {error.message}
-                </div>
+                </Heading>
             )}
         </div>
     )
