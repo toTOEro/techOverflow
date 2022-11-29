@@ -10,7 +10,7 @@ import {
   Stack,
   FormHelperText,
   ButtonGroup,
-  FormErrorMessage,
+  Heading,
 } from "@chakra-ui/react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
@@ -62,11 +62,7 @@ const Signup = () => {
           justifyContent="center"
           alignItems="center"
         >
-          <Box
-            borderWidth="2px"
-            borderRadius="lg"
-            minW={{ base: "90%", md: "468px" }}
-          >
+          <Box borderWidth="2px" minW={{ base: "90%", md: "468px" }}>
             <form onSubmit={signUpHandler}>
               <Stack
                 spacing={5}
@@ -75,8 +71,8 @@ const Signup = () => {
                 boxShadow="xl"
               >
                 <FormControl isRequired>
-                  <FormHelperText textAlign="center" pb="2vh">
-                    New user? Signup today!
+                  <FormHelperText textAlign="center" pb="1vh">
+                    <Heading>Sign Up!</Heading>
                   </FormHelperText>
                   <FormLabel>First Name:</FormLabel>
                   <Input
