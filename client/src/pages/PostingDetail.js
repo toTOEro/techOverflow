@@ -121,26 +121,31 @@ const PostingDetail = () => {
               <AvatarGroup justifyContent={"end"}>
                 {registered
                   ? registered.map(({ _id, avatar }) => (
-                      <Avatar key={_id} src={avatar} />
-                    ))
+                    <Avatar key={_id} src={avatar} />
+                  ))
                   : ""}
               </AvatarGroup>
             </Box>
-            <Flex justify={"end"}>
-              <RegisterButton postId={id} />
-            </Flex>
+            {
+              Auth.loggedIn() ? (
+                <Flex justify={"end"}>
+                  <RegisterButton postId={id} />
+                </Flex>
+              ) : ('')
+            }
+
             <Divider my="3vh" />
             <Heading size="md" my="2vh">
               Comments
             </Heading>
             {comments
               ? comments.map(({ _id, content, date_created }) => (
-                  <Comment
-                    key={_id}
-                    content={content}
-                    date_created={date_created}
-                  />
-                ))
+                <Comment
+                  key={_id}
+                  content={content}
+                  date_created={date_created}
+                />
+              ))
               : ""}
             <form onSubmit={handleCommentSubmit}>
               <FormControl>
