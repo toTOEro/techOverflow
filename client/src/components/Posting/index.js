@@ -29,7 +29,7 @@ export default function Posting(details) {
         registered,
         creator
     } = details
-        return (
+    return (
         <Card key={_id} maxW='85vw' minW='85vw' size='lg' border='thick' borderColor='black' borderStyle='solid' >
             <Link
                 to={`/posting/${_id}`}
@@ -45,20 +45,20 @@ export default function Posting(details) {
             <CardFooter py='1' justifyContent='end' >
                 <Flex>
                     <HStack >
-                    {Auth.loggedIn() && Auth.getProfile().data._id === creator ? (
-                                <>
-                                <Link 
-                                to={`/PostEditor/${_id}`} 
+                        {Auth.loggedIn() && Auth.getProfile().data._id === creator ? (
+                            <>
+                                <Link
+                                    to={`/PostEditor/${_id}`}
                                 >
                                     <Button label="edit">Edit Post</Button>
                                 </Link>
                                 <PostDeleteConfirmation
-                               _id = {_id}
+                                    id={_id}
                                 />
-                                </>
-                            ): ('')}
+                            </>
+                        ) : ('')}
                         {registered.map(({ _id, avatar }) => (
-                            <Avatar key={_id} src={avatar} size={'sm'}/>
+                            <Avatar key={_id} src={avatar} size={'sm'} />
                         ))}
                         <ButtonGroup>
                             <Register postId={_id} />
