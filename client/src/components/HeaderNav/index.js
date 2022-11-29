@@ -16,8 +16,7 @@ export default function HeaderNav() {
         ) : (
           <>
             <Text
-              bgGradient="linear(to-r, #CE1226, #D21D26)"
-              bgClip="text"
+              textColor='#D8E3E7'
               fontSize="3xl"
               fontWeight="extrabold"
             >
