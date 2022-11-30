@@ -67,14 +67,8 @@ export default function Posting(details) {
                                 <PostDeleteConfirmation
                                     id={_id}
                                 />
-                                <AvatarGroup display={{ base: 'none', md: 'flex' }} marginRight={'5px'} id='avatargroup'>
-                                    {registered.map(({ _id, avatar }) => (
-                                        <Avatar key={_id} src={avatar} size={'sm'} />
-                                    ))}
-                                </AvatarGroup>
-                                <ButtonGroup>
-                                    <Register postId={_id} />
-                                </ButtonGroup>
+                               
+
 
                             </>
                         ) : ('')}
@@ -84,11 +78,11 @@ export default function Posting(details) {
                             ))}
                         </AvatarGroup>
 
-                       
+
                         <ButtonGroup>
-
-                            <Register postId={_id} />
-
+                            {Auth.loggedIn() && Auth.getProfile().data._id !== creator ? (
+                                <Register postId={_id} />
+                            ) : ('')}
                             <MailTo email={email} label={owner} />
 
                         </ButtonGroup>

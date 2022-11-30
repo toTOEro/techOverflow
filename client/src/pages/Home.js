@@ -40,32 +40,32 @@ const Home = () => {
                     Recent postings:
                   </Heading>
                 </HStack>
-                                {
-                                    loading ? (
-                                        <div> Loading... </div>
-                                    ) : (
-                                        postings.slice(0, 5).map(({ _id, title, description, owners_id, registered }) => (
-                                            <Posting
-                                                key={_id}
-                                                _id={_id}
-                                                title={title}
-                                                description={description}
-                                                email={owners_id.email}
-                                                owner={owners_id.firstName}
-                                                avatar={owners_id.avatar}
-                                                creator={owners_id._id.toString()}
-                                                registered={registered}
+                {
+                  loading ? (
+                    <div> Loading... </div>
+                  ) : (
+                    postings.slice(0, 5).map(({ _id, title, description, owners_id, registered }) => (
+                      <Posting
+                        key={_id}
+                        _id={_id}
+                        title={title}
+                        description={description}
+                        email={owners_id.email}
+                        owner={owners_id.firstName}
+                        avatar={owners_id.avatar}
+                        creator={owners_id._id.toString()}
+                        registered={registered}
 
-                                            />
-                                        ))
-                                    )
-                                }
-                            </Stack>
-                        )}
-                    </Container>
-                </div>
-            </div>
-        </main>
-    );
+                      />
+                    ))
+                  )
+                }
+              </Stack>
+            )}
+          </Container>
+        </div>
+      </div>
+    </main>
+  );
 };
 export default Home;

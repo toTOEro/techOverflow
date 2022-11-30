@@ -25,7 +25,7 @@ export default function Postings() {
         {loading ? (
           <div> Loading... </div>
         ) : (
-          postings.map(({ _id, title, description, owners_id, registered }) => (
+          postings.map(({ _id, title, description, owners_id, registered, creator }) => (
             <Posting
               key={_id}
               _id={_id}
@@ -34,6 +34,7 @@ export default function Postings() {
               email={owners_id.email}
               owner={owners_id.firstName}
               avatar={owners_id.avatar}
+              creator={owners_id._id.toString()}
               registered={registered}
             />
           ))
