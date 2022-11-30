@@ -83,11 +83,15 @@ export default function Posting(details) {
                                 <Avatar key={_id} src={avatar} size={'sm'} />
                             ))}
                         </AvatarGroup>
-                        <HStack>
+
+                       
+                        <ButtonGroup>
+
+                            <Register postId={_id} />
 
                             <MailTo email={email} label={owner} />
 
-                        </HStack>
+                        </ButtonGroup>
                     </HStack>
                 </Flex>
             </CardFooter>
