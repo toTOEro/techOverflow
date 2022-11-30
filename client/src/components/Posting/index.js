@@ -87,8 +87,6 @@ export default function Posting(details) {
                        
                         <ButtonGroup>
 
-                            <Register postId={_id} />
-
                             <MailTo email={email} label={owner} />
 
                         </ButtonGroup>
