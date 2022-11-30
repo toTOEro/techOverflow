@@ -67,11 +67,7 @@ export default function Posting(details) {
                                 <PostDeleteConfirmation
                                     id={_id}
                                 />
-                                <AvatarGroup display={{ base: 'none', md: 'flex' }} marginRight={'5px'} id='avatargroup'>
-                                    {registered.map(({ _id, avatar }) => (
-                                        <Avatar key={_id} src={avatar} size={'sm'} />
-                                    ))}
-                                </AvatarGroup>
+                               
 
 
                             </>
