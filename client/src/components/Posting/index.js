@@ -67,6 +67,15 @@ export default function Posting(details) {
                                 <PostDeleteConfirmation
                                     id={_id}
                                 />
+                                <AvatarGroup display={{ base: 'none', md: 'flex' }} marginRight={'5px'} id='avatargroup'>
+                                    {registered.map(({ _id, avatar }) => (
+                                        <Avatar key={_id} src={avatar} size={'sm'} />
+                                    ))}
+                                </AvatarGroup>
+                                <ButtonGroup>
+                                    <Register postId={_id} />
+                                </ButtonGroup>
+
                             </>
                         ) : ('')}
                         <AvatarGroup display={{ base: 'none', md: 'flex' }} marginRight={'5px'} id='avatargroup'>
@@ -74,8 +83,10 @@ export default function Posting(details) {
                                 <Avatar key={_id} src={avatar} size={'sm'} />
                             ))}
                         </AvatarGroup>
+
                        
                         <ButtonGroup>
+
                             <Register postId={_id} />
 
                             <MailTo email={email} label={owner} />
