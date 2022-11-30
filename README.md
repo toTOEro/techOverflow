@@ -26,8 +26,8 @@ Screenshot of Application:
 
 ## Installation
 
--npm run install
--npm run develop
+- `npm run install`
+- `npm run develop`
 
 ## Usage
 
