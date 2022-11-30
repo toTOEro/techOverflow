@@ -72,9 +72,7 @@ export default function Posting(details) {
                                         <Avatar key={_id} src={avatar} size={'sm'} />
                                     ))}
                                 </AvatarGroup>
-                                <ButtonGroup>
-                                    <Register postId={_id} />
-                                </ButtonGroup>
+
 
                             </>
                         ) : ('')}
@@ -84,9 +82,10 @@ export default function Posting(details) {
                             ))}
                         </AvatarGroup>
 
-                       
-                        <ButtonGroup>
 
+                        <ButtonGroup>
+                            {Auth.loggedIn() ? (<Register postId={_id} />
+                            ) : ('')}
                             <MailTo email={email} label={owner} />
 
                         </ButtonGroup>
