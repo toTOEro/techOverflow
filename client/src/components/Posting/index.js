@@ -84,7 +84,8 @@ export default function Posting(details) {
 
 
                         <ButtonGroup>
-                            {Auth.loggedIn() ? (<Register postId={_id} />
+                            {Auth.loggedIn() && Auth.getProfile().data._id !== creator ? (
+                                <Register postId={_id} />
                             ) : ('')}
                             <MailTo email={email} label={owner} />
 
